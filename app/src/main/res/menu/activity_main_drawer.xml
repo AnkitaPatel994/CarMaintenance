@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_vehicle"
+            android:icon="@drawable/ic_car"
+            android:title="Vehicle" />
+        <item
+            android:id="@+id/nav_oilchange"
+            android:icon="@drawable/ic_oil"
+            android:title="Oil Change" />
+        <item
+            android:id="@+id/nav_maintenance"
+            android:icon="@drawable/service"
+            android:title="Maintenance" />
+        <item
+            android:id="@+id/nav_servicereport"
+            android:icon="@drawable/reportservice"
+            android:title="Service Report" />
+        <item
+            android:id="@+id/nav_everydaycashout"
+            android:icon="@drawable/ic_dollar"
+            android:title="Every Day Cashout" />
+        <item
+            android:id="@+id/nav_everydayreport"
+            android:icon="@drawable/ic_report"
+            android:title="Every Day Report" />
+    </group>
+
+</menu>
