@@ -24,6 +24,17 @@
         android:background="@drawable/textbox"/>
 
     <EditText
+        android:id="@+id/txtVehicleNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:drawableLeft="@drawable/ic_no"
+        android:drawablePadding="25dp"
+        android:hint="Enter Vehicle No"
+        android:layout_margin="10dp"
+        android:background="@drawable/textbox"/>
+
+    <EditText
         android:id="@+id/txtVehicleKilometer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

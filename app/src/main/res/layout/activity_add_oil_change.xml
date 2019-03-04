@@ -30,6 +30,18 @@
         android:background="@android:drawable/btn_dropdown" />
 
     <EditText
+        android:id="@+id/txtOilVehicleNameNo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:editable="false"
+        android:visibility="gone"
+        android:background="@android:drawable/btn_dropdown"/>
+
+    <EditText
         android:id="@+id/txtOilVehicleKilometer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,6 +50,7 @@
         android:drawablePadding="25dp"
         android:hint="Enter Kilometer"
         android:layout_margin="10dp"
+        android:editable="false"
         android:background="@drawable/textbox"/>
 
     <EditText

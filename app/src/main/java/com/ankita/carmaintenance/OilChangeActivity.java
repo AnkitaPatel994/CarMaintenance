@@ -1,11 +1,13 @@
 package com.ankita.carmaintenance;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,10 +17,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class OilChangeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     RecyclerView rvOilChangeList;
+    ArrayList<HashMap<String,String>> OilChangeListArray = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +42,7 @@ public class OilChangeActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(OilChangeActivity.this,AddOilChangeActivity.class);
+                i.putExtra("flag","add");
                 startActivity(i);
             }
         });
@@ -49,6 +61,9 @@ public class OilChangeActivity extends AppCompatActivity
 
         RecyclerView.LayoutManager manager = new LinearLayoutManager(OilChangeActivity.this,LinearLayoutManager.VERTICAL,false);
         rvOilChangeList.setLayoutManager(manager);
+
+        GetOilChangeList oilChangeList = new GetOilChangeList();
+        oilChangeList.execute();
     }
 
     @Override
@@ -101,5 +116,75 @@ public class OilChangeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private class GetOilChangeList extends AsyncTask<String,Void,String> {
+
+        String status,message;
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            JSONObject joUser=new JSONObject();
+            try {
+
+                Postdata postdata = new Postdata();
+                String pdUser=postdata.post(MainActivity.BASE_URL+"oilchange.php",joUser.toString());
+                JSONObject j = new JSONObject(pdUser);
+                status=j.getString("status");
+                if(status.equals("1"))
+                {
+                    Log.d("Like","Successfully");
+                    message=j.getString("message");
+                    JSONArray JsArry=j.getJSONArray("vehicle");
+                    for (int i=0;i<JsArry.length();i++)
+                    {
+                        JSONObject jo=JsArry.getJSONObject(i);
+
+                        HashMap<String,String > hashMap = new HashMap<>();
+
+                        String o_id =jo.getString("o_id");
+                        String v_id =jo.getString("v_id");
+                        String v_name =jo.getString("v_name");
+                        String v_no =jo.getString("v_no");
+                        String v_kilometer =jo.getString("v_kilometer");
+                        String o_cost =jo.getString("o_cost");
+                        String o_date =jo.getString("o_date");
+
+                        hashMap.put("o_id",o_id);
+                        hashMap.put("v_id",v_id);
+                        hashMap.put("v_name",v_name);
+                        hashMap.put("v_no",v_no);
+                        hashMap.put("v_kilometer",v_kilometer);
+                        hashMap.put("o_cost",o_cost);
+                        hashMap.put("o_date",o_date);
+
+                        OilChangeListArray.add(hashMap);
+                    }
+                }
+                else
+                {
+                    message=j.getString("message");
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if(status.equals("1"))
+            {
+                OilChangeListAdapter oilChangeListAdapter = new OilChangeListAdapter(OilChangeActivity.this,OilChangeListArray);
+                rvOilChangeList.setAdapter(oilChangeListAdapter);
+            }
+            else
+            {
+                Toast.makeText(OilChangeActivity.this,message,Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
