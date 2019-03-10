@@ -25,7 +25,7 @@ import java.util.HashMap;
 public class AddOilChangeActivity extends AppCompatActivity {
 
     Spinner spVehicleName;
-    EditText txtOilVehicleKilometer,txtVehicleOilCost,txtOilVehicleNameNo;
+    EditText txtOilVehicleKilometer,txtVehicleOilCost,txtOilVehicleNameNo,txtMaintenance,txtMaintenanceCost;
     Button btnAddOil;
     String VehicleId,flag,o_id;
     ArrayList<String> VehicleIdList = new ArrayList<>();
@@ -46,6 +46,8 @@ public class AddOilChangeActivity extends AppCompatActivity {
         spVehicleName = (Spinner)findViewById(R.id.spVehicleName);
         txtOilVehicleKilometer = (EditText) findViewById(R.id.txtOilVehicleKilometer);
         txtVehicleOilCost = (EditText) findViewById(R.id.txtVehicleOilCost);
+        txtMaintenance = (EditText) findViewById(R.id.txtMaintenance);
+        txtMaintenanceCost = (EditText) findViewById(R.id.txtMaintenanceCost);
         txtOilVehicleNameNo = (EditText) findViewById(R.id.txtOilVehicleNameNo);
         btnAddOil = (Button) findViewById(R.id.btnAddOil);
 
@@ -68,6 +70,10 @@ public class AddOilChangeActivity extends AppCompatActivity {
             txtOilVehicleKilometer.setText(v_kilometer);
             String o_cost = getIntent().getExtras().getString("o_cost");
             txtVehicleOilCost.setText(o_cost);
+            String o_maintenance = getIntent().getExtras().getString("o_maintenance");
+            txtMaintenance.setText(o_maintenance);
+            String o_m_cost = getIntent().getExtras().getString("o_m_cost");
+            txtMaintenanceCost.setText(o_m_cost);
         }
 
         GetVehicleList vehicleList = new GetVehicleList();
@@ -193,6 +199,8 @@ public class AddOilChangeActivity extends AppCompatActivity {
             try {
                 joUser.put("o_v_id",VehicleId);
                 joUser.put("o_cost",txtVehicleOilCost.getText().toString());
+                joUser.put("o_maintenance",txtMaintenance.getText().toString());
+                joUser.put("o_m_cost",txtMaintenanceCost.getText().toString());
                 Postdata postdata = new Postdata();
                 String pdUser=postdata.post(MainActivity.BASE_URL+"addoilchange.php",joUser.toString());
                 JSONObject j = new JSONObject(pdUser);
@@ -250,6 +258,8 @@ public class AddOilChangeActivity extends AppCompatActivity {
             try {
                 joUser.put("o_id",o_id);
                 joUser.put("o_cost",txtVehicleOilCost.getText().toString());
+                joUser.put("o_maintenance",txtMaintenance.getText().toString());
+                joUser.put("o_m_cost",txtMaintenanceCost.getText().toString());
                 Postdata postdata = new Postdata();
                 String pdUser=postdata.post(MainActivity.BASE_URL+"editoilchange.php",joUser.toString());
                 JSONObject j = new JSONObject(pdUser);

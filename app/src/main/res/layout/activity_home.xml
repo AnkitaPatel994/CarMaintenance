@@ -32,15 +32,15 @@
 
             <LinearLayout
                 android:id="@+id/llVehicle"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:background="@drawable/round_button">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:tint="#fff"
                     android:src="@drawable/ic_car" />
 
@@ -52,8 +52,8 @@
                 android:gravity="center"
                 android:textColor="#000"
                 android:layout_marginTop="10dp"
-                android:textSize="18dp"
-                android:text="Vehicle"/>
+                android:textSize="15dp"
+                android:text="Vehicle\n"/>
 
         </LinearLayout>
 
@@ -65,16 +65,16 @@
             android:layout_margin="10dp">
 
             <LinearLayout
-                android:id="@+id/llOilChange"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:id="@+id/llOilChangeMaintenance"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:background="@drawable/round_button">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:tint="#fff"
                     android:src="@drawable/ic_oil" />
 
@@ -86,8 +86,8 @@
                 android:gravity="center"
                 android:textColor="#000"
                 android:layout_marginTop="10dp"
-                android:textSize="18dp"
-                android:text="Oil Change"/>
+                android:textSize="15dp"
+                android:text="Oil Change\n Maintenance"/>
 
         </LinearLayout>
 
@@ -99,9 +99,9 @@
             android:layout_margin="10dp">
 
             <LinearLayout
-                android:id="@+id/llMaintenance"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:id="@+id/llServiceReport"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:background="@drawable/round_button">
@@ -110,7 +110,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:tint="#fff"
-                    android:src="@drawable/service" />
+                    android:src="@drawable/reportservice" />
 
             </LinearLayout>
 
@@ -120,8 +120,8 @@
                 android:gravity="center"
                 android:textColor="#000"
                 android:layout_marginTop="10dp"
-                android:textSize="18dp"
-                android:text="Maintenance"/>
+                android:textSize="15dp"
+                android:text="Service\nReport"/>
 
         </LinearLayout>
 
@@ -143,18 +143,18 @@
             android:layout_margin="10dp">
 
             <LinearLayout
-                android:id="@+id/llServiceReport"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:id="@+id/llDriver"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:background="@drawable/round_button">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:tint="#fff"
-                    android:src="@drawable/reportservice" />
+                    android:src="@drawable/ic_driver" />
 
             </LinearLayout>
 
@@ -164,10 +164,12 @@
                 android:gravity="center"
                 android:textColor="#000"
                 android:layout_marginTop="10dp"
-                android:textSize="18dp"
-                android:text="Service\nReport"/>
+                android:textSize="15dp"
+                android:text="Driver\n"/>
 
         </LinearLayout>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -178,15 +180,15 @@
 
             <LinearLayout
                 android:id="@+id/llEveryDayCashOut"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:background="@drawable/round_button">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:tint="#fff"
                     android:src="@drawable/ic_dollar" />
 
@@ -198,7 +200,7 @@
                 android:gravity="center"
                 android:textColor="#000"
                 android:layout_marginTop="10dp"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:text="Every Day\nCash out"/>
 
         </LinearLayout>
@@ -212,15 +214,15 @@
 
             <LinearLayout
                 android:id="@+id/llEveryDayReport"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:background="@drawable/round_button">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:tint="#fff"
                     android:src="@drawable/ic_report" />
 
@@ -232,7 +234,7 @@
                 android:gravity="center"
                 android:textColor="#000"
                 android:layout_marginTop="10dp"
-                android:textSize="18dp"
+                android:textSize="15dp"
                 android:text="Every Day\nReport"/>
 
         </LinearLayout>

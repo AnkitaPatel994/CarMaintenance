@@ -77,7 +77,7 @@ public class MaintenanceActivity extends AppCompatActivity
             Intent i = new Intent(MaintenanceActivity.this, VehicleActivity.class);
             startActivity(i);
         }
-        else if (id == R.id.nav_oilchange)
+        else if (id == R.id.nav_oilchange_maintenance)
         {
             Intent i = new Intent(MaintenanceActivity.this, OilChangeActivity.class);
             startActivity(i);

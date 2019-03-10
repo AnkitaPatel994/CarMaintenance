@@ -13,17 +13,17 @@
             android:icon="@drawable/ic_car"
             android:title="Vehicle" />
         <item
-            android:id="@+id/nav_oilchange"
+            android:id="@+id/nav_oilchange_maintenance"
             android:icon="@drawable/ic_oil"
             android:title="Oil Change" />
-        <item
-            android:id="@+id/nav_maintenance"
-            android:icon="@drawable/service"
-            android:title="Maintenance" />
         <item
             android:id="@+id/nav_servicereport"
             android:icon="@drawable/reportservice"
             android:title="Service Report" />
+        <item
+            android:id="@+id/nav_driver"
+            android:icon="@drawable/ic_driver"
+            android:title="Driver" />
         <item
             android:id="@+id/nav_everydaycashout"
             android:icon="@drawable/ic_dollar"

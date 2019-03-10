@@ -92,14 +92,14 @@ public class OilChangeActivity extends AppCompatActivity
             Intent i = new Intent(OilChangeActivity.this, VehicleActivity.class);
             startActivity(i);
         }
-        else if (id == R.id.nav_maintenance)
-        {
-            Intent i = new Intent(OilChangeActivity.this, MaintenanceActivity.class);
-            startActivity(i);
-        }
         else if (id == R.id.nav_servicereport)
         {
             Intent i = new Intent(OilChangeActivity.this, ServiceReportActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_driver)
+        {
+            Intent i = new Intent(OilChangeActivity.this, DriverActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_everydaycashout)
@@ -149,6 +149,8 @@ public class OilChangeActivity extends AppCompatActivity
                         String v_no =jo.getString("v_no");
                         String v_kilometer =jo.getString("v_kilometer");
                         String o_cost =jo.getString("o_cost");
+                        String o_maintenance =jo.getString("o_maintenance");
+                        String o_m_cost =jo.getString("o_m_cost");
                         String o_date =jo.getString("o_date");
 
                         hashMap.put("o_id",o_id);
@@ -157,6 +159,8 @@ public class OilChangeActivity extends AppCompatActivity
                         hashMap.put("v_no",v_no);
                         hashMap.put("v_kilometer",v_kilometer);
                         hashMap.put("o_cost",o_cost);
+                        hashMap.put("o_maintenance",o_maintenance);
+                        hashMap.put("o_m_cost",o_m_cost);
                         hashMap.put("o_date",o_date);
 
                         OilChangeListArray.add(hashMap);

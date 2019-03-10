@@ -90,19 +90,19 @@ public class VehicleActivity extends AppCompatActivity
             Intent i = new Intent(VehicleActivity.this, HomeActivity.class);
             startActivity(i);
         }
-        else if (id == R.id.nav_oilchange)
+        else if (id == R.id.nav_oilchange_maintenance)
         {
             Intent i = new Intent(VehicleActivity.this, OilChangeActivity.class);
-            startActivity(i);
-        }
-        else if (id == R.id.nav_maintenance)
-        {
-            Intent i = new Intent(VehicleActivity.this, MaintenanceActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_servicereport)
         {
             Intent i = new Intent(VehicleActivity.this, ServiceReportActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_driver)
+        {
+            Intent i = new Intent(VehicleActivity.this, DriverActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_everydaycashout)

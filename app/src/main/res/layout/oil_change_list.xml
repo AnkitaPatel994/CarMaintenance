@@ -19,7 +19,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_view"
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
@@ -42,10 +41,10 @@
                 android:text="TextView" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_view"
             android:orientation="horizontal">
 
             <TextView
@@ -54,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="15dp"
-                android:text="TextView" />
+                android:text="Oil Change" />
 
             <TextView
                 android:id="@+id/txtVOCost"
@@ -67,6 +66,33 @@
                 android:text="TextView" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txtVOMaintenance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="15dp"
+                android:text="Other Maintenance" />
+
+            <TextView
+                android:id="@+id/txtVOMaintenanceCost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:textSize="18dp"
+                android:gravity="right"
+                android:textColor="@color/colorPrimary"
+                android:text="TextView" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 

@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 
 public class HomeActivity extends AppCompatActivity {
 
-    LinearLayout llVehicle,llOilChange,llMaintenance,llServiceReport,llEveryDayCashOut,llEveryDayReport;
+    LinearLayout llVehicle,llOilChangeMaintenance,llServiceReport,llDriver,llEveryDayCashOut,llEveryDayReport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,9 +16,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         llVehicle = (LinearLayout)findViewById(R.id.llVehicle);
-        llOilChange = (LinearLayout)findViewById(R.id.llOilChange);
-        llMaintenance = (LinearLayout)findViewById(R.id.llMaintenance);
+        llOilChangeMaintenance = (LinearLayout)findViewById(R.id.llOilChangeMaintenance);
         llServiceReport = (LinearLayout)findViewById(R.id.llServiceReport);
+        llDriver = (LinearLayout)findViewById(R.id.llDriver);
         llEveryDayCashOut = (LinearLayout)findViewById(R.id.llEveryDayCashOut);
         llEveryDayReport = (LinearLayout)findViewById(R.id.llEveryDayReport);
 
@@ -30,18 +30,10 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        llOilChange.setOnClickListener(new View.OnClickListener() {
+        llOilChangeMaintenance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeActivity.this, OilChangeActivity.class);
-                startActivity(i);
-            }
-        });
-
-        llMaintenance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, MaintenanceActivity.class);
                 startActivity(i);
             }
         });
@@ -50,6 +42,14 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeActivity.this, ServiceReportActivity.class);
+                startActivity(i);
+            }
+        });
+
+        llDriver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(HomeActivity.this, DriverActivity.class);
                 startActivity(i);
             }
         });

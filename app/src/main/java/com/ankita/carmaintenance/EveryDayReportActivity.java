@@ -1,5 +1,6 @@
 package com.ankita.carmaintenance;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,9 +14,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.Calendar;
 
 public class EveryDayReportActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    TextView txtEDDate;
+    Spinner spEDDriverName;
+    Button btnEDReport;
+
+    Calendar c = Calendar.getInstance();
+    int mYear = c.get(Calendar.YEAR);
+    int mMonth = c.get(Calendar.MONTH);
+    int mDay = c.get(Calendar.DAY_OF_MONTH);
+    int hour = c.get(Calendar.HOUR_OF_DAY);
+    int minute = c.get(Calendar.MINUTE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +50,26 @@ public class EveryDayReportActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        txtEDDate = (TextView)findViewById(R.id.txtEDDate);
+        spEDDriverName = (Spinner)findViewById(R.id.spEDDriverName);
+        btnEDReport = (Button) findViewById(R.id.btnEDReport);
+
+        txtEDDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog mDatePicker;
+                mDatePicker = new DatePickerDialog(EveryDayReportActivity.this,new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        selectedmonth = selectedmonth + 1;
+
+                        txtEDDate.setText(selectedday + "-" + selectedmonth + "-" + selectedyear);
+                    }
+                }, mYear, mMonth, mDay);
+                mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
+                mDatePicker.show();
+            }
+        });
     }
 
     @Override
@@ -60,19 +98,19 @@ public class EveryDayReportActivity extends AppCompatActivity
             Intent i = new Intent(EveryDayReportActivity.this, VehicleActivity.class);
             startActivity(i);
         }
-        else if (id == R.id.nav_oilchange)
+        else if (id == R.id.nav_oilchange_maintenance)
         {
             Intent i = new Intent(EveryDayReportActivity.this, OilChangeActivity.class);
-            startActivity(i);
-        }
-        else if (id == R.id.nav_maintenance)
-        {
-            Intent i = new Intent(EveryDayReportActivity.this, MaintenanceActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_servicereport)
         {
             Intent i = new Intent(EveryDayReportActivity.this, ServiceReportActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_driver)
+        {
+            Intent i = new Intent(EveryDayReportActivity.this, DriverActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_everydaycashout)
