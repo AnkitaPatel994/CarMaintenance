@@ -32,6 +32,15 @@
             android:id="@+id/nav_everydayreport"
             android:icon="@drawable/ic_report"
             android:title="Every Day Report" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Share App"/>
+        <item
+            android:id="@+id/nav_rate"
+            android:icon="@drawable/ic_rating"
+            android:title="Rate App" />
     </group>
 
 </menu>
