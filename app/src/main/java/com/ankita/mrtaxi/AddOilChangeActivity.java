@@ -97,16 +97,33 @@ public class AddOilChangeActivity extends AppCompatActivity {
         btnAddOil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(flag.equals("add"))
+
+                if(txtVehicleOilCost.getText().toString().equals("") && txtMaintenance.getText().toString().equals("") && txtMaintenanceCost.getText().toString().equals(""))
                 {
-                    GetAddOilChangeList addOilChangeList = new GetAddOilChangeList();
-                    addOilChangeList.execute();
+                    Toast.makeText(AddOilChangeActivity.this,"Enter Vehicle Oil Cost",Toast.LENGTH_SHORT).show();
                 }
-                else if(flag.equals("edit"))
+                else if(txtMaintenance.getText().toString().equals("") && txtMaintenanceCost.getText().toString().equals(""))
                 {
-                    GetEditOilChangeList editOilChangeList = new GetEditOilChangeList();
-                    editOilChangeList.execute();
+                    Toast.makeText(AddOilChangeActivity.this,"Enter Vehicle Maintenance",Toast.LENGTH_SHORT).show();
                 }
+                else if(txtMaintenanceCost.getText().toString().equals(""))
+                {
+                    Toast.makeText(AddOilChangeActivity.this,"Enter Vehicle Maintenance Cost",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    if(flag.equals("add"))
+                    {
+                        GetAddOilChangeList addOilChangeList = new GetAddOilChangeList();
+                        addOilChangeList.execute();
+                    }
+                    else if(flag.equals("edit"))
+                    {
+                        GetEditOilChangeList editOilChangeList = new GetEditOilChangeList();
+                        editOilChangeList.execute();
+                    }
+                }
+
             }
         });
 

@@ -43,6 +43,7 @@
         android:drawablePadding="25dp"
         android:hint="Enter Kilometer"
         android:layout_margin="10dp"
+        android:inputType="number"
         android:background="@drawable/textbox"/>
 
     <Button
@@ -55,5 +56,6 @@
         android:textColor="@color/colorWhite"
         android:background="@drawable/button_bg"
         android:text="Submit" />
+
 
 </LinearLayout>

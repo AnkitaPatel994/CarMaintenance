@@ -122,8 +122,16 @@ public class EveryDayReportActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                GetDailyReport dailyReport = new GetDailyReport();
-                dailyReport.execute();
+                if(txtEDDate.getText().toString().equals(""))
+                {
+                    Toast.makeText(EveryDayReportActivity.this,"Enter Date",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    GetDailyReport dailyReport = new GetDailyReport();
+                    dailyReport.execute();
+                }
+
             }
         });
 

@@ -121,8 +121,16 @@ public class ServiceReportActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                GetServiceReport serviceReport = new GetServiceReport();
-                serviceReport.execute();
+                if(txtSPDate.getText().toString().equals(""))
+                {
+                    Toast.makeText(ServiceReportActivity.this,"Enter Date",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    GetServiceReport serviceReport = new GetServiceReport();
+                    serviceReport.execute();
+                }
+
 
             }
         });

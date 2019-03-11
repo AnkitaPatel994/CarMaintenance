@@ -60,16 +60,32 @@ public class AddVehicleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(flag.equals("add"))
+                if(txtVehicleName.getText().toString().equals("") && txtVehicleNo.getText().toString().equals("") && txtVehicleKilometer.getText().toString().equals(""))
                 {
-                    GetAddvehicle addvehicle = new GetAddvehicle();
-                    addvehicle.execute();
+                    Toast.makeText(AddVehicleActivity.this,"Enter Vehicle Name",Toast.LENGTH_SHORT).show();
                 }
-                else if(flag.equals("edit"))
+                else if(txtVehicleNo.getText().toString().equals("") && txtVehicleKilometer.getText().toString().equals(""))
                 {
-                    GetEditvehicle editvehicle = new GetEditvehicle();
-                    editvehicle.execute();
+                    Toast.makeText(AddVehicleActivity.this,"Enter Vehicle No",Toast.LENGTH_SHORT).show();
                 }
+                else if(txtVehicleKilometer.getText().toString().equals(""))
+                {
+                    Toast.makeText(AddVehicleActivity.this,"Enter Vehicle Kilometer",Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    if(flag.equals("add"))
+                    {
+                        GetAddvehicle addvehicle = new GetAddvehicle();
+                        addvehicle.execute();
+                    }
+                    else if(flag.equals("edit"))
+                    {
+                        GetEditvehicle editvehicle = new GetEditvehicle();
+                        editvehicle.execute();
+                    }
+                }
+
 
             }
         });
