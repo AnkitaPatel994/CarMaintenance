@@ -1,4 +1,4 @@
-package com.ankita.carmaintenance;
+package com.ankita.mrtaxi;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -70,5 +70,11 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 }

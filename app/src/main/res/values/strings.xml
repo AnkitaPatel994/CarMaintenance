@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">CarMaintenance</string>
-    <string name="title_activity_name">Maintenance</string>
+    <string name="app_name">Mr Taxi</string>
+    <string name="title_activity_name">Mr Taxi</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_generate_service_report">Service Report</string>
+    <string name="title_activity_generate_day_report">Daily Report</string>
+    <string name="reload"><u>Reload page</u></string>
+
 
 </resources>

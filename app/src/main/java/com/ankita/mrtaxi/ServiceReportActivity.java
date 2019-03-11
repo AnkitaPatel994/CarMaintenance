@@ -1,4 +1,4 @@
-package com.ankita.carmaintenance;
+package com.ankita.mrtaxi;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -136,6 +136,10 @@ public class ServiceReportActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+
+        Intent i = new Intent(getApplicationContext(),HomeActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -178,7 +182,7 @@ public class ServiceReportActivity extends AppCompatActivity
         {
             Intent i=new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
-            String body="https://play.google.com/store/apps/details?id=com.ankita.carmaintenance";
+            String body="https://play.google.com/store/apps/details?id=com.ankita.mrtaxi";
             i.putExtra(Intent.EXTRA_SUBJECT,body);
             i.putExtra(Intent.EXTRA_TEXT,body);
             startActivity(Intent.createChooser(i,"Share using"));
@@ -186,10 +190,10 @@ public class ServiceReportActivity extends AppCompatActivity
         else if (id == R.id.nav_rate)
         {
             Intent i=new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.carmaintenance"));
+            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
             if(!MyStartActivity(i))
             {
-                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.carmaintenance"));
+                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
                 if(!MyStartActivity(i))
                 {
                     Log.d("Like","Could not open browser");

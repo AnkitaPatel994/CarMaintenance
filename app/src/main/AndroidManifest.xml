@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ankita.carmaintenance">
+    package="com.ankita.mrtaxi">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".GenerateDayReportActivity"
+            android:label="@string/title_activity_generate_day_report"
+            android:theme="@style/AppTheme.ActionBar"></activity>
+        <activity
             android:name=".GenerateServiceReportActivity"
             android:label="@string/title_activity_generate_service_report"
-            android:theme="@style/AppTheme.ActionBar"/>
+            android:theme="@style/AppTheme.ActionBar" />
         <activity
             android:name=".AddDriverActivity"
             android:label="@string/title_activity_name" />
