@@ -5,17 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
-    <TextView
+    <!--<TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="MR TAXI"
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="@color/colorBlack"
-        android:textSize="30dp"/>
+        android:textSize="30dp"/>-->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/logo" />
 
     <LinearLayout
         android:id="@+id/lnSnackbar"
@@ -49,5 +54,7 @@
             android:textSize="15dp" />
 
     </LinearLayout>
+
+
 
 </RelativeLayout>

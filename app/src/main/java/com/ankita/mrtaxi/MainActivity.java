@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 public void run()
                 {
                     try {
-                        sleep(5*1000);
+                        sleep(2*1000);
 
                         Intent i = new Intent(getApplicationContext(),HomeActivity.class);
                         startActivity(i);
