@@ -1,4 +1,4 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
 import android.content.Context;
 import android.content.Intent;
@@ -50,8 +50,8 @@ class OilChangeListAdapter extends RecyclerView.Adapter<OilChangeListAdapter.Vie
         holder.txtVOKilometer.setText(v_kilometer+"km");
         holder.txtVOCost.setText("$"+o_cost);
         holder.txtVOMaintenanceCost.setText("$"+o_m_cost);
-        //holder.txtVODate.setText(o_date);
-        //holder.txtVOMaintenance.setText(o_maintenance);
+        holder.txtVODate.setText(o_date);
+        holder.txtVOMaintenance.setText(o_maintenance);
 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +59,7 @@ class OilChangeListAdapter extends RecyclerView.Adapter<OilChangeListAdapter.Vie
                 Intent i = new Intent(context,AddOilChangeActivity.class);
                 i.putExtra("flag","edit");
                 i.putExtra("o_id",o_id);
+                i.putExtra("v_id",v_id);
                 i.putExtra("v_name",v_name);
                 i.putExtra("v_no",v_no);
                 i.putExtra("v_kilometer",v_kilometer);

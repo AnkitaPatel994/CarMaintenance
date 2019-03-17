@@ -38,10 +38,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:text="Cash : " />
+                android:text="Licence No : " />
 
             <EditText
-                android:id="@+id/txtDCash"
+                android:id="@+id/txtDLicenceno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
@@ -53,14 +53,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:text="Medical : " />
+                android:text="GST : " />
 
             <EditText
-                android:id="@+id/txtDMedical"
+                android:id="@+id/txtDGST"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="10dp"
+                android:inputType="number"
                 android:background="@drawable/textbox"/>
 
             <TextView
@@ -68,104 +69,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
-                android:text="Kids First : " />
+                android:text="Commission : " />
 
             <EditText
-                android:id="@+id/txtDKidsFirst"
+                android:id="@+id/txtDCommission"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/textbox"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:text="Social Services : " />
-
-            <EditText
-                android:id="@+id/txtDSocialServices"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/textbox"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:text="Pulp Mill : " />
-
-            <EditText
-                android:id="@+id/txtDPulpMill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/textbox"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:text="OSB Mill : " />
-
-            <EditText
-                android:id="@+id/txtDOSBMill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/textbox"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:text="NamSask Mill : " />
-
-            <EditText
-                android:id="@+id/txtDNamSaskMill"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/textbox"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:text="Detox : " />
-
-            <EditText
-                android:id="@+id/txtDDetox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/textbox"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:text="SGI : " />
-
-            <EditText
-                android:id="@+id/txtDSGI"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:layout_margin="10dp"
+                android:inputType="number"
                 android:background="@drawable/textbox"/>
 
             <Button

@@ -1,4 +1,4 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import android.widget.LinearLayout;
 
 public class HomeActivity extends AppCompatActivity {
 
-    LinearLayout llVehicle,llOilChangeMaintenance,llServiceReport,llDriver,llEveryDayCashOut,llEveryDayReport;
+    LinearLayout llVehicle,llMaintenance,llServiceReport,llDriver,llEveryDayCashOut,llEveryDayReport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +16,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         llVehicle = (LinearLayout)findViewById(R.id.llVehicle);
-        llOilChangeMaintenance = (LinearLayout)findViewById(R.id.llOilChangeMaintenance);
+        llMaintenance = (LinearLayout)findViewById(R.id.llMaintenance);
         llServiceReport = (LinearLayout)findViewById(R.id.llServiceReport);
         llDriver = (LinearLayout)findViewById(R.id.llDriver);
         llEveryDayCashOut = (LinearLayout)findViewById(R.id.llEveryDayCashOut);
@@ -25,12 +25,12 @@ public class HomeActivity extends AppCompatActivity {
         llVehicle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(HomeActivity.this, VehicleActivity.class);
+                Intent i = new Intent(HomeActivity.this, ReportActivity.class);
                 startActivity(i);
             }
         });
 
-        llOilChangeMaintenance.setOnClickListener(new View.OnClickListener() {
+        llMaintenance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(HomeActivity.this, OilChangeActivity.class);

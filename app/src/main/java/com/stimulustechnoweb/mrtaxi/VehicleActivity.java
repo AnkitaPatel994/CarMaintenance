@@ -1,4 +1,4 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -28,14 +28,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class OilChangeActivity extends AppCompatActivity
+public class VehicleActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    RecyclerView rvOilChangeList;
-    ArrayList<HashMap<String,String>> OilChangeListArray = new ArrayList<>();
+
+    RecyclerView rvVehicleList;
+    ArrayList<HashMap<String,String>> VehicleListArray = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_oil_change);
+        setContentView(R.layout.activity_vehicle);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -43,7 +45,7 @@ public class OilChangeActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(OilChangeActivity.this,AddOilChangeActivity.class);
+                Intent i = new Intent(VehicleActivity.this,AddVehicleActivity.class);
                 i.putExtra("flag","add");
                 startActivity(i);
             }
@@ -58,14 +60,15 @@ public class OilChangeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        rvOilChangeList = (RecyclerView)findViewById(R.id.rvOilChangeList);
-        rvOilChangeList.setHasFixedSize(true);
+        rvVehicleList = (RecyclerView)findViewById(R.id.rvVehicleList);
+        rvVehicleList.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(OilChangeActivity.this,LinearLayoutManager.VERTICAL,false);
-        rvOilChangeList.setLayoutManager(manager);
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(VehicleActivity.this,LinearLayoutManager.VERTICAL,false);
+        rvVehicleList.setLayoutManager(manager);
 
-        GetOilChangeList oilChangeList = new GetOilChangeList();
-        oilChangeList.execute();
+        GetVehicle vehicle = new GetVehicle();
+        vehicle.execute();
+
     }
 
     @Override
@@ -90,39 +93,49 @@ public class OilChangeActivity extends AppCompatActivity
 
         if (id == R.id.nav_home)
         {
-            Intent i = new Intent(OilChangeActivity.this, HomeActivity.class);
+            Intent i = new Intent(VehicleActivity.this, HomeActivity.class);
             startActivity(i);
         }
-        else if (id == R.id.nav_vehicle)
+        else if (id == R.id.nav_oilchange_maintenance)
         {
-            Intent i = new Intent(OilChangeActivity.this, VehicleActivity.class);
+            Intent i = new Intent(VehicleActivity.this, OilChangeActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_servicereport)
         {
-            Intent i = new Intent(OilChangeActivity.this, ServiceReportActivity.class);
+            Intent i = new Intent(VehicleActivity.this, ServiceReportActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_driver)
         {
-            Intent i = new Intent(OilChangeActivity.this, DriverActivity.class);
+            Intent i = new Intent(VehicleActivity.this, DriverActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_client)
+        {
+            Intent i = new Intent(VehicleActivity.this, ClientActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_everydaycashout)
         {
-            Intent i = new Intent(OilChangeActivity.this, EveryDayCashOutActivity.class);
+            Intent i = new Intent(VehicleActivity.this, EveryDayCashOutActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_everydayreport)
         {
-            Intent i = new Intent(OilChangeActivity.this, EveryDayReportActivity.class);
+            Intent i = new Intent(VehicleActivity.this, EveryDayReportActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_report)
+        {
+            Intent i = new Intent(VehicleActivity.this, ReportActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_share)
         {
             Intent i=new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
-            String body="https://play.google.com/store/apps/details?id=com.ankita.mrtaxi";
+            String body="https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi";
             i.putExtra(Intent.EXTRA_SUBJECT,body);
             i.putExtra(Intent.EXTRA_TEXT,body);
             startActivity(Intent.createChooser(i,"Share using"));
@@ -130,10 +143,10 @@ public class OilChangeActivity extends AppCompatActivity
         else if (id == R.id.nav_rate)
         {
             Intent i=new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
             if(!MyStartActivity(i))
             {
-                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
                 if(!MyStartActivity(i))
                 {
                     Log.d("Like","Could not open browser");
@@ -158,7 +171,7 @@ public class OilChangeActivity extends AppCompatActivity
         }
     }
 
-    private class GetOilChangeList extends AsyncTask<String,Void,String> {
+    private class GetVehicle extends AsyncTask<String,Void,String> {
 
         String status,message;
 
@@ -169,7 +182,7 @@ public class OilChangeActivity extends AppCompatActivity
             try {
 
                 Postdata postdata = new Postdata();
-                String pdUser=postdata.post(MainActivity.BASE_URL+"oilchange.php",joUser.toString());
+                String pdUser=postdata.post(MainActivity.BASE_URL+"vehicle.php",joUser.toString());
                 JSONObject j = new JSONObject(pdUser);
                 status=j.getString("status");
                 if(status.equals("1"))
@@ -183,27 +196,17 @@ public class OilChangeActivity extends AppCompatActivity
 
                         HashMap<String,String > hashMap = new HashMap<>();
 
-                        String o_id =jo.getString("o_id");
-                        String v_id =jo.getString("v_id");
+                        String v_id =jo.getString("id");
                         String v_name =jo.getString("v_name");
                         String v_no =jo.getString("v_no");
                         String v_kilometer =jo.getString("v_kilometer");
-                        String o_cost =jo.getString("o_cost");
-                        String o_maintenance =jo.getString("o_maintenance");
-                        String o_m_cost =jo.getString("o_m_cost");
-                        String o_date =jo.getString("o_date");
 
-                        hashMap.put("o_id",o_id);
                         hashMap.put("v_id",v_id);
                         hashMap.put("v_name",v_name);
                         hashMap.put("v_no",v_no);
                         hashMap.put("v_kilometer",v_kilometer);
-                        hashMap.put("o_cost",o_cost);
-                        hashMap.put("o_maintenance",o_maintenance);
-                        hashMap.put("o_m_cost",o_m_cost);
-                        hashMap.put("o_date",o_date);
 
-                        OilChangeListArray.add(hashMap);
+                        VehicleListArray.add(hashMap);
                     }
                 }
                 else
@@ -222,12 +225,12 @@ public class OilChangeActivity extends AppCompatActivity
             super.onPostExecute(s);
             if(status.equals("1"))
             {
-                OilChangeListAdapter oilChangeListAdapter = new OilChangeListAdapter(OilChangeActivity.this,OilChangeListArray);
-                rvOilChangeList.setAdapter(oilChangeListAdapter);
+                VehicleListAdapter vehicleListAdapter = new VehicleListAdapter(VehicleActivity.this,VehicleListArray);
+                rvVehicleList.setAdapter(vehicleListAdapter);
             }
             else
             {
-                Toast.makeText(OilChangeActivity.this,message,Toast.LENGTH_SHORT).show();
+                Toast.makeText(VehicleActivity.this,message,Toast.LENGTH_SHORT).show();
             }
         }
     }

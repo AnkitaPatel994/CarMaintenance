@@ -26,7 +26,7 @@
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/txtDLCash"
+            android:id="@+id/txtDLLNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -44,7 +44,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtDLMedical"
+            android:id="@+id/txtDLGST"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -53,88 +53,7 @@
             android:text="TextView" />
 
         <TextView
-            android:id="@+id/txtDLKidsFirst"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:gravity="right"
-            android:text="TextView" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtDLSocialServices"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18dp"
-            android:textColor="@color/colorPrimary"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/txtDLPulpMill"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:gravity="right"
-            android:text="TextView" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtDLOSBMill"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18dp"
-            android:textColor="@color/colorPrimary"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/txtDLNamSaskMill"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="15dp"
-            android:gravity="right"
-            android:text="TextView" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/txtDLDetox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18dp"
-            android:textColor="@color/colorPrimary"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/txtDLSGI"
+            android:id="@+id/txtDLCommission"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

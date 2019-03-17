@@ -1,4 +1,4 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -110,6 +110,11 @@ public class DriverActivity extends AppCompatActivity
             Intent i = new Intent(DriverActivity.this, ServiceReportActivity.class);
             startActivity(i);
         }
+        else if (id == R.id.nav_client)
+        {
+            Intent i = new Intent(DriverActivity.this, ClientActivity.class);
+            startActivity(i);
+        }
         else if (id == R.id.nav_everydaycashout)
         {
             Intent i = new Intent(DriverActivity.this, EveryDayCashOutActivity.class);
@@ -120,11 +125,16 @@ public class DriverActivity extends AppCompatActivity
             Intent i = new Intent(DriverActivity.this, EveryDayReportActivity.class);
             startActivity(i);
         }
+        else if (id == R.id.nav_report)
+        {
+            Intent i = new Intent(DriverActivity.this, ReportActivity.class);
+            startActivity(i);
+        }
         else if (id == R.id.nav_share)
         {
             Intent i=new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
-            String body="https://play.google.com/store/apps/details?id=com.ankita.mrtaxi";
+            String body="https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi";
             i.putExtra(Intent.EXTRA_SUBJECT,body);
             i.putExtra(Intent.EXTRA_TEXT,body);
             startActivity(Intent.createChooser(i,"Share using"));
@@ -132,10 +142,10 @@ public class DriverActivity extends AppCompatActivity
         else if (id == R.id.nav_rate)
         {
             Intent i=new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
             if(!MyStartActivity(i))
             {
-                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
                 if(!MyStartActivity(i))
                 {
                     Log.d("Like","Could not open browser");
@@ -187,27 +197,15 @@ public class DriverActivity extends AppCompatActivity
 
                         String d_id =jo.getString("d_id");
                         String d_name =jo.getString("d_name");
-                        String d_cash =jo.getString("d_cash");
-                        String d_medical =jo.getString("d_medical");
-                        String d_kidsfirst =jo.getString("d_kidsfirst");
-                        String d_socialservices =jo.getString("d_socialservices");
-                        String d_pulpmill =jo.getString("d_pulpmill");
-                        String d_osbmill =jo.getString("d_osbmill");
-                        String d_namsaskmill =jo.getString("d_namsaskmill");
-                        String d_detox =jo.getString("d_detox");
-                        String d_sgi =jo.getString("d_sgi");
+                        String d_licenceno =jo.getString("d_licenceno");
+                        String d_gst =jo.getString("d_gst");
+                        String d_commission =jo.getString("d_commission");
 
                         hashMap.put("d_id",d_id);
                         hashMap.put("d_name",d_name);
-                        hashMap.put("d_cash",d_cash);
-                        hashMap.put("d_medical",d_medical);
-                        hashMap.put("d_kidsfirst",d_kidsfirst);
-                        hashMap.put("d_socialservices",d_socialservices);
-                        hashMap.put("d_pulpmill",d_pulpmill);
-                        hashMap.put("d_osbmill",d_osbmill);
-                        hashMap.put("d_namsaskmill",d_namsaskmill);
-                        hashMap.put("d_detox",d_detox);
-                        hashMap.put("d_sgi",d_sgi);
+                        hashMap.put("d_licenceno",d_licenceno);
+                        hashMap.put("d_gst",d_gst);
+                        hashMap.put("d_commission",d_commission);
 
                         DriverListArray.add(hashMap);
                     }

@@ -1,4 +1,4 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
 import android.Manifest;
 import android.content.Intent;

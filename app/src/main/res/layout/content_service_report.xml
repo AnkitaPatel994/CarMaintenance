@@ -15,14 +15,43 @@
     tools:showIn="@layout/app_bar_service_report">
 
     <TextView
-        android:id="@+id/txtSPDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:text="Start Date" />
+    <TextView
+        android:id="@+id/txtSPStartDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_calendar"
         android:drawablePadding="25dp"
-        android:text="Enter Date"
-        android:layout_margin="10dp"
+        android:text="Enter Start Date"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/textbox"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:text="End Date" />
+    <TextView
+        android:id="@+id/txtSPEndDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:drawableLeft="@drawable/ic_calendar"
+        android:drawablePadding="25dp"
+        android:text="Enter End Date"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/textbox"/>
 
     <TextView

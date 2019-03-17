@@ -1,4 +1,4 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -31,14 +31,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class ServiceReportActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    TextView txtSPDate;
+    TextView txtSPStartDate,txtSPEndDate;
     Spinner spSPVehicleName;
     Button btnSPReport;
     String VehicleId;
@@ -49,6 +52,11 @@ public class ServiceReportActivity extends AppCompatActivity
     int mYear = c.get(Calendar.YEAR);
     int mMonth = c.get(Calendar.MONTH);
     int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+    ArrayList<String> serviceReportocost = new ArrayList<>();
+    ArrayList<String> serviceReportomcost = new ArrayList<>();
+    ArrayList<String> serviceReportodate = new ArrayList<>();
+    ArrayList<String> serviceReportTotal = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +74,12 @@ public class ServiceReportActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        txtSPDate = (TextView)findViewById(R.id.txtSPDate);
+        txtSPStartDate = (TextView)findViewById(R.id.txtSPStartDate);
+        txtSPEndDate = (TextView)findViewById(R.id.txtSPEndDate);
         spSPVehicleName = (Spinner)findViewById(R.id.spSPVehicleName);
         btnSPReport = (Button) findViewById(R.id.btnSPReport);
 
-        txtSPDate.setOnClickListener(new View.OnClickListener() {
+        txtSPStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog mDatePicker;
@@ -80,23 +89,54 @@ public class ServiceReportActivity extends AppCompatActivity
 
                         if(selectedmonth < 10 && selectedday < 10)
                         {
-                            txtSPDate.setText("0"+selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtSPStartDate.setText("0"+selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
                         }
                         else if(selectedmonth < 10)
                         {
-                            txtSPDate.setText(selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtSPStartDate.setText(selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
                         }
                         else if(selectedday < 10)
                         {
-                            txtSPDate.setText("0"+selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtSPStartDate.setText("0"+selectedday + "-" + selectedmonth + "-" + selectedyear);
                         }
                         else
                         {
-                            txtSPDate.setText(selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtSPStartDate.setText(selectedday + "-" + selectedmonth + "-" + selectedyear);
                         }
                     }
                 }, mYear, mMonth, mDay);
-                mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
+                //mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
+                mDatePicker.show();
+            }
+        });
+
+        txtSPEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog mDatePicker;
+                mDatePicker = new DatePickerDialog(ServiceReportActivity.this,new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        selectedmonth = selectedmonth + 1;
+
+                        if(selectedmonth < 10 && selectedday < 10)
+                        {
+                            txtSPEndDate.setText("0"+selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                        }
+                        else if(selectedmonth < 10)
+                        {
+                            txtSPEndDate.setText(selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                        }
+                        else if(selectedday < 10)
+                        {
+                            txtSPEndDate.setText("0"+selectedday + "-" + selectedmonth + "-" + selectedyear);
+                        }
+                        else
+                        {
+                            txtSPEndDate.setText(selectedday + "-" + selectedmonth + "-" + selectedyear);
+                        }
+                    }
+                }, mYear, mMonth, mDay);
+                //mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
                 mDatePicker.show();
             }
         });
@@ -121,9 +161,13 @@ public class ServiceReportActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                if(txtSPDate.getText().toString().equals(""))
+                if(txtSPStartDate.getText().toString().equals("") && txtSPEndDate.getText().toString().equals(""))
                 {
-                    Toast.makeText(ServiceReportActivity.this,"Enter Date",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ServiceReportActivity.this,"Enter Start Date",Toast.LENGTH_SHORT).show();
+                }
+                else if(txtSPEndDate.getText().toString().equals(""))
+                {
+                    Toast.makeText(ServiceReportActivity.this,"Enter End Date",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -176,6 +220,11 @@ public class ServiceReportActivity extends AppCompatActivity
             Intent i = new Intent(ServiceReportActivity.this, DriverActivity.class);
             startActivity(i);
         }
+        else if (id == R.id.nav_client)
+        {
+            Intent i = new Intent(ServiceReportActivity.this, ClientActivity.class);
+            startActivity(i);
+        }
         else if (id == R.id.nav_everydaycashout)
         {
             Intent i = new Intent(ServiceReportActivity.this, EveryDayCashOutActivity.class);
@@ -186,11 +235,16 @@ public class ServiceReportActivity extends AppCompatActivity
             Intent i = new Intent(ServiceReportActivity.this, EveryDayReportActivity.class);
             startActivity(i);
         }
+        else if (id == R.id.nav_report)
+        {
+            Intent i = new Intent(ServiceReportActivity.this, ReportActivity.class);
+            startActivity(i);
+        }
         else if (id == R.id.nav_share)
         {
             Intent i=new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
-            String body="https://play.google.com/store/apps/details?id=com.ankita.mrtaxi";
+            String body="https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi";
             i.putExtra(Intent.EXTRA_SUBJECT,body);
             i.putExtra(Intent.EXTRA_TEXT,body);
             startActivity(Intent.createChooser(i,"Share using"));
@@ -198,10 +252,10 @@ public class ServiceReportActivity extends AppCompatActivity
         else if (id == R.id.nav_rate)
         {
             Intent i=new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
             if(!MyStartActivity(i))
             {
-                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
                 if(!MyStartActivity(i))
                 {
                     Log.d("Like","Could not open browser");
@@ -284,7 +338,7 @@ public class ServiceReportActivity extends AppCompatActivity
 
     private class GetServiceReport extends AsyncTask<String,Void,String> {
 
-        String status,message,v_name,v_no,o_cost,o_m_cost,o_date;
+        String status,message,vehiclename,Oil_Total,Maintenance_Total,Main_Total;
         ProgressDialog dialog;
 
         @Override
@@ -302,7 +356,8 @@ public class ServiceReportActivity extends AppCompatActivity
             JSONObject joUser=new JSONObject();
             try {
                 joUser.put("o_v_id",VehicleId);
-                joUser.put("o_date",txtSPDate.getText().toString());
+                joUser.put("startdate",txtSPStartDate.getText().toString());
+                joUser.put("enddate",txtSPEndDate.getText().toString());
                 Postdata postdata = new Postdata();
                 String pdUser=postdata.post(MainActivity.BASE_URL+"service_report.php",joUser.toString());
                 JSONObject j = new JSONObject(pdUser);
@@ -311,6 +366,10 @@ public class ServiceReportActivity extends AppCompatActivity
                 {
                     Log.d("Like","Successfully");
                     message=j.getString("message");
+                    Oil_Total=j.getString("Oil_Total");
+                    Maintenance_Total=j.getString("Maintenance_Total");
+                    Main_Total=j.getString("Main_Total");
+
                     JSONArray JsArry=j.getJSONArray("vehicle");
                     for (int i=0;i<JsArry.length();i++)
                     {
@@ -318,11 +377,19 @@ public class ServiceReportActivity extends AppCompatActivity
 
                         HashMap<String,String > hashMap = new HashMap<>();
 
-                        v_name =jo.getString("v_name");
-                        v_no =jo.getString("v_no");
-                        o_cost =jo.getString("o_cost");
-                        o_m_cost =jo.getString("o_m_cost");
-                        o_date =jo.getString("o_date");
+                        String v_name =jo.getString("v_name");
+                        String v_no =jo.getString("v_no");
+                        String o_cost =jo.getString("o_cost");
+                        String o_m_cost =jo.getString("o_m_cost");
+                        String o_date =jo.getString("o_date");
+                        String Total =jo.getString("Total");
+
+                        vehiclename = v_name+" - "+v_no;
+
+                        serviceReportocost.add(o_cost);
+                        serviceReportomcost.add(o_m_cost);
+                        serviceReportodate.add(o_date);
+                        serviceReportTotal.add(Total);
 
                     }
                 }
@@ -345,11 +412,14 @@ public class ServiceReportActivity extends AppCompatActivity
             if(status.equals("1"))
             {
                 Intent i = new Intent(ServiceReportActivity.this,GenerateServiceReportActivity.class);
-                i.putExtra("v_name",v_name);
-                i.putExtra("v_no",v_no);
-                i.putExtra("o_date",o_date);
-                i.putExtra("o_cost",o_cost);
-                i.putExtra("o_m_cost",o_m_cost);
+                i.putExtra("Oil_Total",Oil_Total);
+                i.putExtra("Maintenance_Total",Maintenance_Total);
+                i.putExtra("Main_Total",Main_Total);
+                i.putExtra("vehiclename",vehiclename);
+                i.putExtra("serviceReportocost",serviceReportocost);
+                i.putExtra("serviceReportomcost",serviceReportomcost);
+                i.putExtra("serviceReportodate",serviceReportodate);
+                i.putExtra("serviceReportTotal",serviceReportTotal);
                 startActivity(i);
             }
             else

@@ -14,8 +14,8 @@
             android:title="Vehicle" />
         <item
             android:id="@+id/nav_oilchange_maintenance"
-            android:icon="@drawable/ic_oil"
-            android:title="Oil Change" />
+            android:icon="@drawable/service"
+            android:title="Maintenance" />
         <item
             android:id="@+id/nav_servicereport"
             android:icon="@drawable/reportservice"
@@ -25,6 +25,10 @@
             android:icon="@drawable/ic_driver"
             android:title="Driver" />
         <item
+            android:id="@+id/nav_client"
+            android:icon="@drawable/ic_person"
+            android:title="Client" />
+        <item
             android:id="@+id/nav_everydaycashout"
             android:icon="@drawable/ic_dollar"
             android:title="Every Day Cashout" />
@@ -32,6 +36,10 @@
             android:id="@+id/nav_everydayreport"
             android:icon="@drawable/ic_report"
             android:title="Every Day Report" />
+        <item
+            android:id="@+id/nav_report"
+            android:icon="@drawable/ic_card"
+            android:title="Report" />
 
         <item
             android:id="@+id/nav_share"

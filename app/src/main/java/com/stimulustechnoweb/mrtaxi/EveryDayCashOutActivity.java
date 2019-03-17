@@ -1,4 +1,4 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -101,17 +101,6 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             }
         });
 
-        /*String driverCash = txtCash.getText().toString();
-        String gasCreadit = txtGasCreadit.getText().toString();
-        String gasCash = txtGasCash.getText().toString();
-        String maintenancecost = txtMaintenance.getText().toString();
-        String commission = txtCommission.getText().toString();*/
-
-
-        /*int total = Integer.parseInt(driverCash)+Integer.parseInt(gasCreadit)+Integer.parseInt(gasCash)+Integer.parseInt(maintenancecost);
-
-        txtCashLeft.setText(String.valueOf(total));*/
-
         txtCommission.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -213,16 +202,26 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             Intent i = new Intent(EveryDayCashOutActivity.this, DriverActivity.class);
             startActivity(i);
         }
+        else if (id == R.id.nav_client)
+        {
+            Intent i = new Intent(EveryDayCashOutActivity.this, ClientActivity.class);
+            startActivity(i);
+        }
         else if (id == R.id.nav_everydayreport)
         {
             Intent i = new Intent(EveryDayCashOutActivity.this, EveryDayReportActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_report)
+        {
+            Intent i = new Intent(EveryDayCashOutActivity.this, ReportActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_share)
         {
             Intent i=new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
-            String body="https://play.google.com/store/apps/details?id=com.ankita.mrtaxi";
+            String body="https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi";
             i.putExtra(Intent.EXTRA_SUBJECT,body);
             i.putExtra(Intent.EXTRA_TEXT,body);
             startActivity(Intent.createChooser(i,"Share using"));
@@ -230,10 +229,10 @@ public class EveryDayCashOutActivity extends AppCompatActivity
         else if (id == R.id.nav_rate)
         {
             Intent i=new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
             if(!MyStartActivity(i))
             {
-                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
                 if(!MyStartActivity(i))
                 {
                     Log.d("Like","Could not open browser");

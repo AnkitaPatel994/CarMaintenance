@@ -1,4 +1,4 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -21,7 +21,7 @@ import org.json.JSONObject;
 
 public class AddDriverActivity extends AppCompatActivity {
 
-    EditText txtDDriverName,txtDCash,txtDMedical,txtDKidsFirst,txtDSocialServices,txtDPulpMill,txtDOSBMill,txtDNamSaskMill,txtDDetox,txtDSGI;
+    EditText txtDDriverName,txtDLicenceno,txtDGST,txtDCommission;
     Button btnDAddSubmit,btnDDelete;
     String flag,d_id;
 
@@ -37,15 +37,9 @@ public class AddDriverActivity extends AppCompatActivity {
         }
 
         txtDDriverName = (EditText)findViewById(R.id.txtDDriverName);
-        txtDCash = (EditText)findViewById(R.id.txtDCash);
-        txtDMedical = (EditText)findViewById(R.id.txtDMedical);
-        txtDKidsFirst = (EditText)findViewById(R.id.txtDKidsFirst);
-        txtDSocialServices = (EditText)findViewById(R.id.txtDSocialServices);
-        txtDPulpMill = (EditText)findViewById(R.id.txtDPulpMill);
-        txtDOSBMill = (EditText)findViewById(R.id.txtDOSBMill);
-        txtDNamSaskMill = (EditText)findViewById(R.id.txtDNamSaskMill);
-        txtDDetox = (EditText)findViewById(R.id.txtDDetox);
-        txtDSGI = (EditText)findViewById(R.id.txtDSGI);
+        txtDLicenceno = (EditText)findViewById(R.id.txtDLicenceno);
+        txtDGST = (EditText)findViewById(R.id.txtDGST);
+        txtDCommission = (EditText)findViewById(R.id.txtDCommission);
         btnDAddSubmit = (Button) findViewById(R.id.btnDAddSubmit);
         btnDDelete = (Button) findViewById(R.id.btnDDelete);
 
@@ -62,24 +56,12 @@ public class AddDriverActivity extends AppCompatActivity {
             d_id = getIntent().getExtras().getString("d_id");
             String d_name = getIntent().getExtras().getString("d_name");
             txtDDriverName.setText(d_name);
-            String d_cash = getIntent().getExtras().getString("d_cash");
-            txtDCash.setText(d_cash);
-            String d_medical = getIntent().getExtras().getString("d_medical");
-            txtDMedical.setText(d_medical);
-            String d_kidsfirst = getIntent().getExtras().getString("d_kidsfirst");
-            txtDKidsFirst.setText(d_kidsfirst);
-            String d_socialservices = getIntent().getExtras().getString("d_socialservices");
-            txtDSocialServices.setText(d_socialservices);
-            String d_pulpmill = getIntent().getExtras().getString("d_pulpmill");
-            txtDPulpMill.setText(d_pulpmill);
-            String d_osbmill = getIntent().getExtras().getString("d_osbmill");
-            txtDOSBMill.setText(d_osbmill);
-            String d_namsaskmill = getIntent().getExtras().getString("d_namsaskmill");
-            txtDNamSaskMill.setText(d_namsaskmill);
-            String d_detox = getIntent().getExtras().getString("d_detox");
-            txtDDetox.setText(d_detox);
-            String d_sgi = getIntent().getExtras().getString("d_sgi");
-            txtDSGI.setText(d_sgi);
+            String d_licenceno = getIntent().getExtras().getString("d_licenceno");
+            txtDLicenceno.setText(d_licenceno);
+            String d_gst = getIntent().getExtras().getString("d_gst");
+            txtDGST.setText(d_gst);
+            String d_commission = getIntent().getExtras().getString("d_commission");
+            txtDCommission.setText(d_commission);
         }
 
         btnDAddSubmit.setOnClickListener(new View.OnClickListener() {
@@ -169,15 +151,9 @@ public class AddDriverActivity extends AppCompatActivity {
             try {
 
                 joUser.put("d_name",txtDDriverName.getText().toString());
-                joUser.put("d_cash",txtDCash.getText().toString());
-                joUser.put("d_medical",txtDMedical.getText().toString());
-                joUser.put("d_kidsfirst",txtDKidsFirst.getText().toString());
-                joUser.put("d_socialservices",txtDSocialServices.getText().toString());
-                joUser.put("d_pulpmill",txtDPulpMill.getText().toString());
-                joUser.put("d_osbmill",txtDOSBMill.getText().toString());
-                joUser.put("d_namsaskmill",txtDNamSaskMill.getText().toString());
-                joUser.put("d_detox",txtDDetox.getText().toString());
-                joUser.put("d_sgi",txtDSGI.getText().toString());
+                joUser.put("d_licenceno",txtDLicenceno.getText().toString());
+                joUser.put("d_gst",txtDGST.getText().toString());
+                joUser.put("d_commission",txtDCommission.getText().toString());
 
                 Postdata postdata = new Postdata();
                 String pdUser=postdata.post(MainActivity.BASE_URL+"adddriver.php",joUser.toString());
@@ -236,15 +212,9 @@ public class AddDriverActivity extends AppCompatActivity {
 
                 joUser.put("d_id",d_id);
                 joUser.put("d_name",txtDDriverName.getText().toString());
-                joUser.put("d_cash",txtDCash.getText().toString());
-                joUser.put("d_medical",txtDMedical.getText().toString());
-                joUser.put("d_kidsfirst",txtDKidsFirst.getText().toString());
-                joUser.put("d_socialservices",txtDSocialServices.getText().toString());
-                joUser.put("d_pulpmill",txtDPulpMill.getText().toString());
-                joUser.put("d_osbmill",txtDOSBMill.getText().toString());
-                joUser.put("d_namsaskmill",txtDNamSaskMill.getText().toString());
-                joUser.put("d_detox",txtDDetox.getText().toString());
-                joUser.put("d_sgi",txtDSGI.getText().toString());
+                joUser.put("d_licenceno",txtDLicenceno.getText().toString());
+                joUser.put("d_gst",txtDGST.getText().toString());
+                joUser.put("d_commission",txtDCommission.getText().toString());
 
                 Postdata postdata = new Postdata();
                 String pdUser=postdata.post(MainActivity.BASE_URL+"editdriver.php",joUser.toString());
@@ -272,7 +242,6 @@ public class AddDriverActivity extends AppCompatActivity {
             dialog.dismiss();
             if(status.equals("1"))
             {
-                Toast.makeText(AddDriverActivity.this,message,Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(AddDriverActivity.this,DriverActivity.class);
                 startActivity(i);
             }
@@ -330,7 +299,6 @@ public class AddDriverActivity extends AppCompatActivity {
             dialog.dismiss();
             if(status.equals("1"))
             {
-                Toast.makeText(AddDriverActivity.this,message,Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(AddDriverActivity.this,DriverActivity.class);
                 startActivity(i);
             }

@@ -1,4 +1,4 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -97,7 +97,7 @@ public class EveryDayReportActivity extends AppCompatActivity
                         }
                     }
                 }, mYear, mMonth, mDay);
-                mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
+                //mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
                 mDatePicker.show();
             }
         });
@@ -183,16 +183,26 @@ public class EveryDayReportActivity extends AppCompatActivity
             Intent i = new Intent(EveryDayReportActivity.this, DriverActivity.class);
             startActivity(i);
         }
+        else if (id == R.id.nav_client)
+        {
+            Intent i = new Intent(EveryDayReportActivity.this, ClientActivity.class);
+            startActivity(i);
+        }
         else if (id == R.id.nav_everydaycashout)
         {
             Intent i = new Intent(EveryDayReportActivity.this, EveryDayCashOutActivity.class);
+            startActivity(i);
+        }
+        else if (id == R.id.nav_report)
+        {
+            Intent i = new Intent(EveryDayReportActivity.this, ReportActivity.class);
             startActivity(i);
         }
         else if (id == R.id.nav_share)
         {
             Intent i=new Intent(Intent.ACTION_SEND);
             i.setType("text/plain");
-            String body="https://play.google.com/store/apps/details?id=com.ankita.mrtaxi";
+            String body="https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi";
             i.putExtra(Intent.EXTRA_SUBJECT,body);
             i.putExtra(Intent.EXTRA_TEXT,body);
             startActivity(Intent.createChooser(i,"Share using"));
@@ -200,10 +210,10 @@ public class EveryDayReportActivity extends AppCompatActivity
         else if (id == R.id.nav_rate)
         {
             Intent i=new Intent(Intent.ACTION_VIEW);
-            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+            i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
             if(!MyStartActivity(i))
             {
-                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.ankita.mrtaxi"));
+                i.setData(Uri.parse("https://play.google.com/store/apps/details?id=com.stimulustechnoweb.mrtaxi"));
                 if(!MyStartActivity(i))
                 {
                     Log.d("Like","Could not open browser");

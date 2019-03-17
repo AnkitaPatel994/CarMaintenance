@@ -41,14 +41,26 @@
         android:background="@drawable/textbox"/>
 
     <EditText
-        android:id="@+id/txtMVehicleCost"
+        android:id="@+id/txtMaintenanceName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:drawableLeft="@drawable/service"
+        android:drawablePadding="25dp"
+        android:hint="Enter Other Maintenance"
+        android:layout_margin="10dp"
+        android:background="@drawable/textbox"/>
+
+    <EditText
+        android:id="@+id/txtMaintenanceCost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_dollar"
         android:drawablePadding="25dp"
-        android:hint="Enter Vehicle Cost"
+        android:hint="Enter Other Maintenance Cost"
         android:layout_margin="10dp"
+        android:inputType="number"
         android:background="@drawable/textbox"/>
 
     <Button

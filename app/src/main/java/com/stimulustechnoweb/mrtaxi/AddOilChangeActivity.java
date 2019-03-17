@@ -1,7 +1,9 @@
-package com.ankita.mrtaxi;
+package com.stimulustechnoweb.mrtaxi;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,7 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -26,8 +30,8 @@ public class AddOilChangeActivity extends AppCompatActivity {
 
     Spinner spVehicleName;
     EditText txtOilVehicleKilometer,txtVehicleOilCost,txtOilVehicleNameNo,txtMaintenance,txtMaintenanceCost;
-    Button btnAddOil;
-    String VehicleId,flag,o_id;
+    Button btnAddOil,btnDeleteMaintenance;
+    String VehicleId,flag,o_id,v_id;
     ArrayList<String> VehicleIdList = new ArrayList<>();
     ArrayList<String> VehicleNameNoList = new ArrayList<>();
     ArrayList<String> VehiclekmList = new ArrayList<>();
@@ -50,6 +54,7 @@ public class AddOilChangeActivity extends AppCompatActivity {
         txtMaintenanceCost = (EditText) findViewById(R.id.txtMaintenanceCost);
         txtOilVehicleNameNo = (EditText) findViewById(R.id.txtOilVehicleNameNo);
         btnAddOil = (Button) findViewById(R.id.btnAddOil);
+        btnDeleteMaintenance = (Button) findViewById(R.id.btnDeleteMaintenance);
 
         flag = getIntent().getExtras().getString("flag");
         if(flag.equals("add"))
@@ -61,8 +66,10 @@ public class AddOilChangeActivity extends AppCompatActivity {
         {
             btnAddOil.setText("update");
             txtOilVehicleNameNo.setVisibility(View.VISIBLE);
+            btnDeleteMaintenance.setVisibility(View.VISIBLE);
             spVehicleName.setVisibility(View.GONE);
             o_id = getIntent().getExtras().getString("o_id");
+            v_id = getIntent().getExtras().getString("v_id");
             String v_name = getIntent().getExtras().getString("v_name");
             String v_no = getIntent().getExtras().getString("v_no");
             txtOilVehicleNameNo.setText(v_name+" - "+v_no);
@@ -98,17 +105,9 @@ public class AddOilChangeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(txtVehicleOilCost.getText().toString().equals("") && txtMaintenance.getText().toString().equals("") && txtMaintenanceCost.getText().toString().equals(""))
+                if(txtVehicleOilCost.getText().toString().equals(""))
                 {
                     Toast.makeText(AddOilChangeActivity.this,"Enter Vehicle Oil Cost",Toast.LENGTH_SHORT).show();
-                }
-                else if(txtMaintenance.getText().toString().equals("") && txtMaintenanceCost.getText().toString().equals(""))
-                {
-                    Toast.makeText(AddOilChangeActivity.this,"Enter Vehicle Maintenance",Toast.LENGTH_SHORT).show();
-                }
-                else if(txtMaintenanceCost.getText().toString().equals(""))
-                {
-                    Toast.makeText(AddOilChangeActivity.this,"Enter Vehicle Maintenance Cost",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -124,6 +123,44 @@ public class AddOilChangeActivity extends AppCompatActivity {
                     }
                 }
 
+            }
+        });
+
+        btnDeleteMaintenance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(AddOilChangeActivity.this,android.R.style.Theme_Light_NoTitleBar);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                dialog.setContentView(R.layout.delete_item_dialog);
+                dialog.setCancelable(true);
+
+                LinearLayout llDDDialog = (LinearLayout) dialog.findViewById(R.id.llDDDialog);
+                TextView txtDDCancel = (TextView)dialog.findViewById(R.id.txtDDCancel);
+                TextView txtDDDelete = (TextView)dialog.findViewById(R.id.txtDDDelete);
+
+                llDDDialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                txtDDCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                txtDDDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        GetDeleteOilChange deleteOilChange = new GetDeleteOilChange();
+                        deleteOilChange.execute();
+                    }
+                });
+
+                dialog.show();
             }
         });
 
@@ -297,6 +334,64 @@ public class AddOilChangeActivity extends AppCompatActivity {
             return null;
         }
 
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            dialog.dismiss();
+            if(status.equals("1"))
+            {
+                Intent i = new Intent(AddOilChangeActivity.this,OilChangeActivity.class);
+                startActivity(i);
+            }
+            else
+            {
+                Toast.makeText(AddOilChangeActivity.this,message,Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private class GetDeleteOilChange extends AsyncTask<String,Void,String> {
+
+        String status,message;
+        ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog=new ProgressDialog(AddOilChangeActivity.this);
+            dialog.setMessage("Loading....");
+            dialog.setCancelable(true);
+            dialog.show();
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            JSONObject joUser=new JSONObject();
+            try {
+
+                joUser.put("o_id",o_id);
+                joUser.put("v_id",v_id);
+
+                Postdata postdata = new Postdata();
+                String pdUser=postdata.post(MainActivity.BASE_URL+"deleteoilchange.php",joUser.toString());
+                JSONObject j = new JSONObject(pdUser);
+                status=j.getString("status");
+                if(status.equals("1"))
+                {
+                    Log.d("Like","Successfully");
+                    message=j.getString("message");
+                }
+                else
+                {
+                    message=j.getString("message");
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
