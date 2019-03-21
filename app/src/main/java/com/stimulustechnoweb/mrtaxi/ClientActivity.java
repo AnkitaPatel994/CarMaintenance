@@ -3,9 +3,12 @@ package com.stimulustechnoweb.mrtaxi;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,9 +19,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ClientActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    RecyclerView rvClientList;
+    ArrayList<HashMap<String,String>> ClientListArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +59,16 @@ public class ClientActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        rvClientList = (RecyclerView)findViewById(R.id.rvClientList);
+        rvClientList.setHasFixedSize(true);
+
+        RecyclerView.LayoutManager manager = new LinearLayoutManager(ClientActivity.this,LinearLayoutManager.VERTICAL,false);
+        rvClientList.setLayoutManager(manager);
+
+        GetClient client = new GetClient();
+        client.execute();
+
     }
 
     @Override
@@ -139,6 +163,65 @@ public class ClientActivity extends AppCompatActivity
         catch (ActivityNotFoundException e)
         {
             return false;
+        }
+    }
+
+    private class GetClient extends AsyncTask<String,Void,String> {
+        String status,message;
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+            JSONObject joUser=new JSONObject();
+            try {
+
+                Postdata postdata = new Postdata();
+                String pdUser=postdata.post(MainActivity.BASE_URL+"Client.php",joUser.toString());
+                JSONObject j = new JSONObject(pdUser);
+                status=j.getString("status");
+                if(status.equals("1"))
+                {
+                    Log.d("Like","Successfully");
+                    message=j.getString("message");
+                    JSONArray JsArry=j.getJSONArray("client");
+                    for (int i=0;i<JsArry.length();i++)
+                    {
+                        JSONObject jo=JsArry.getJSONObject(i);
+
+                        HashMap<String,String > hashMap = new HashMap<>();
+
+                        String client_id =jo.getString("client_id");
+                        String client_name =jo.getString("client_name");
+
+                        hashMap.put("client_id",client_id);
+                        hashMap.put("client_name",client_name);
+
+                        ClientListArray.add(hashMap);
+                    }
+                }
+                else
+                {
+                    message=j.getString("message");
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            if(status.equals("1"))
+            {
+                ClientListAdapter clientListAdapter = new ClientListAdapter(ClientActivity.this,ClientListArray);
+                rvClientList.setAdapter(clientListAdapter);
+            }
+            else
+            {
+                Toast.makeText(ClientActivity.this,message,Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

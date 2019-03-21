@@ -16,12 +16,18 @@ public class MainActivity extends AppCompatActivity {
 
     static String BASE_URL = "http://demo.stimulustechnoweb.com/mrtaxiapi/";
     LinearLayout lnSnackbar;
+    SessionManager session;
+    int flag = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         lnSnackbar = (LinearLayout)findViewById(R.id.lnSnackbar);
+
+        session = new SessionManager(getApplicationContext());
+        flag = session.checkLogin();
 
         lnSnackbar.setVisibility(View.GONE);
 
@@ -36,9 +42,19 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         sleep(2*1000);
 
-                        Intent i = new Intent(getApplicationContext(),HomeActivity.class);
-                        startActivity(i);
-                        finish();
+                        if (flag == 1)
+                        {
+                            Intent i = new Intent(getApplicationContext(),HomeActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                        else
+                        {
+                            Intent i = new Intent(getApplicationContext(),LoginActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+
 
                     } catch (InterruptedException e) {
                         e.printStackTrace();

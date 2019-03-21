@@ -29,7 +29,7 @@ import java.util.HashMap;
 
 public class GenerateServiceReportActivity extends AppCompatActivity {
 
-    TextView txtSRVONameNo,txtSRVDate,txtSRVOCost,txtSRVOMaintenanceCost,txtSRVCostTotal;
+    TextView txtSRVONameNo;
     String vehiclename,Oil_Total,Maintenance_Total,Main_Total;
 
     ArrayList<String> serviceReportocost = new ArrayList<>();
@@ -113,9 +113,6 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
         tr.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tlServiceReport.addView(tr, getTblLayoutParams());
     }
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

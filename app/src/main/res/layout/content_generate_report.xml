@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".GenerateServiceReportActivity"
+    tools:context=".GenerateReportActivity"
     android:orientation="vertical"
-    tools:showIn="@layout/activity_generate_service_report">
+    tools:showIn="@layout/activity_generate_report">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,14 +28,14 @@
                 android:layout_height="wrap_content"
                 android:textSize="25dp"
                 android:textStyle="bold"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:textColor="@color/colorPrimary"
-                android:text="Service Report" />
+                android:text="Report" />
 
             <TextView
-                android:id="@+id/txtSRVONameNo"
+                android:id="@+id/txtGSDName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
@@ -64,7 +64,7 @@
                         android:orientation="vertical">
 
                         <TableLayout
-                            android:id="@+id/tlServiceReport"
+                            android:id="@+id/tlReport"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:stretchColumns="0,1"/>
@@ -74,4 +74,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 </LinearLayout>

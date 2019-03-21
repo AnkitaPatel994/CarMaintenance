@@ -48,8 +48,6 @@ public class EveryDayReportActivity extends AppCompatActivity
     int mYear = c.get(Calendar.YEAR);
     int mMonth = c.get(Calendar.MONTH);
     int mDay = c.get(Calendar.DAY_OF_MONTH);
-    int hour = c.get(Calendar.HOUR_OF_DAY);
-    int minute = c.get(Calendar.MINUTE);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -297,7 +295,7 @@ public class EveryDayReportActivity extends AppCompatActivity
 
         String status,message;
         ProgressDialog dialog;
-        String d_id,d_name,c_dshift,d_cash,d_medical,d_kidsfirst,c_commission,c_date,c_maintenance,c_total,d_socialservices,c_gascash,d_pulpmill,d_osbmill,c_gascredit,d_namsaskmill,d_detox,d_sgi;
+        String c_id,c_dshift,d_name,client_name,c_other,c_cash,c_gastype,c_gascash,c_maintenance,c_commission,c_gst,c_cashleft,c_total,c_date;
 
         @Override
         protected void onPreExecute() {
@@ -328,22 +326,18 @@ public class EveryDayReportActivity extends AppCompatActivity
                     {
                         JSONObject jo=JsArry.getJSONObject(i);
 
-                        d_id =jo.getString("d_id");
-                        d_name =jo.getString("d_name");
+                        c_id =jo.getString("c_id");
                         c_dshift =jo.getString("c_dshift");
-                        d_cash =jo.getString("d_cash");
-                        d_medical =jo.getString("d_medical");
-                        d_kidsfirst =jo.getString("d_kidsfirst");
-                        d_socialservices =jo.getString("d_socialservices");
-                        d_pulpmill =jo.getString("d_pulpmill");
-                        d_osbmill =jo.getString("d_osbmill");
-                        d_namsaskmill =jo.getString("d_namsaskmill");
-                        d_detox =jo.getString("d_detox");
-                        d_sgi =jo.getString("d_sgi");
-                        c_gascredit =jo.getString("c_gascredit");
+                        d_name =jo.getString("d_name");
+                        client_name =jo.getString("client_name");
+                        c_other =jo.getString("c_other");
+                        c_cash =jo.getString("c_cash");
+                        c_gastype =jo.getString("c_gastype");
                         c_gascash =jo.getString("c_gascash");
                         c_maintenance =jo.getString("c_maintenance");
                         c_commission =jo.getString("c_commission");
+                        c_gst =jo.getString("c_gst");
+                        c_cashleft =jo.getString("c_cashleft");
                         c_total =jo.getString("c_total");
                         c_date =jo.getString("c_date");
 
@@ -368,22 +362,18 @@ public class EveryDayReportActivity extends AppCompatActivity
             if(status.equals("1"))
             {
                 Intent i = new Intent(EveryDayReportActivity.this,GenerateDayReportActivity.class);
-                i.putExtra("d_id",d_id);
-                i.putExtra("d_name",d_name);
+                i.putExtra("c_id",c_id);
                 i.putExtra("c_dshift",c_dshift);
-                i.putExtra("d_cash",d_cash);
-                i.putExtra("d_medical",d_medical);
-                i.putExtra("d_kidsfirst",d_kidsfirst);
-                i.putExtra("d_socialservices",d_socialservices);
-                i.putExtra("d_pulpmill",d_pulpmill);
-                i.putExtra("d_osbmill",d_osbmill);
-                i.putExtra("d_namsaskmill",d_namsaskmill);
-                i.putExtra("d_detox",d_detox);
-                i.putExtra("d_sgi",d_sgi);
-                i.putExtra("c_gascredit",c_gascredit);
+                i.putExtra("d_name",d_name);
+                i.putExtra("client_name",client_name);
+                i.putExtra("c_other",c_other);
+                i.putExtra("c_cash",c_cash);
+                i.putExtra("c_gastype",c_gastype);
                 i.putExtra("c_gascash",c_gascash);
                 i.putExtra("c_maintenance",c_maintenance);
                 i.putExtra("c_commission",c_commission);
+                i.putExtra("c_gst",c_gst);
+                i.putExtra("c_cashleft",c_cashleft);
                 i.putExtra("c_total",c_total);
                 i.putExtra("c_date",c_date);
                 startActivity(i);

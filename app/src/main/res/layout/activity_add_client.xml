@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_person"
+        android:drawableTint="@color/colorBlack"
         android:drawablePadding="25dp"
         android:hint="Enter Client Name"
         android:layout_margin="10dp"
@@ -33,5 +34,17 @@
         android:textColor="@color/colorWhite"
         android:background="@drawable/button_bg"
         android:text="Submit" />
+
+    <Button
+        android:id="@+id/btnDeleteClient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_bg"
+        android:backgroundTint="@color/colorRed"
+        android:text="Delete" />
 
 </LinearLayout>
