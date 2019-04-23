@@ -38,15 +38,18 @@ import java.util.HashMap;
 public class EveryDayCashOutActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    EditText txtShift,txtCash,txtOther,txtGasCash,txtMaintenance,txtCommission,txtGst,txtCashLeft,txtTotal;
-    Spinner spDriver,spClient,spGasType;
+    EditText txtShift,txtCash,txtGasCash,txtMaintenance,txtCommission,txtGst,txtCashLeft,txtTotal;
+    Spinner spDriver,spGasType;
+    //Spinner spClient;
     Button btnEDSubmit;
-    String DriverId,ClientId,GasType;
+    String DriverId,ClientName,ClientCost,GasType;
     ArrayList<String> DriverIdList = new ArrayList<>();
     ArrayList<String> DriverNameList = new ArrayList<>();
     ArrayList<String> ClientIdList = new ArrayList<>();
     ArrayList<String> ClientNameList = new ArrayList<>();
     TextView tvCommission,tvGst;
+    TextView txtKidsFirst,txtSocialService,txtDetox,txtMadical,txtOSB,txtPulpMill,txtProsecution;
+    EditText txtKidsFirstCost,txtSocialServiceCost,txtDetoxCost,txtMadicalCost,txtOSBCost,txtPulpMillCost,txtProsecutionCost,txtOther,txtOtherCost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +72,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
 
         txtShift=(EditText) findViewById(R.id.txtShift);
         spDriver=(Spinner) findViewById(R.id.spDriver);
-        spClient=(Spinner) findViewById(R.id.spClient);
+        /*spClient=(Spinner) findViewById(R.id.spClient);*/
         spGasType=(Spinner) findViewById(R.id.spGasType);
         txtCash=(EditText) findViewById(R.id.txtCash);
 
@@ -82,6 +85,23 @@ public class EveryDayCashOutActivity extends AppCompatActivity
         txtCashLeft=(EditText) findViewById(R.id.txtCashLeft);
         txtTotal=(EditText) findViewById(R.id.txtTotal);
         btnEDSubmit=(Button) findViewById(R.id.btnEDSubmit);
+
+        txtKidsFirst = (TextView)findViewById(R.id.txtKidsFirst);
+        txtSocialService = (TextView)findViewById(R.id.txtSocialService);
+        txtDetox = (TextView)findViewById(R.id.txtDetox);
+        txtMadical = (TextView)findViewById(R.id.txtMadical);
+        txtOSB = (TextView)findViewById(R.id.txtOSB);
+        txtPulpMill = (TextView)findViewById(R.id.txtPulpMill);
+        txtProsecution = (TextView)findViewById(R.id.txtProsecution);
+
+        txtKidsFirstCost = (EditText) findViewById(R.id.txtKidsFirstCost);
+        txtSocialServiceCost = (EditText) findViewById(R.id.txtSocialServiceCost);
+        txtDetoxCost = (EditText) findViewById(R.id.txtDetoxCost);
+        txtMadicalCost = (EditText) findViewById(R.id.txtMadicalCost);
+        txtOSBCost = (EditText) findViewById(R.id.txtOSBCost);
+        txtPulpMillCost = (EditText) findViewById(R.id.txtPulpMillCost);
+        txtProsecutionCost = (EditText) findViewById(R.id.txtProsecutionCost);
+        txtOtherCost = (EditText) findViewById(R.id.txtOtherCost);
 
         GetDriverName driverName = new GetDriverName();
         driverName.execute();
@@ -106,10 +126,10 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             }
         });
 
-        GetClientName clientName = new GetClientName();
-        clientName.execute();
+        /*GetClientName clientName = new GetClientName();
+        clientName.execute();*/
 
-        spClient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        /*spClient.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int position_no = spClient.getSelectedItemPosition();
@@ -120,7 +140,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
         txtMaintenance.addTextChangedListener(new TextWatcher() {
             @Override
@@ -141,7 +161,12 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                 if(txtMaintenance.getText().toString().trim().length() > 0)
                 {
                     int driverCash = Integer.parseInt(txtCash.getText().toString().trim());
-                    int gasCash = Integer.parseInt(txtGasCash.getText().toString().trim());
+                    int gasCash = 0;
+                    if (GasType.equals("Cash"))
+                    {
+                       gasCash = Integer.parseInt(txtGasCash.getText().toString().trim());
+                    }
+
                     int maintenancecost = Integer.parseInt(txtMaintenance.getText().toString().trim());
                     int commission = Integer.parseInt(tvCommission.getText().toString().trim());
                     int GST = Integer.parseInt(tvGst.getText().toString().trim());
@@ -149,7 +174,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                     int total = gasCash + maintenancecost;
                     int comm = total-((total*commission)/100);
                     int gst = total-((comm*GST)/100);
-                    int cashleft = driverCash -gst;
+                    int cashleft = driverCash - gasCash - commission - maintenancecost;
 
                     txtCommission.setText(String.valueOf(comm));
                     txtGst.setText(String.valueOf(gst));
@@ -174,6 +199,8 @@ public class EveryDayCashOutActivity extends AppCompatActivity
         btnEDSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ClientName = txtKidsFirst.getText().toString();
+                ClientCost = txtKidsFirstCost.getText().toString();
                 GetDayCashOut dayCashOut = new GetDayCashOut();
                 dayCashOut.execute();
             }
@@ -443,8 +470,8 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             try {
                 joUser.put("c_dshift",txtShift.getText().toString());
                 joUser.put("c_d_id",DriverId);
-                joUser.put("c_c_id",ClientId);
-                joUser.put("c_other",txtOther.getText().toString());
+                joUser.put("c_c_name",ClientName);
+                joUser.put("c_cost",ClientCost);
                 joUser.put("c_cash",txtCash.getText().toString());
                 joUser.put("c_gastype",GasType);
                 joUser.put("c_gascash",txtGasCash.getText().toString());
@@ -490,7 +517,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
         }
     }
 
-    private class GetClientName extends AsyncTask<String,Void,String> {
+    /*private class GetClientName extends AsyncTask<String,Void,String> {
 
         String status,message;
 
@@ -544,5 +571,5 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                 Toast.makeText(EveryDayCashOutActivity.this,message,Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
 }

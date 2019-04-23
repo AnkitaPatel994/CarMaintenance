@@ -60,7 +60,7 @@
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_dollar"
         android:drawablePadding="25dp"
-        android:hint="Enter Vehicle Cost"
+        android:hint="Enter Oil Change Cost"
         android:layout_margin="10dp"
         android:inputType="number"
         android:background="@drawable/textbox"/>
