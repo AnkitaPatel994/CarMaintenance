@@ -1,17 +1,27 @@
 package com.ankita.mrtaxi;
 
 import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,9 +29,15 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class GenerateDayReportActivity extends AppCompatActivity {
 
     String c_id;
+    LinearLayout llDayReport;
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +52,17 @@ public class GenerateDayReportActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        /*FloatingActionButton fab = findViewById(R.id.fab);
+        llDayReport = (LinearLayout)findViewById(R.id.llDayReport);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Log.d("size"," "+llDayReport.getWidth() +"  "+llDayReport.getWidth());
+                bitmap = loadBitmapFromView(llDayReport, llDayReport.getWidth(), llDayReport.getHeight());
+                createPdf();
             }
-        });*/
+        });
 
         LinearLayout llOther = (LinearLayout)findViewById(R.id.llOther);
         TextView txtGDName = (TextView)findViewById(R.id.txtGDName);
@@ -105,6 +124,81 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         String c_date = getIntent().getExtras().getString("c_date");
         txtGDDate.setText(c_date);
 
+    }
+
+    private Bitmap loadBitmapFromView(LinearLayout llDayReport, int width, int height) {
+        Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        llDayReport.draw(c);
+
+        return b;
+    }
+
+    private void createPdf(){
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        //  Display display = wm.getDefaultDisplay();
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        float hight = displaymetrics.heightPixels ;
+        float width = displaymetrics.widthPixels ;
+
+        int convertHighet = (int) hight, convertWidth = (int) width;
+
+//        Resources mResources = getResources();
+//        Bitmap bitmap = BitmapFactory.decodeResource(mResources, R.drawable.screenshot);
+
+        PdfDocument document = new PdfDocument();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHighet, 1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+
+        Canvas canvas = page.getCanvas();
+
+        Paint paint = new Paint();
+        canvas.drawPaint(paint);
+
+        bitmap = Bitmap.createScaledBitmap(bitmap, convertWidth, convertHighet, true);
+
+        paint.setColor(Color.BLUE);
+        canvas.drawBitmap(bitmap, 0, 0 , null);
+        document.finishPage(page);
+
+        // write the document content
+        String targetPdf = "/sdcard/pdfDayReport.pdf";
+        File filePath;
+        filePath = new File(targetPdf);
+        try {
+            document.writeTo(new FileOutputStream(filePath));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Something wrong: " + e.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        // close the document
+        document.close();
+        Toast.makeText(this, "PDF is created!!!", Toast.LENGTH_SHORT).show();
+
+        //openGeneratedPDF(filePath);
+
+    }
+
+    private void openGeneratedPDF(File filePath) {
+        if (filePath.exists())
+        {
+            Intent intent=new Intent(Intent.ACTION_VIEW);
+            Uri uri = Uri.fromFile(filePath);
+            intent.setDataAndType(uri, "application/pdf");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            try
+            {
+                startActivity(intent);
+            }
+            catch(ActivityNotFoundException e)
+            {
+                Toast.makeText(GenerateDayReportActivity.this, "No Application available to view pdf", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     @Override

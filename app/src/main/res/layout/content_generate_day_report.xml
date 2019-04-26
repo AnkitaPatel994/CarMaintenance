@@ -8,6 +8,8 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".GenerateDayReportActivity"
     android:orientation="vertical"
+    android:id="@+id/llDayReport"
+    android:background="@color/colorWhite"
     tools:showIn="@layout/activity_generate_day_report">
 
     <ScrollView

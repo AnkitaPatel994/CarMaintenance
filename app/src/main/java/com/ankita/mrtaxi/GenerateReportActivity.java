@@ -1,18 +1,32 @@
 package com.ankita.mrtaxi;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GenerateReportActivity extends AppCompatActivity {
@@ -31,6 +45,8 @@ public class GenerateReportActivity extends AppCompatActivity {
     ArrayList<String> reportCashleftArray = new ArrayList<>();
     ArrayList<String> reportTotalArray = new ArrayList<>();
     ArrayList<String> reportDateArray = new ArrayList<>();
+    private Bitmap bitmap;
+    LinearLayout llReport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +61,17 @@ public class GenerateReportActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        /*FloatingActionButton fab = findViewById(R.id.fab);
+        llReport = (LinearLayout)findViewById(R.id.llReport);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Log.d("size"," "+llReport.getWidth() +"  "+llReport.getWidth());
+                bitmap = loadBitmapFromView(llReport, llReport.getWidth(), llReport.getHeight());
+                createPdf();
             }
-        });*/
+        });
 
         txtGSDName = (TextView)findViewById(R.id.txtGSDName);
         tlReport = (TableLayout) findViewById(R.id.tlReport);
@@ -75,6 +94,60 @@ public class GenerateReportActivity extends AppCompatActivity {
         addHeaders();
         addData();
 
+    }
+
+    private void createPdf(){
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        //  Display display = wm.getDefaultDisplay();
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        float hight = displaymetrics.heightPixels ;
+        float width = displaymetrics.widthPixels ;
+
+        int convertHighet = (int) hight, convertWidth = (int) width;
+
+//        Resources mResources = getResources();
+//        Bitmap bitmap = BitmapFactory.decodeResource(mResources, R.drawable.screenshot);
+
+        PdfDocument document = new PdfDocument();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHighet, 1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+
+        Canvas canvas = page.getCanvas();
+
+        Paint paint = new Paint();
+        canvas.drawPaint(paint);
+
+        bitmap = Bitmap.createScaledBitmap(bitmap, convertWidth, convertHighet, true);
+
+        paint.setColor(Color.BLUE);
+        canvas.drawBitmap(bitmap, 0, 0 , null);
+        document.finishPage(page);
+
+        // write the document content
+        String targetPdf = "/sdcard/pdfReport.pdf";
+        File filePath;
+        filePath = new File(targetPdf);
+        try {
+            document.writeTo(new FileOutputStream(filePath));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Something wrong: " + e.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        // close the document
+        document.close();
+        Toast.makeText(this, "PDF is created!!!", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private Bitmap loadBitmapFromView(LinearLayout llReport, int width, int height) {
+        Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        llReport.draw(c);
+
+        return b;
     }
 
     @Override
@@ -109,17 +182,17 @@ public class GenerateReportActivity extends AppCompatActivity {
     private void addHeaders() {
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-        tr.addView(getTextView(0, "DATE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "SHIFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "CLIENT_NAME", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "CASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "GASTYPE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "GASCASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "MAINTENANCE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "COMMISSION", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "GST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "CASHLEFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(0, "DATE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        //tr.addView(getTextView(0, "SHIFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(0, "CONTRACT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        //tr.addView(getTextView(0, "CASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        //tr.addView(getTextView(0, "GASTYPE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        //tr.addView(getTextView(0, "GASCASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(0, "MAINTENANCE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(0, "COMMISSION", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(0, "GST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(0, "CASHLEFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        //tr.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tlReport.addView(tr, getTblLayoutParams());
     }
 
@@ -129,16 +202,16 @@ public class GenerateReportActivity extends AppCompatActivity {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
             tr.addView(getTextView(i + 1, reportDateArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i + numCompanies, reportDShiftArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            //tr.addView(getTextView(i + numCompanies, reportDShiftArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportClientNameArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i + numCompanies, reportCashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i + numCompanies, reportGastypeArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i + numCompanies, reportGascashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            //tr.addView(getTextView(i + numCompanies, reportCashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            //tr.addView(getTextView(i + numCompanies, reportGastypeArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            //tr.addView(getTextView(i + numCompanies, reportGascashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportMaintenanceArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportCommissionArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportGSTArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportCashleftArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i + numCompanies, reportTotalArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            //tr.addView(getTextView(i + numCompanies, reportTotalArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tlReport.addView(tr, getTblLayoutParams());
         }
     }

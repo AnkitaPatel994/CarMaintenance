@@ -1,8 +1,13 @@
 package com.ankita.mrtaxi;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,10 +15,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -24,6 +32,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -36,8 +47,9 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
     ArrayList<String> serviceReportomcost = new ArrayList<>();
     ArrayList<String> serviceReportodate = new ArrayList<>();
     ArrayList<String> serviceReportTotal = new ArrayList<>();
-
+    private Bitmap bitmap;
     TableLayout tlServiceReport;
+    LinearLayout llServiceReport;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +64,17 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        /*FloatingActionButton fab = findViewById(R.id.fab);
+        llServiceReport = (LinearLayout)findViewById(R.id.llServiceReport);
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Log.d("size"," "+llServiceReport.getWidth() +"  "+llServiceReport.getWidth());
+                bitmap = loadBitmapFromView(llServiceReport, llServiceReport.getWidth(), llServiceReport.getHeight());
+                createPdf();
             }
-        });*/
+        });
 
         vehiclename = getIntent().getExtras().getString("vehiclename");
         Oil_Total = getIntent().getExtras().getString("Oil_Total");
@@ -80,6 +95,60 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
         addHeaders();
         addData();
 
+    }
+
+    private void createPdf(){
+        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        //  Display display = wm.getDefaultDisplay();
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        float hight = displaymetrics.heightPixels ;
+        float width = displaymetrics.widthPixels ;
+
+        int convertHighet = (int) hight, convertWidth = (int) width;
+
+//        Resources mResources = getResources();
+//        Bitmap bitmap = BitmapFactory.decodeResource(mResources, R.drawable.screenshot);
+
+        PdfDocument document = new PdfDocument();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(convertWidth, convertHighet, 1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+
+        Canvas canvas = page.getCanvas();
+
+        Paint paint = new Paint();
+        canvas.drawPaint(paint);
+
+        bitmap = Bitmap.createScaledBitmap(bitmap, convertWidth, convertHighet, true);
+
+        paint.setColor(Color.BLUE);
+        canvas.drawBitmap(bitmap, 0, 0 , null);
+        document.finishPage(page);
+
+        // write the document content
+        String targetPdf = "/sdcard/ServiceReportPDF.pdf";
+        File filePath;
+        filePath = new File(targetPdf);
+        try {
+            document.writeTo(new FileOutputStream(filePath));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Something wrong: " + e.toString(), Toast.LENGTH_LONG).show();
+        }
+
+        // close the document
+        document.close();
+        Toast.makeText(this, "PDF is created!!!", Toast.LENGTH_SHORT).show();
+
+    }
+
+    private Bitmap loadBitmapFromView(LinearLayout llServiceReport, int width, int height) {
+        Bitmap b = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(b);
+        llServiceReport.draw(c);
+
+        return b;
     }
 
     private ViewGroup.LayoutParams getLayoutParams() {
@@ -132,13 +201,14 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
             tr.addView(getTextView(i + numCompanies, serviceReportTotal.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tlServiceReport.addView(tr, getTblLayoutParams());
         }
-        TableRow tr1 = new TableRow(this);
+        /*TableRow tr1 = new TableRow(this);
         tr1.setLayoutParams(getLayoutParams());
         tr1.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr1.addView(getTextView(0, Oil_Total, Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr1.addView(getTextView(0, Maintenance_Total, Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr1.addView(getTextView(0, Main_Total, Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tlServiceReport.addView(tr1, getTblLayoutParams());
+        tlServiceReport.addView(tr1, getTblLayoutParams());*/
+
     }
 
 }

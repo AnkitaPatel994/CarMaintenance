@@ -45,8 +45,8 @@ public class EveryDayCashOutActivity extends AppCompatActivity
     String DriverId,ClientName,ClientCost,GasType;
     ArrayList<String> DriverIdList = new ArrayList<>();
     ArrayList<String> DriverNameList = new ArrayList<>();
-    ArrayList<String> ClientIdList = new ArrayList<>();
-    ArrayList<String> ClientNameList = new ArrayList<>();
+    ArrayList<String> ClientNameArrayList = new ArrayList<>();
+    ArrayList<String> ClientCostArrayList = new ArrayList<>();
     TextView tvCommission,tvGst;
     TextView txtKidsFirst,txtSocialService,txtDetox,txtMadical,txtOSB,txtPulpMill,txtProsecution;
     EditText txtKidsFirstCost,txtSocialServiceCost,txtDetoxCost,txtMadicalCost,txtOSBCost,txtPulpMillCost,txtProsecutionCost,txtOther,txtOtherCost;
@@ -199,8 +199,76 @@ public class EveryDayCashOutActivity extends AppCompatActivity
         btnEDSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClientName = txtKidsFirst.getText().toString();
-                ClientCost = txtKidsFirstCost.getText().toString();
+
+                ClientName = "";
+                ClientCost = "";
+
+                if (!txtKidsFirstCost.getText().toString().equals(""))
+                {
+                    ClientNameArrayList.add(txtKidsFirst.getText().toString());
+                    ClientCostArrayList.add(txtKidsFirstCost.getText().toString());
+                }
+
+                if (!txtSocialServiceCost.getText().toString().equals(""))
+                {
+                    ClientNameArrayList.add(txtSocialService.getText().toString());
+                    ClientCostArrayList.add(txtSocialServiceCost.getText().toString());
+                }
+
+                if (!txtDetoxCost.getText().toString().equals(""))
+                {
+                    ClientNameArrayList.add(txtDetox.getText().toString());
+                    ClientCostArrayList.add(txtDetoxCost.getText().toString());
+                }
+
+                if (!txtMadicalCost.getText().toString().equals(""))
+                {
+                    ClientNameArrayList.add(txtMadical.getText().toString());
+                    ClientCostArrayList.add(txtMadicalCost.getText().toString());
+                }
+
+                if (!txtOSBCost.getText().toString().equals(""))
+                {
+                    ClientNameArrayList.add(txtOSB.getText().toString());
+                    ClientCostArrayList.add(txtOSBCost.getText().toString());
+                }
+
+                if (!txtPulpMillCost.getText().toString().equals(""))
+                {
+                    ClientNameArrayList.add(txtPulpMill.getText().toString());
+                    ClientCostArrayList.add(txtPulpMillCost.getText().toString());
+                }
+
+                if (!txtProsecutionCost.getText().toString().equals(""))
+                {
+                    ClientNameArrayList.add(txtProsecution.getText().toString());
+                    ClientCostArrayList.add(txtProsecutionCost.getText().toString());
+                }
+
+                if (!txtOtherCost.getText().toString().equals(""))
+                {
+                    ClientNameArrayList.add("Other_"+txtOther.getText().toString());
+                    ClientCostArrayList.add(txtOtherCost.getText().toString());
+                }
+
+                for (String ss : ClientNameArrayList)
+                {
+                    if(ClientName == ""){
+                        ClientName += ss;
+                    }else{
+                        ClientName += "," + ss;
+                    }
+                }
+
+                for (String ss : ClientCostArrayList)
+                {
+                    if(ClientCost == ""){
+                        ClientCost += ss;
+                    }else{
+                        ClientCost += "," + ss;
+                    }
+                }
+
                 GetDayCashOut dayCashOut = new GetDayCashOut();
                 dayCashOut.execute();
             }
