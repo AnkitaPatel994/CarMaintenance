@@ -100,7 +100,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18dp"
-                    android:text="Client Name:" />
+                    android:text="Contract Name:" />
 
                 <TextView
                     android:id="@+id/txtGDClientName"
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18dp"
-                    android:text="Other :" />
+                    android:text="Contract Cost :" />
 
                 <TextView
                     android:id="@+id/txtGDOther"

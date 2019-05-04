@@ -176,6 +176,11 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                     int gst = total-((comm*GST)/100);
                     int cashleft = driverCash - gasCash - commission - maintenancecost;
 
+                    if (cashleft>0)
+                    {
+                        cashleft = 1;
+                    }
+
                     txtCommission.setText(String.valueOf(comm));
                     txtGst.setText(String.valueOf(gst));
                     txtCashLeft.setText(String.valueOf(cashleft));
@@ -199,9 +204,6 @@ public class EveryDayCashOutActivity extends AppCompatActivity
         btnEDSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                ClientName = "";
-                ClientCost = "";
 
                 if (!txtKidsFirstCost.getText().toString().equals(""))
                 {
@@ -250,6 +252,9 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                     ClientNameArrayList.add("Other_"+txtOther.getText().toString());
                     ClientCostArrayList.add(txtOtherCost.getText().toString());
                 }
+
+                ClientName = "";
+                ClientCost = "";
 
                 for (String ss : ClientNameArrayList)
                 {
