@@ -142,7 +142,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             }
         });*/
 
-        txtMaintenance.addTextChangedListener(new TextWatcher() {
+        txtGasCash.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -158,7 +158,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             @Override
             public void afterTextChanged(Editable s) {
 
-                if(txtMaintenance.getText().toString().trim().length() > 0)
+                if(txtGasCash.getText().toString().trim().length() > 0)
                 {
                     int driverCash = Integer.parseInt(txtCash.getText().toString().trim());
                     int gasCash = 0;
@@ -167,7 +167,12 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                        gasCash = Integer.parseInt(txtGasCash.getText().toString().trim());
                     }
 
-                    int maintenancecost = Integer.parseInt(txtMaintenance.getText().toString().trim());
+                    int maintenancecost =0;
+                    if(!txtMaintenance.getText().toString().trim().equals(""))
+                    {
+                        maintenancecost = Integer.parseInt(txtMaintenance.getText().toString().trim());
+                    }
+
                     int commission = Integer.parseInt(tvCommission.getText().toString().trim());
                     int GST = Integer.parseInt(tvGst.getText().toString().trim());
 
