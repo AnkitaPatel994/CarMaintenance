@@ -173,7 +173,8 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                         maintenancecost = Integer.parseInt(txtMaintenance.getText().toString().trim());
                     }
 
-                    int commission = Integer.parseInt(tvCommission.getText().toString().trim());
+                    int commission = Integer.parseInt(tvCommission.getText().toString());
+                    Log.d("commission", ""+commission);
                     int GST = Integer.parseInt(tvGst.getText().toString().trim());
 
                     int total = gasCash + maintenancecost;
@@ -181,10 +182,10 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                     int gst = total-((comm*GST)/100);
                     int cashleft = driverCash - gasCash - commission - maintenancecost;
 
-                    if (cashleft>0)
+                    /*if (cashleft>0)
                     {
                         cashleft = 1;
-                    }
+                    }*/
 
                     txtCommission.setText(String.valueOf(comm));
                     txtGst.setText(String.valueOf(gst));
@@ -300,7 +301,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
 
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.cashout, menu);
@@ -322,7 +323,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
