@@ -106,8 +106,6 @@ public class EveryDayCashOutActivity extends AppCompatActivity
         GetDriverName driverName = new GetDriverName();
         driverName.execute();
 
-        GasType = String.valueOf(spGasType.getSelectedItem());
-
         spDriver.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -126,6 +124,17 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             }
         });
 
+        spGasType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                txtGasCash.setText("");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         /*GetClientName clientName = new GetClientName();
         clientName.execute();*/
 
@@ -160,7 +169,63 @@ public class EveryDayCashOutActivity extends AppCompatActivity
 
                 if(txtGasCash.getText().toString().trim().length() > 0)
                 {
+                    int commission = Integer.parseInt(tvCommission.getText().toString());
+                    int GST = Integer.parseInt(tvGst.getText().toString().trim());
+
+                    int KidsFirstCost =0;
+                    if(!txtKidsFirstCost.getText().toString().trim().equals(""))
+                    {
+                        KidsFirstCost = Integer.parseInt(txtKidsFirstCost.getText().toString().trim());
+                    }
+                    int SocialServiceCost =0;
+                    if(!txtSocialServiceCost.getText().toString().trim().equals(""))
+                    {
+                        SocialServiceCost = Integer.parseInt(txtSocialServiceCost.getText().toString().trim());
+                    }
+                    int DetoxCost =0;
+                    if(!txtDetoxCost.getText().toString().trim().equals(""))
+                    {
+                        DetoxCost = Integer.parseInt(txtDetoxCost.getText().toString().trim());
+                    }
+                    int MadicalCost =0;
+                    if(!txtMadicalCost.getText().toString().trim().equals(""))
+                    {
+                        MadicalCost = Integer.parseInt(txtMadicalCost.getText().toString().trim());
+                    }
+                    int OSBCost =0;
+                    if(!txtOSBCost.getText().toString().trim().equals(""))
+                    {
+                        OSBCost = Integer.parseInt(txtOSBCost.getText().toString().trim());
+                    }
+                    int PulpMillCost =0;
+                    if(!txtPulpMillCost.getText().toString().trim().equals(""))
+                    {
+                        PulpMillCost = Integer.parseInt(txtPulpMillCost.getText().toString().trim());
+                    }
+                    int ProsecutionCost =0;
+                    if(!txtProsecutionCost.getText().toString().trim().equals(""))
+                    {
+                        ProsecutionCost = Integer.parseInt(txtProsecutionCost.getText().toString().trim());
+                    }
+                    int OtherCost =0;
+                    if(!txtOtherCost.getText().toString().trim().equals(""))
+                    {
+                        OtherCost = Integer.parseInt(txtOtherCost.getText().toString().trim());
+                    }
+
+                    int ride = KidsFirstCost + SocialServiceCost + DetoxCost + MadicalCost + OSBCost + PulpMillCost + ProsecutionCost + OtherCost;
+
+                    int totalride = ride+((ride*GST)/100);
+                    int comm = totalride+((totalride*commission)/100);
+
+                    int gst = comm-((comm*GST)/100);
+
                     int driverCash = Integer.parseInt(txtCash.getText().toString().trim());
+
+                    GasType = String.valueOf(spGasType.getSelectedItem());
+
+                    Log.d("GasType",GasType);
+
                     int gasCash = 0;
                     if (GasType.equals("Cash"))
                     {
@@ -173,19 +238,13 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                         maintenancecost = Integer.parseInt(txtMaintenance.getText().toString().trim());
                     }
 
-                    int commission = Integer.parseInt(tvCommission.getText().toString());
-                    Log.d("commission", ""+commission);
-                    int GST = Integer.parseInt(tvGst.getText().toString().trim());
 
                     int total = gasCash + maintenancecost;
-                    int comm = total-((total*commission)/100);
-                    int gst = total-((comm*GST)/100);
-                    int cashleft = driverCash - gasCash - commission - maintenancecost;
 
-                    /*if (cashleft>0)
-                    {
-                        cashleft = 1;
-                    }*/
+
+                    int cashleft = comm - driverCash - gasCash - maintenancecost;
+
+                    Log.d("commission", ""+comm+"-"+driverCash+"-"+gasCash+"-"+maintenancecost+"="+cashleft);
 
                     txtCommission.setText(String.valueOf(comm));
                     txtGst.setText(String.valueOf(gst));

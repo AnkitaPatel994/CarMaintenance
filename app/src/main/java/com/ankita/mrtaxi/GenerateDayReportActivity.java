@@ -32,6 +32,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Random;
 
 public class GenerateDayReportActivity extends AppCompatActivity {
 
@@ -162,8 +163,11 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         canvas.drawBitmap(bitmap, 0, 0 , null);
         document.finishPage(page);
 
+        Random random = new Random();
+        String randomno = String.format("%04d", random.nextInt(10000));
+
         // write the document content
-        String targetPdf = "/sdcard/pdfDayReport.pdf";
+        String targetPdf = "/sdcard/"+randomno+"DayReport.pdf";
         File filePath;
         filePath = new File(targetPdf);
         try {
