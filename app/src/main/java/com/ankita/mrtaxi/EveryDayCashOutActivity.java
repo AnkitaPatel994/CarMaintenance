@@ -205,19 +205,18 @@ public class EveryDayCashOutActivity extends AppCompatActivity
 
                     int maintenancecost = Integer.parseInt(txtMaintenance.getText().toString().trim());
 
-                    int gst = ride*((ride*GST)/100);
+                    int gst = (ride*GST)/100;
                     int total = ride + driverCash + gst;
-                    int co = total+((total*commission)/100);
-                    int comm = co - (co*GST)/100;
+                    int co = (total*commission)/100;
+                    int comm = co - ((co*GST)/100);
 
-                    int cashleft = comm - driverCash - gasCash - maintenancecost;
+                    int cashleft = driverCash - comm - gasCash - maintenancecost;
 
                     Log.d("commission", ""+gst+"/"+comm+"/"+cashleft+"/"+total);
 
                     txtCommission.setText(String.valueOf(comm));
                     txtGst.setText(String.valueOf(gst));
                     txtCashLeft.setText(String.valueOf(cashleft));
-
                     txtTotal.setText(String.valueOf(total));
                 }
                 else
