@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -98,14 +99,18 @@ public class GenerateReportActivity extends AppCompatActivity {
     }
 
     private void createPdf(){
-        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        //WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         //  Display display = wm.getDefaultDisplay();
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        float hight = displaymetrics.heightPixels ;
-        float width = displaymetrics.widthPixels ;
+        //DisplayMetrics displaymetrics = new DisplayMetrics();
+        //this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        //float hight = displaymetrics.heightPixels ;
+        int hight = llReport.getChildAt(0).getHeight();
+        //float width = displaymetrics.widthPixels ;
+        int width = llReport.getChildAt(0).getWidth();
 
-        int convertHighet = (int) hight, convertWidth = (int) width;
+        /*int convertHighet = (int) hight, convertWidth = (int) width;*/
+
+        int convertHighet = hight, convertWidth = width;
 
 //        Resources mResources = getResources();
 //        Bitmap bitmap = BitmapFactory.decodeResource(mResources, R.drawable.screenshot);
@@ -125,13 +130,20 @@ public class GenerateReportActivity extends AppCompatActivity {
         canvas.drawBitmap(bitmap, 0, 0 , null);
         document.finishPage(page);
 
+        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MrTaxi/";
+        File dir = new File(file_path);
+        if (!dir.exists())
+            dir.mkdirs();
+
         Random random = new Random();
         String randomno = String.format("%04d", random.nextInt(10000));
 
         // write the document content
-        String targetPdf = "/sdcard/"+randomno+"Report.pdf";
-        File filePath;
-        filePath = new File(targetPdf);
+        String targetPdf = "/sdcard/MrTaxi/"+randomno+"Report.pdf";
+
+        Log.d("targetPdf",targetPdf);
+
+        File filePath = new File(targetPdf);
         try {
             document.writeTo(new FileOutputStream(filePath));
 
@@ -180,22 +192,27 @@ public class GenerateReportActivity extends AppCompatActivity {
     }
 
     private TableLayout.LayoutParams getTblLayoutParams() {
-        return new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT);
+        return new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT);
     }
 
     private void addHeaders() {
+
+        TableRow tr1 = new TableRow(this);
+        tr1.setLayoutParams(getLayoutParams());
+        tr1.addView(getTextView(0, d_name, ContextCompat.getColor(this, R.color.colorPrimary), Typeface.BOLD, Color.WHITE));
+        tlReport.addView(tr1, getTblLayoutParams());
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-            tr.addView(getTextView(0, "DATE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(1, "DATE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         //tr.addView(getTextView(0, "SHIFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(0, "CONTRACT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(1, "CONTRACT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         //tr.addView(getTextView(0, "CASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "GASTYPE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(0, "GASCASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(0, "MAINTENANCE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(0, "COMMISSION", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(0, "GST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(0, "CASHLEFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(1, "GASTYPE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(1, "GASCASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(1, "MAINTENANCE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(1, "COMMISSION", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(1, "GST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(1, "CASHLEFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         //tr.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tlReport.addView(tr, getTblLayoutParams());
     }

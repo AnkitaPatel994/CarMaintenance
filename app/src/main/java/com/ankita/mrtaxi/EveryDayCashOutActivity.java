@@ -172,53 +172,24 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                     int commission = Integer.parseInt(tvCommission.getText().toString());
                     int GST = Integer.parseInt(tvGst.getText().toString().trim());
 
-                    int KidsFirstCost =0;
-                    if(!txtKidsFirstCost.getText().toString().trim().equals(""))
-                    {
-                        KidsFirstCost = Integer.parseInt(txtKidsFirstCost.getText().toString().trim());
-                    }
-                    int SocialServiceCost =0;
-                    if(!txtSocialServiceCost.getText().toString().trim().equals(""))
-                    {
-                        SocialServiceCost = Integer.parseInt(txtSocialServiceCost.getText().toString().trim());
-                    }
-                    int DetoxCost =0;
-                    if(!txtDetoxCost.getText().toString().trim().equals(""))
-                    {
-                        DetoxCost = Integer.parseInt(txtDetoxCost.getText().toString().trim());
-                    }
-                    int MadicalCost =0;
-                    if(!txtMadicalCost.getText().toString().trim().equals(""))
-                    {
-                        MadicalCost = Integer.parseInt(txtMadicalCost.getText().toString().trim());
-                    }
-                    int OSBCost =0;
-                    if(!txtOSBCost.getText().toString().trim().equals(""))
-                    {
-                        OSBCost = Integer.parseInt(txtOSBCost.getText().toString().trim());
-                    }
-                    int PulpMillCost =0;
-                    if(!txtPulpMillCost.getText().toString().trim().equals(""))
-                    {
-                        PulpMillCost = Integer.parseInt(txtPulpMillCost.getText().toString().trim());
-                    }
-                    int ProsecutionCost =0;
-                    if(!txtProsecutionCost.getText().toString().trim().equals(""))
-                    {
-                        ProsecutionCost = Integer.parseInt(txtProsecutionCost.getText().toString().trim());
-                    }
-                    int OtherCost =0;
-                    if(!txtOtherCost.getText().toString().trim().equals(""))
+                    int KidsFirstCost = Integer.parseInt(txtKidsFirstCost.getText().toString().trim());
+                    int SocialServiceCost = Integer.parseInt(txtSocialServiceCost.getText().toString().trim());
+                    int DetoxCost = Integer.parseInt(txtDetoxCost.getText().toString().trim());
+                    int MadicalCost = Integer.parseInt(txtMadicalCost.getText().toString().trim());
+                    int OSBCost = Integer.parseInt(txtOSBCost.getText().toString().trim());
+                    int PulpMillCost = Integer.parseInt(txtPulpMillCost.getText().toString().trim());
+                    int ProsecutionCost = Integer.parseInt(txtProsecutionCost.getText().toString().trim());
+                    int OtherCost;
+                    if(!txtOther.getText().toString().trim().equals(""))
                     {
                         OtherCost = Integer.parseInt(txtOtherCost.getText().toString().trim());
                     }
+                    else
+                    {
+                        OtherCost = 0;
+                    }
 
                     int ride = KidsFirstCost + SocialServiceCost + DetoxCost + MadicalCost + OSBCost + PulpMillCost + ProsecutionCost + OtherCost;
-
-                    int totalride = ride+((ride*GST)/100);
-                    int comm = totalride+((totalride*commission)/100);
-
-                    int gst = comm-((comm*GST)/100);
 
                     int driverCash = Integer.parseInt(txtCash.getText().toString().trim());
 
@@ -232,26 +203,22 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                        gasCash = Integer.parseInt(txtGasCash.getText().toString().trim());
                     }
 
-                    int maintenancecost =0;
-                    if(!txtMaintenance.getText().toString().trim().equals(""))
-                    {
-                        maintenancecost = Integer.parseInt(txtMaintenance.getText().toString().trim());
-                    }
+                    int maintenancecost = Integer.parseInt(txtMaintenance.getText().toString().trim());
 
-
-                    int total = gasCash + maintenancecost;
-
+                    int gst = ride*((ride*GST)/100);
+                    int total = ride + driverCash + gst;
+                    int co = total+((total*commission)/100);
+                    int comm = co - (co*GST)/100;
 
                     int cashleft = comm - driverCash - gasCash - maintenancecost;
 
-                    Log.d("commission", ""+comm+"-"+driverCash+"-"+gasCash+"-"+maintenancecost+"="+cashleft);
+                    Log.d("commission", ""+gst+"/"+comm+"/"+cashleft+"/"+total);
 
                     txtCommission.setText(String.valueOf(comm));
                     txtGst.setText(String.valueOf(gst));
                     txtCashLeft.setText(String.valueOf(cashleft));
 
-                    int maintotal = gst+cashleft;
-                    txtTotal.setText(String.valueOf(maintotal));
+                    txtTotal.setText(String.valueOf(total));
                 }
                 else
                 {
@@ -270,49 +237,49 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
-                if (!txtKidsFirstCost.getText().toString().equals(""))
+                if (!txtKidsFirstCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtKidsFirst.getText().toString());
                     ClientCostArrayList.add(txtKidsFirstCost.getText().toString());
                 }
 
-                if (!txtSocialServiceCost.getText().toString().equals(""))
+                if (!txtSocialServiceCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtSocialService.getText().toString());
                     ClientCostArrayList.add(txtSocialServiceCost.getText().toString());
                 }
 
-                if (!txtDetoxCost.getText().toString().equals(""))
+                if (!txtDetoxCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtDetox.getText().toString());
                     ClientCostArrayList.add(txtDetoxCost.getText().toString());
                 }
 
-                if (!txtMadicalCost.getText().toString().equals(""))
+                if (!txtMadicalCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtMadical.getText().toString());
                     ClientCostArrayList.add(txtMadicalCost.getText().toString());
                 }
 
-                if (!txtOSBCost.getText().toString().equals(""))
+                if (!txtOSBCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtOSB.getText().toString());
                     ClientCostArrayList.add(txtOSBCost.getText().toString());
                 }
 
-                if (!txtPulpMillCost.getText().toString().equals(""))
+                if (!txtPulpMillCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtPulpMill.getText().toString());
                     ClientCostArrayList.add(txtPulpMillCost.getText().toString());
                 }
 
-                if (!txtProsecutionCost.getText().toString().equals(""))
+                if (!txtProsecutionCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtProsecution.getText().toString());
                     ClientCostArrayList.add(txtProsecutionCost.getText().toString());
                 }
 
-                if (!txtOtherCost.getText().toString().equals(""))
+                if (!txtOtherCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add("Other_"+txtOther.getText().toString());
                     ClientCostArrayList.add(txtOtherCost.getText().toString());

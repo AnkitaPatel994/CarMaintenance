@@ -89,6 +89,8 @@
                     android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="0"
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -115,6 +117,8 @@
                     android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="0"
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -141,6 +145,8 @@
                     android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="0"
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -167,6 +173,8 @@
                     android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="0"
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -193,6 +201,8 @@
                     android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="0"
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -219,6 +229,8 @@
                     android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="0"
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -245,6 +257,8 @@
                     android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="0"
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -277,6 +291,8 @@
                     android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:inputType="number"
+                    android:text="0"
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -294,6 +310,8 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="10dp"
+                android:inputType="number"
+                android:text="0"
                 android:background="@drawable/textbox"/>
 
             <TextView
@@ -308,6 +326,8 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="10dp"
+                android:inputType="number"
+                android:text="0"
                 android:background="@drawable/textbox"/>
 
             <TextView
@@ -341,6 +361,7 @@
                     android:padding="10dp"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
+                    android:inputType="number"
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -370,6 +391,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="10dp"
+                android:inputType="number"
                 android:background="@drawable/textbox"/>
 
         <LinearLayout
@@ -399,6 +421,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="10dp"
+                android:inputType="number"
                 android:background="@drawable/textbox"/>
             <TextView
                 android:layout_width="match_parent"
@@ -412,6 +435,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="10dp"
+                android:inputType="number"
                 android:background="@drawable/textbox"/>
             <TextView
                 android:layout_width="match_parent"
@@ -425,6 +449,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="10dp"
+                android:inputType="number"
                 android:background="@drawable/textbox"/>
 
             <Button

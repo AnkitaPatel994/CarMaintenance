@@ -8,7 +8,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".GenerateServiceReportActivity"
     android:orientation="vertical"
-    android:id="@+id/llServiceReport"
     android:background="@color/colorWhite"
     tools:showIn="@layout/activity_generate_service_report">
 
@@ -61,8 +60,10 @@
                     android:layout_height="match_parent">
 
                     <LinearLayout
+                        android:id="@+id/llServiceReport"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:background="@color/colorWhite"
                         android:orientation="vertical">
 
                         <TableLayout

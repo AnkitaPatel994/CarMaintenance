@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -126,11 +127,16 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
         canvas.drawBitmap(bitmap, 0, 0 , null);
         document.finishPage(page);
 
+        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MrTaxi/";
+        File dir = new File(file_path);
+        if (!dir.exists())
+            dir.mkdirs();
+
         Random random = new Random();
         String randomno = String.format("%04d", random.nextInt(10000));
 
         // write the document content
-        String targetPdf = "/sdcard/"+randomno+"ServiceReportPDF.pdf";
+        String targetPdf = "/sdcard/MrTaxi/"+randomno+"ServiceReportPDF.pdf";
         File filePath;
         filePath = new File(targetPdf);
         try {
@@ -178,6 +184,11 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
     }
 
     private void addHeaders() {
+
+        TableRow tr1 = new TableRow(this);
+        tr1.setLayoutParams(getLayoutParams());
+        tr1.addView(getTextView(0, vehiclename, ContextCompat.getColor(this, R.color.colorPrimary), Typeface.BOLD, Color.WHITE));
+        tlServiceReport.addView(tr1, getTblLayoutParams());
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
         tr.addView(getTextView(0, "DATE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));

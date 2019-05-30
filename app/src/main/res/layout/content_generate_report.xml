@@ -8,7 +8,6 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".GenerateReportActivity"
     android:orientation="vertical"
-    android:id="@+id/llReport"
     android:background="@color/colorWhite"
     tools:showIn="@layout/activity_generate_report">
 
@@ -18,9 +17,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:paddingTop="30dp"
-            android:paddingBottom="10dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
             android:orientation="vertical">
@@ -42,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                android:visibility="gone"
                 android:textColor="@color/colorPrimary" />
 
             <View
@@ -51,18 +50,15 @@
                 android:layout_marginBottom="10dp"
                 android:background="@color/colorGrey" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
                 <HorizontalScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <LinearLayout
+                        android:id="@+id/llReport"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:background="@color/colorWhite"
                         android:orientation="vertical">
 
                         <TableLayout
@@ -72,8 +68,9 @@
                             android:stretchColumns="0,1"/>
 
                     </LinearLayout>
+
                 </HorizontalScrollView>
-            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
 

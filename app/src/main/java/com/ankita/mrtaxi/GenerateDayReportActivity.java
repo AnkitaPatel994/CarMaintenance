@@ -12,6 +12,7 @@ import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -163,11 +164,17 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         canvas.drawBitmap(bitmap, 0, 0 , null);
         document.finishPage(page);
 
+        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MrTaxi/";
+        File dir = new File(file_path);
+        if (!dir.exists())
+            dir.mkdirs();
+
         Random random = new Random();
         String randomno = String.format("%04d", random.nextInt(10000));
 
         // write the document content
-        String targetPdf = "/sdcard/"+randomno+"DayReport.pdf";
+        String targetPdf = "/sdcard/MrTaxi/"+randomno+"DayReport.pdf";
+
         File filePath;
         filePath = new File(targetPdf);
         try {
