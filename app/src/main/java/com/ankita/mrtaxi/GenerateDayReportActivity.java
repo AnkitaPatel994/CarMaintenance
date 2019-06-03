@@ -1,9 +1,11 @@
 package com.ankita.mrtaxi;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,6 +17,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
@@ -33,6 +37,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GenerateDayReportActivity extends AppCompatActivity {
@@ -60,9 +65,29 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("size"," "+llDayReport.getWidth() +"  "+llDayReport.getWidth());
-                bitmap = loadBitmapFromView(llDayReport, llDayReport.getWidth(), llDayReport.getHeight());
-                createPdf();
+
+                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+                    // Should we show an explanation?
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(GenerateDayReportActivity.this,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE) && ActivityCompat.shouldShowRequestPermissionRationale(GenerateDayReportActivity.this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        Log.d("size"," "+llDayReport.getWidth() +"  "+llDayReport.getWidth());
+                        bitmap = loadBitmapFromView(llDayReport, llDayReport.getWidth(), llDayReport.getHeight());
+                        createPdf();
+                    } else {
+                        ActivityCompat.requestPermissions(GenerateDayReportActivity.this, new String[]{"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"}, 200);
+                        // No explanation needed, we can request the permission.
+                    }
+                } else {
+                    Log.d("size"," "+llDayReport.getWidth() +"  "+llDayReport.getWidth());
+                    bitmap = loadBitmapFromView(llDayReport, llDayReport.getWidth(), llDayReport.getHeight());
+                    createPdf();
+                }
+
             }
         });
 
@@ -80,6 +105,8 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         TextView txtGDGST = (TextView)findViewById(R.id.txtGDGST);
         TextView txtGDCashleft = (TextView)findViewById(R.id.txtGDCashleft);
         TextView txtGDTotal = (TextView)findViewById(R.id.txtGDTotal);
+        TextView txtGDExpense = (TextView)findViewById(R.id.txtGDExpense);
+        TextView txtGDProfit = (TextView)findViewById(R.id.txtGDProfit);
 
         c_id = getIntent().getExtras().getString("c_id");
 
@@ -90,14 +117,55 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         txtGDName.setText(d_name);
 
         String client_name = getIntent().getExtras().getString("client_name");
-        txtGDClientName.setText(client_name);
+        String[] tokens = client_name.split(",");
+
+        ArrayList<String> clientNameArray = new ArrayList<>();
+        String listString="";
+
+        for(String t : tokens) {
+
+            clientNameArray.add(t);
+            Log.d("client_name",""+clientNameArray);
+            //txtGDClientName.setText(tokens[t]+"\n");
+        }
+
+        for(String ss : clientNameArray) {
+
+            if(listString == ""){
+                listString += ss;
+            }else{
+                listString += "\n" + ss;
+            }
+            txtGDClientName.setText(listString);
+        }
+
 
         String c_other = getIntent().getExtras().getString("c_other");
-        if(c_other.equals(""))
+        /*if(c_other.equals(""))
         {
             llOther.setVisibility(View.GONE);
+        }*/
+        String[] tokensc = c_other.split(",");
+
+        ArrayList<String> clientNameCArray = new ArrayList<>();
+        String listCostString="";
+
+        for(String t : tokensc) {
+
+            clientNameCArray.add(t);
+
         }
-        txtGDOther.setText(c_other);
+
+        for(String sss : clientNameCArray) {
+
+            if(listCostString == ""){
+                listCostString += sss;
+            }else{
+                listCostString += "\n" + sss;
+            }
+            txtGDOther.setText(listCostString);
+        }
+        //txtGDOther.setText(c_other);
 
         String c_cash = getIntent().getExtras().getString("c_cash");
         txtGDCash.setText(c_cash);
@@ -126,6 +194,11 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         String c_date = getIntent().getExtras().getString("c_date");
         txtGDDate.setText(c_date);
 
+        float expense = Float.parseFloat(c_gascash) + Float.parseFloat(c_maintenance) + Float.parseFloat(c_commission) + Float.parseFloat(c_gst);
+        txtGDExpense.setText(String.valueOf(expense));
+
+        float NetProfit = Float.parseFloat(c_total) - expense;
+        txtGDProfit.setText(String.valueOf(NetProfit));
     }
 
     private Bitmap loadBitmapFromView(LinearLayout llDayReport, int width, int height) {
@@ -196,13 +269,12 @@ public class GenerateDayReportActivity extends AppCompatActivity {
     private void openGeneratedPDF(File filePath) {
         if (filePath.exists())
         {
-            Intent intent=new Intent(Intent.ACTION_VIEW);
-            Uri uri = Uri.fromFile(filePath);
-            intent.setDataAndType(uri, "application/pdf");
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
             try
             {
+                Intent intent=new Intent(Intent.ACTION_VIEW);
+                Uri uri = Uri.fromFile(filePath);
+                intent.setDataAndType(uri, "application/pdf");
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
             catch(ActivityNotFoundException e)

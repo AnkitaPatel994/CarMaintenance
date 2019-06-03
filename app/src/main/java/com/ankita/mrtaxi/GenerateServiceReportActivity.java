@@ -1,7 +1,9 @@
 package com.ankita.mrtaxi;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -13,6 +15,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -72,9 +75,29 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("size"," "+llServiceReport.getWidth() +"  "+llServiceReport.getWidth());
-                bitmap = loadBitmapFromView(llServiceReport, llServiceReport.getWidth(), llServiceReport.getHeight());
-                createPdf();
+
+                if (ContextCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                        && ContextCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+                    // Should we show an explanation?
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(GenerateServiceReportActivity.this,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE) && ActivityCompat.shouldShowRequestPermissionRationale(GenerateServiceReportActivity.this,
+                            Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                        Log.d("size"," "+llServiceReport.getWidth() +"  "+llServiceReport.getWidth());
+                        bitmap = loadBitmapFromView(llServiceReport, llServiceReport.getWidth(), llServiceReport.getHeight());
+                        createPdf();
+                    } else {
+                        ActivityCompat.requestPermissions(GenerateServiceReportActivity.this, new String[]{"android.permission.WRITE_EXTERNAL_STORAGE", "android.permission.READ_EXTERNAL_STORAGE"}, 200);
+                        // No explanation needed, we can request the permission.
+                    }
+                } else {
+                    Log.d("size"," "+llServiceReport.getWidth() +"  "+llServiceReport.getWidth());
+                    bitmap = loadBitmapFromView(llServiceReport, llServiceReport.getWidth(), llServiceReport.getHeight());
+                    createPdf();
+                }
+
             }
         });
 
