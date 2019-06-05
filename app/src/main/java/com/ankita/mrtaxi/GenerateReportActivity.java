@@ -42,7 +42,7 @@ public class GenerateReportActivity extends AppCompatActivity {
     ArrayList<String> reportDShiftArray = new ArrayList<>();
     ArrayList<String> reportClientNameArray = new ArrayList<>();
     ArrayList<String> reportCashArray = new ArrayList<>();
-    ArrayList<String> reportGastypeArray = new ArrayList<>();
+    ArrayList<String> reportGascreditArray = new ArrayList<>();
     ArrayList<String> reportGascashArray = new ArrayList<>();
     ArrayList<String> reportMaintenanceArray = new ArrayList<>();
     ArrayList<String> reportCommissionArray = new ArrayList<>();
@@ -108,7 +108,7 @@ public class GenerateReportActivity extends AppCompatActivity {
         reportDShiftArray = getIntent().getExtras().getStringArrayList("reportDShiftArray");
         reportClientNameArray = getIntent().getExtras().getStringArrayList("reportClientNameArray");
         reportCashArray = getIntent().getExtras().getStringArrayList("reportCashArray");
-        reportGastypeArray = getIntent().getExtras().getStringArrayList("reportGastypeArray");
+        reportGascreditArray = getIntent().getExtras().getStringArrayList("reportGascreditArray");
         reportGascashArray = getIntent().getExtras().getStringArrayList("reportGascashArray");
         reportMaintenanceArray = getIntent().getExtras().getStringArrayList("reportMaintenanceArray");
         reportCommissionArray = getIntent().getExtras().getStringArrayList("reportCommissionArray");
@@ -231,7 +231,7 @@ public class GenerateReportActivity extends AppCompatActivity {
         //tr.addView(getTextView(0, "SHIFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
             tr.addView(getTextView(1, "CONTRACT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         //tr.addView(getTextView(0, "CASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr.addView(getTextView(1, "GASTYPE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(1, "GASCREDIT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr.addView(getTextView(1, "GASCASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
             tr.addView(getTextView(1, "MAINTENANCE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
             tr.addView(getTextView(1, "COMMISSION", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
@@ -250,7 +250,7 @@ public class GenerateReportActivity extends AppCompatActivity {
             //tr.addView(getTextView(i + numCompanies, reportDShiftArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportClientNameArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             //tr.addView(getTextView(i + numCompanies, reportCashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i + numCompanies, reportGastypeArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            tr.addView(getTextView(i + numCompanies, reportGascreditArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportGascashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportMaintenanceArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportCommissionArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));

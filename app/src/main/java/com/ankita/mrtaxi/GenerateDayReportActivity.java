@@ -23,6 +23,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -98,7 +99,7 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         TextView txtGDClientName = (TextView)findViewById(R.id.txtGDClientName);
         TextView txtGDOther = (TextView)findViewById(R.id.txtGDOther);
         TextView txtGDCash = (TextView)findViewById(R.id.txtGDCash);
-        TextView txtGDGastype = (TextView)findViewById(R.id.txtGDGastype);
+        TextView txtGDGascredit = (TextView)findViewById(R.id.txtGDGascredit);
         TextView txtGDGascash = (TextView)findViewById(R.id.txtGDGascash);
         TextView txtGDMaintenance = (TextView)findViewById(R.id.txtGDMaintenance);
         TextView txtGDCommission = (TextView)findViewById(R.id.txtGDCommission);
@@ -170,8 +171,8 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         String c_cash = getIntent().getExtras().getString("c_cash");
         txtGDCash.setText(c_cash);
 
-        String c_gastype = getIntent().getExtras().getString("c_gastype");
-        txtGDGastype.setText("Gas "+c_gastype+" :");
+        String c_gascredit = getIntent().getExtras().getString("c_gascredit");
+        txtGDGascredit.setText(c_gascredit);
 
         String c_gascash = getIntent().getExtras().getString("c_gascash");
         txtGDGascash.setText(c_gascash);
@@ -194,7 +195,7 @@ public class GenerateDayReportActivity extends AppCompatActivity {
         String c_date = getIntent().getExtras().getString("c_date");
         txtGDDate.setText(c_date);
 
-        float expense = Float.parseFloat(c_gascash) + Float.parseFloat(c_maintenance) + Float.parseFloat(c_commission) + Float.parseFloat(c_gst);
+        float expense = Float.parseFloat(c_gascash) + Float.parseFloat(c_gascredit) + Float.parseFloat(c_maintenance) + Float.parseFloat(c_commission) + Float.parseFloat(c_gst);
         txtGDExpense.setText(String.valueOf(expense));
 
         float NetProfit = Float.parseFloat(c_total) - expense;
@@ -210,14 +211,15 @@ public class GenerateDayReportActivity extends AppCompatActivity {
     }
 
     private void createPdf(){
-        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-        //  Display display = wm.getDefaultDisplay();
+        /*WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+          Display display = wm.getDefaultDisplay();
         DisplayMetrics displaymetrics = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        float hight = displaymetrics.heightPixels ;
-        float width = displaymetrics.widthPixels ;
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);*/
 
-        int convertHighet = (int) hight, convertWidth = (int) width;
+        int hight = llDayReport.getChildAt(0).getHeight();
+        int width = llDayReport.getChildAt(0).getWidth();
+
+        int convertHighet = hight, convertWidth = width;
 
 //        Resources mResources = getResources();
 //        Bitmap bitmap = BitmapFactory.decodeResource(mResources, R.drawable.screenshot);

@@ -330,29 +330,45 @@
                 android:text="0"
                 android:background="@drawable/textbox"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="10dp"
-                android:text="Gas:" />
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:text="Gas Credit:" />
+
+                <EditText
+                    android:id="@+id/txtGasCredit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:inputType="number"
+                    android:background="@drawable/textbox"/>
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/spGasType"
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:entries="@array/GasType"
-                    android:spinnerMode="dialog"
-                    android:background="@android:drawable/btn_dropdown" />
+                    android:text="Gas Cash:" />
 
                 <EditText
                     android:id="@+id/txtGasCash"

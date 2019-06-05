@@ -79,19 +79,19 @@ public class EveryDayReportActivity extends AppCompatActivity
 
                         if(selectedmonth < 10 && selectedday < 10)
                         {
-                            txtEDDate.setText("0"+selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtEDDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + "0"+selectedday);
                         }
                         else if(selectedmonth < 10)
                         {
-                            txtEDDate.setText(selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtEDDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + selectedday);
                         }
                         else if(selectedday < 10)
                         {
-                            txtEDDate.setText("0"+selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtEDDate.setText(selectedyear + "-" + selectedmonth + "-" + "0"+selectedday);
                         }
                         else
                         {
-                            txtEDDate.setText(selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtEDDate.setText(selectedyear + "-" + selectedmonth + "-" + selectedday);
                         }
                     }
                 }, mYear, mMonth, mDay);
@@ -295,7 +295,7 @@ public class EveryDayReportActivity extends AppCompatActivity
 
         String status,message;
         ProgressDialog dialog;
-        String c_id,c_dshift,d_name,client_name,c_other,c_cash,c_gastype,c_gascash,c_maintenance,c_commission,c_gst,c_cashleft,c_total,c_date;
+        String c_id,c_dshift,d_name,client_name,c_other,c_cash,c_gascredit,c_gascash,c_maintenance,c_commission,c_gst,c_cashleft,c_total,c_date;
 
         @Override
         protected void onPreExecute() {
@@ -332,7 +332,7 @@ public class EveryDayReportActivity extends AppCompatActivity
                         client_name =jo.getString("client_name");
                         c_other =jo.getString("c_other");
                         c_cash =jo.getString("c_cash");
-                        c_gastype =jo.getString("c_gastype");
+                        c_gascredit =jo.getString("c_gascredit");
                         c_gascash =jo.getString("c_gascash");
                         c_maintenance =jo.getString("c_maintenance");
                         c_commission =jo.getString("c_commission");
@@ -368,7 +368,7 @@ public class EveryDayReportActivity extends AppCompatActivity
                 i.putExtra("client_name",client_name);
                 i.putExtra("c_other",c_other);
                 i.putExtra("c_cash",c_cash);
-                i.putExtra("c_gastype",c_gastype);
+                i.putExtra("c_gascredit",c_gascredit);
                 i.putExtra("c_gascash",c_gascash);
                 i.putExtra("c_maintenance",c_maintenance);
                 i.putExtra("c_commission",c_commission);

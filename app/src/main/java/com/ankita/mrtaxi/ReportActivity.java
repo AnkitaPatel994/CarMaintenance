@@ -53,7 +53,7 @@ public class ReportActivity extends AppCompatActivity
     ArrayList<String> reportDShiftArray = new ArrayList<>();
     ArrayList<String> reportClientNameArray = new ArrayList<>();
     ArrayList<String> reportCashArray = new ArrayList<>();
-    ArrayList<String> reportGastypeArray = new ArrayList<>();
+    ArrayList<String> reportGascreditArray = new ArrayList<>();
     ArrayList<String> reportGascashArray = new ArrayList<>();
     ArrayList<String> reportMaintenanceArray = new ArrayList<>();
     ArrayList<String> reportCommissionArray = new ArrayList<>();
@@ -89,19 +89,19 @@ public class ReportActivity extends AppCompatActivity
 
                         if(selectedmonth < 10 && selectedday < 10)
                         {
-                            txtRStartDate.setText("0"+selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtRStartDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + "0"+selectedday);
                         }
                         else if(selectedmonth < 10)
                         {
-                            txtRStartDate.setText(selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtRStartDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + selectedday);
                         }
                         else if(selectedday < 10)
                         {
-                            txtRStartDate.setText("0"+selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtRStartDate.setText(selectedyear + "-" + selectedmonth + "-" + "0"+selectedday);
                         }
                         else
                         {
-                            txtRStartDate.setText(selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtRStartDate.setText(selectedyear + "-" + selectedmonth + "-" + selectedday);
                         }
                     }
                 }, mYear, mMonth, mDay);
@@ -121,19 +121,19 @@ public class ReportActivity extends AppCompatActivity
 
                         if(selectedmonth < 10 && selectedday < 10)
                         {
-                            txtREndDate.setText("0"+selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtREndDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + "0"+selectedday);
                         }
                         else if(selectedmonth < 10)
                         {
-                            txtREndDate.setText(selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtREndDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + selectedday);
                         }
                         else if(selectedday < 10)
                         {
-                            txtREndDate.setText("0"+selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtREndDate.setText(selectedyear + "-" + selectedmonth + "-" + "0"+selectedday);
                         }
                         else
                         {
-                            txtREndDate.setText(selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtREndDate.setText(selectedyear + "-" + selectedmonth + "-" + selectedday);
                         }
                     }
                 }, mYear, mMonth, mDay);
@@ -372,7 +372,7 @@ public class ReportActivity extends AppCompatActivity
                         d_name =jo.getString("d_name");
                         String client_name =jo.getString("client_name");
                         String c_cash =jo.getString("c_cash");
-                        String c_gastype =jo.getString("c_gastype");
+                        String c_gascredit =jo.getString("c_gascredit");
                         String c_gascash =jo.getString("c_gascash");
                         String c_maintenance =jo.getString("c_maintenance");
                         String c_commission =jo.getString("c_commission");
@@ -384,7 +384,7 @@ public class ReportActivity extends AppCompatActivity
                         reportDShiftArray.add(c_dshift);
                         reportClientNameArray.add(client_name);
                         reportCashArray.add(c_cash);
-                        reportGastypeArray.add(c_gastype);
+                        reportGascreditArray.add(c_gascredit);
                         reportGascashArray.add(c_gascash);
                         reportMaintenanceArray.add(c_maintenance);
                         reportCommissionArray.add(c_commission);
@@ -417,7 +417,7 @@ public class ReportActivity extends AppCompatActivity
                 i.putExtra("reportDShiftArray",reportDShiftArray);
                 i.putExtra("reportClientNameArray",reportClientNameArray);
                 i.putExtra("reportCashArray",reportCashArray);
-                i.putExtra("reportGastypeArray",reportGastypeArray);
+                i.putExtra("reportGascreditArray",reportGascreditArray);
                 i.putExtra("reportGascashArray",reportGascashArray);
                 i.putExtra("reportMaintenanceArray",reportMaintenanceArray);
                 i.putExtra("reportCommissionArray",reportCommissionArray);

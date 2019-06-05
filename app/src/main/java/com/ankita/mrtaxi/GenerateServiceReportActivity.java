@@ -123,14 +123,15 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
     }
 
     private void createPdf(){
-        WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        //WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         //  Display display = wm.getDefaultDisplay();
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        float hight = displaymetrics.heightPixels ;
-        float width = displaymetrics.widthPixels ;
+        /*DisplayMetrics displaymetrics = new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);*/
 
-        int convertHighet = (int) hight, convertWidth = (int) width;
+        int hight = llServiceReport.getChildAt(0).getHeight();
+        int width = llServiceReport.getChildAt(0).getWidth();
+
+        int convertHighet = hight, convertWidth = width;
 
 //        Resources mResources = getResources();
 //        Bitmap bitmap = BitmapFactory.decodeResource(mResources, R.drawable.screenshot);

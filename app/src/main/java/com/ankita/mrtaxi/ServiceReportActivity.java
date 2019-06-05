@@ -89,19 +89,19 @@ public class ServiceReportActivity extends AppCompatActivity
 
                         if(selectedmonth < 10 && selectedday < 10)
                         {
-                            txtSPStartDate.setText("0"+selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtSPStartDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + "0"+selectedday);
                         }
                         else if(selectedmonth < 10)
                         {
-                            txtSPStartDate.setText(selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtSPStartDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + selectedday);
                         }
                         else if(selectedday < 10)
                         {
-                            txtSPStartDate.setText("0"+selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtSPStartDate.setText(selectedyear + "-" + selectedmonth + "-" + "0"+selectedday);
                         }
                         else
                         {
-                            txtSPStartDate.setText(selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtSPStartDate.setText(selectedyear + "-" + selectedmonth + "-" + selectedday);
                         }
                     }
                 }, mYear, mMonth, mDay);
@@ -120,20 +120,21 @@ public class ServiceReportActivity extends AppCompatActivity
 
                         if(selectedmonth < 10 && selectedday < 10)
                         {
-                            txtSPEndDate.setText("0"+selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtSPEndDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + "0"+selectedday);
                         }
                         else if(selectedmonth < 10)
                         {
-                            txtSPEndDate.setText(selectedday + "-" + "0"+selectedmonth + "-" + selectedyear);
+                            txtSPEndDate.setText(selectedyear + "-" + "0"+selectedmonth + "-" + selectedday);
                         }
                         else if(selectedday < 10)
                         {
-                            txtSPEndDate.setText("0"+selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtSPEndDate.setText(selectedyear + "-" + selectedmonth + "-" + "0"+selectedday);
                         }
                         else
                         {
-                            txtSPEndDate.setText(selectedday + "-" + selectedmonth + "-" + selectedyear);
+                            txtSPEndDate.setText(selectedyear + "-" + selectedmonth + "-" + selectedday);
                         }
+
                     }
                 }, mYear, mMonth, mDay);
                 //mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
