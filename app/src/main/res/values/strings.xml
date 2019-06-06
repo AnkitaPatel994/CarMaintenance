@@ -19,9 +19,9 @@
     <string name="login">Login</string>
     <string name="enter_password">Enter password</string>
 
-    <string-array name="GasType">
-        <item>Credit</item>
-        <item>Cash</item>
+    <string-array name="DriverShift">
+        <item>Day</item>
+        <item>Night</item>
     </string-array>
 
 </resources>

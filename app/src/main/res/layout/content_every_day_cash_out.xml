@@ -26,13 +26,21 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="10dp"
                 android:text="Driver Shift:" />
-            <EditText
+            <!--<EditText
                 android:id="@+id/txtShift"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/textbox"/>
+                android:background="@drawable/textbox"/>-->
+            <Spinner
+                android:id="@+id/spDriverShift"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:spinnerMode="dialog"
+                android:entries="@array/DriverShift"
+                android:background="@android:drawable/btn_dropdown" />
 
             <TextView
                 android:layout_width="match_parent"
