@@ -15,6 +15,23 @@
     tools:showIn="@layout/app_bar_every_day_report">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp"
+        android:text="Driver Shift:" />
+
+    <Spinner
+        android:id="@+id/spEDDriverShift"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:spinnerMode="dialog"
+        android:entries="@array/DriverShift"
+        android:background="@android:drawable/btn_dropdown" />
+
+    <TextView
         android:id="@+id/txtEDDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

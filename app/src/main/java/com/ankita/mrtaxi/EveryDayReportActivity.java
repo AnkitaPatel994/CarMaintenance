@@ -39,7 +39,7 @@ public class EveryDayReportActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView txtEDDate;
-    Spinner spEDDriverName;
+    Spinner spEDDriverName,spEDDriverShift;
     Button btnEDReport;
     ArrayList<String> DriverIdList = new ArrayList<>();
     ArrayList<String> DriverNameList = new ArrayList<>();
@@ -67,6 +67,7 @@ public class EveryDayReportActivity extends AppCompatActivity
 
         txtEDDate = (TextView)findViewById(R.id.txtEDDate);
         spEDDriverName = (Spinner)findViewById(R.id.spEDDriverName);
+        spEDDriverShift = (Spinner)findViewById(R.id.spEDDriverShift);
         btnEDReport = (Button) findViewById(R.id.btnEDReport);
 
         txtEDDate.setOnClickListener(new View.OnClickListener() {
@@ -311,6 +312,7 @@ public class EveryDayReportActivity extends AppCompatActivity
 
             JSONObject joUser=new JSONObject();
             try {
+                joUser.put("c_dshift",spEDDriverShift.getSelectedItem().toString());
                 joUser.put("c_d_id",driverId);
                 joUser.put("c_date",txtEDDate.getText().toString());
                 Postdata postdata = new Postdata();

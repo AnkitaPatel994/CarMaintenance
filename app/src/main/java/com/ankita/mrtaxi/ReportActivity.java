@@ -52,6 +52,7 @@ public class ReportActivity extends AppCompatActivity
 
     ArrayList<String> reportDShiftArray = new ArrayList<>();
     ArrayList<String> reportClientNameArray = new ArrayList<>();
+    ArrayList<String> reportClientCostArray = new ArrayList<>();
     ArrayList<String> reportCashArray = new ArrayList<>();
     ArrayList<String> reportGascreditArray = new ArrayList<>();
     ArrayList<String> reportGascashArray = new ArrayList<>();
@@ -371,6 +372,7 @@ public class ReportActivity extends AppCompatActivity
                         String c_dshift =jo.getString("c_dshift");
                         d_name =jo.getString("d_name");
                         String client_name =jo.getString("client_name");
+                        String c_cost =jo.getString("c_cost");
                         String c_cash =jo.getString("c_cash");
                         String c_gascredit =jo.getString("c_gascredit");
                         String c_gascash =jo.getString("c_gascash");
@@ -383,6 +385,7 @@ public class ReportActivity extends AppCompatActivity
 
                         reportDShiftArray.add(c_dshift);
                         reportClientNameArray.add(client_name);
+                        reportClientCostArray.add(c_cost);
                         reportCashArray.add(c_cash);
                         reportGascreditArray.add(c_gascredit);
                         reportGascashArray.add(c_gascash);
@@ -416,6 +419,7 @@ public class ReportActivity extends AppCompatActivity
                 i.putExtra("d_name",d_name);
                 i.putExtra("reportDShiftArray",reportDShiftArray);
                 i.putExtra("reportClientNameArray",reportClientNameArray);
+                i.putExtra("reportClientCostArray",reportClientCostArray);
                 i.putExtra("reportCashArray",reportCashArray);
                 i.putExtra("reportGascreditArray",reportGascreditArray);
                 i.putExtra("reportGascashArray",reportGascashArray);
