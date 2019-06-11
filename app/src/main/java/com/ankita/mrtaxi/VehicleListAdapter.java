@@ -39,10 +39,10 @@ class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.ViewHol
         final String v_id = vehicleListArray.get(i).get("v_id");
         final String v_name = vehicleListArray.get(i).get("v_name");
         final String v_no = vehicleListArray.get(i).get("v_no");
-        final String v_kilometer = vehicleListArray.get(i).get("v_kilometer");
+        //final String v_kilometer = vehicleListArray.get(i).get("v_kilometer");
 
         viewHolder.txtVLNameNo.setText(v_name+" - "+v_no);
-        viewHolder.txtVLKilometer.setText(v_kilometer+"km");
+        //viewHolder.txtVLKilometer.setText(v_kilometer+"km");
 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +52,6 @@ class VehicleListAdapter extends RecyclerView.Adapter<VehicleListAdapter.ViewHol
                 i.putExtra("v_id",v_id);
                 i.putExtra("v_name",v_name);
                 i.putExtra("v_no",v_no);
-                i.putExtra("v_kilometer",v_kilometer);
                 context.startActivity(i);
             }
         });

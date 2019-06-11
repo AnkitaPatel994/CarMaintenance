@@ -48,6 +48,7 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
     TextView txtSRVONameNo;
     String vehiclename,Oil_Total,Maintenance_Total,Main_Total;
 
+    ArrayList<String> serviceReportovkilometer = new ArrayList<>();
     ArrayList<String> serviceReportocost = new ArrayList<>();
     ArrayList<String> serviceReportomcost = new ArrayList<>();
     ArrayList<String> serviceReportodate = new ArrayList<>();
@@ -106,6 +107,7 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
         Maintenance_Total = getIntent().getExtras().getString("Maintenance_Total");
         Main_Total = getIntent().getExtras().getString("Main_Total");
 
+        serviceReportovkilometer = getIntent().getExtras().getStringArrayList("serviceReportovkilometer");
         serviceReportocost = getIntent().getExtras().getStringArrayList("serviceReportocost");
         serviceReportomcost = getIntent().getExtras().getStringArrayList("serviceReportomcost");
         serviceReportodate = getIntent().getExtras().getStringArrayList("serviceReportodate");
@@ -216,6 +218,7 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
         tr.addView(getTextView(0, "DATE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(0, "KILOMETER", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr.addView(getTextView(0, "OIL_CHANDE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr.addView(getTextView(0, "MAINTENANCE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
@@ -235,6 +238,7 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
             TableRow tr = new TableRow(this);
             tr.setLayoutParams(getLayoutParams());
             tr.addView(getTextView(i + 1, serviceReportodate.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            tr.addView(getTextView(i + numCompanies, serviceReportovkilometer.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, serviceReportocost.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, serviceReportomcost.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, serviceReportTotal.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));

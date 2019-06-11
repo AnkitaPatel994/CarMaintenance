@@ -17,9 +17,9 @@ import org.json.JSONObject;
 
 public class AddVehicleActivity extends AppCompatActivity {
 
-    EditText txtVehicleName,txtVehicleKilometer,txtVehicleNo;
+    EditText txtVehicleName,txtVehicleNo;
     Button btnAddVehicle;
-    String flag,v_id,v_name,v_no,v_kilometer;
+    String flag,v_id,v_name,v_no;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,6 @@ public class AddVehicleActivity extends AppCompatActivity {
 
         txtVehicleName = (EditText)findViewById(R.id.txtVehicleName);
         txtVehicleNo = (EditText)findViewById(R.id.txtVehicleNo);
-        txtVehicleKilometer = (EditText)findViewById(R.id.txtVehicleKilometer);
         btnAddVehicle = (Button)findViewById(R.id.btnAddVehicle);
 
         flag = getIntent().getExtras().getString("flag");
@@ -48,11 +47,9 @@ public class AddVehicleActivity extends AppCompatActivity {
             v_id = getIntent().getExtras().getString("v_id");
             v_name = getIntent().getExtras().getString("v_name");
             v_no = getIntent().getExtras().getString("v_no");
-            v_kilometer = getIntent().getExtras().getString("v_kilometer");
 
             txtVehicleName.setText(v_name);
             txtVehicleNo.setText(v_no);
-            txtVehicleKilometer.setText(v_kilometer);
 
         }
 
@@ -60,17 +57,13 @@ public class AddVehicleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(txtVehicleName.getText().toString().equals("") && txtVehicleNo.getText().toString().equals("") && txtVehicleKilometer.getText().toString().equals(""))
+                if(txtVehicleName.getText().toString().equals("") && txtVehicleNo.getText().toString().equals(""))
                 {
                     Toast.makeText(AddVehicleActivity.this,"Enter Vehicle Name",Toast.LENGTH_SHORT).show();
                 }
-                else if(txtVehicleNo.getText().toString().equals("") && txtVehicleKilometer.getText().toString().equals(""))
+                else if(txtVehicleNo.getText().toString().equals(""))
                 {
                     Toast.makeText(AddVehicleActivity.this,"Enter Vehicle No",Toast.LENGTH_SHORT).show();
-                }
-                else if(txtVehicleKilometer.getText().toString().equals(""))
-                {
-                    Toast.makeText(AddVehicleActivity.this,"Enter Vehicle Kilometer",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -121,7 +114,6 @@ public class AddVehicleActivity extends AppCompatActivity {
 
                 joUser.put("v_name",txtVehicleName.getText().toString());
                 joUser.put("v_no",txtVehicleNo.getText().toString());
-                joUser.put("v_kilometer",txtVehicleKilometer.getText().toString());
 
                 Postdata postdata = new Postdata();
                 String pdUser=postdata.post(MainActivity.BASE_URL+"addvehicle.php",joUser.toString());
@@ -181,7 +173,7 @@ public class AddVehicleActivity extends AppCompatActivity {
                 joUser.put("v_id",v_id);
                 joUser.put("v_name",txtVehicleName.getText().toString());
                 joUser.put("v_no",txtVehicleNo.getText().toString());
-                joUser.put("v_kilometer",txtVehicleKilometer.getText().toString());
+                //joUser.put("v_kilometer",txtVehicleKilometer.getText().toString());
 
                 Postdata postdata = new Postdata();
                 String pdUser=postdata.post(MainActivity.BASE_URL+"editvehicle.php",joUser.toString());

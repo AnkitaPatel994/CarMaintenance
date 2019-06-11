@@ -21,6 +21,7 @@
         android:drawablePadding="25dp"
         android:hint="Enter Vehicle Name"
         android:layout_margin="10dp"
+        android:drawableTint="@color/colorBlack"
         android:background="@drawable/textbox"/>
 
     <EditText
@@ -30,20 +31,8 @@
         android:padding="10dp"
         android:drawableLeft="@drawable/ic_no"
         android:drawablePadding="25dp"
-        android:hint="Enter Vehicle No"
+        android:hint="Enter Vehicle Plat No"
         android:layout_margin="10dp"
-        android:background="@drawable/textbox"/>
-
-    <EditText
-        android:id="@+id/txtVehicleKilometer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:drawableLeft="@drawable/ic_kilometer"
-        android:drawablePadding="25dp"
-        android:hint="Enter Kilometer"
-        android:layout_margin="10dp"
-        android:inputType="number"
         android:background="@drawable/textbox"/>
 
     <Button

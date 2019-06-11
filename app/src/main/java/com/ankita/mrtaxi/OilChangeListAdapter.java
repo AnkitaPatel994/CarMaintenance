@@ -40,14 +40,14 @@ class OilChangeListAdapter extends RecyclerView.Adapter<OilChangeListAdapter.Vie
         final String v_id = oilChangeListArray.get(i).get("v_id");
         final String v_name = oilChangeListArray.get(i).get("v_name");
         final String v_no = oilChangeListArray.get(i).get("v_no");
-        final String v_kilometer = oilChangeListArray.get(i).get("v_kilometer");
+        final String o_v_kilometer = oilChangeListArray.get(i).get("o_v_kilometer");
         final String o_cost = oilChangeListArray.get(i).get("o_cost");
         final String o_maintenance = oilChangeListArray.get(i).get("o_maintenance");
         final String o_m_cost = oilChangeListArray.get(i).get("o_m_cost");
         String o_date = oilChangeListArray.get(i).get("o_date");
 
         holder.txtVONameNo.setText(v_name+" - "+v_no);
-        holder.txtVOKilometer.setText(v_kilometer+"km");
+        holder.txtVOKilometer.setText(o_v_kilometer+"km");
         holder.txtVOCost.setText("$"+o_cost);
         holder.txtVOMaintenanceCost.setText("$"+o_m_cost);
         holder.txtVODate.setText(o_date);
@@ -62,7 +62,7 @@ class OilChangeListAdapter extends RecyclerView.Adapter<OilChangeListAdapter.Vie
                 i.putExtra("v_id",v_id);
                 i.putExtra("v_name",v_name);
                 i.putExtra("v_no",v_no);
-                i.putExtra("v_kilometer",v_kilometer);
+                i.putExtra("o_v_kilometer",o_v_kilometer);
                 i.putExtra("o_maintenance",o_maintenance);
                 i.putExtra("o_m_cost",o_m_cost);
                 i.putExtra("o_cost",o_cost);

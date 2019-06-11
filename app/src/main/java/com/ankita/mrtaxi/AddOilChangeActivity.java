@@ -34,7 +34,7 @@ public class AddOilChangeActivity extends AppCompatActivity {
     String VehicleId,flag,o_id,v_id;
     ArrayList<String> VehicleIdList = new ArrayList<>();
     ArrayList<String> VehicleNameNoList = new ArrayList<>();
-    ArrayList<String> VehiclekmList = new ArrayList<>();
+    //ArrayList<String> VehiclekmList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +73,8 @@ public class AddOilChangeActivity extends AppCompatActivity {
             String v_name = getIntent().getExtras().getString("v_name");
             String v_no = getIntent().getExtras().getString("v_no");
             txtOilVehicleNameNo.setText(v_name+" - "+v_no);
-            String v_kilometer = getIntent().getExtras().getString("v_kilometer");
-            txtOilVehicleKilometer.setText(v_kilometer);
+            String o_v_kilometer = getIntent().getExtras().getString("o_v_kilometer");
+            txtOilVehicleKilometer.setText(o_v_kilometer);
             String o_cost = getIntent().getExtras().getString("o_cost");
             txtVehicleOilCost.setText(o_cost);
             String o_maintenance = getIntent().getExtras().getString("o_maintenance");
@@ -91,8 +91,6 @@ public class AddOilChangeActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int position_no = spVehicleName.getSelectedItemPosition();
                 VehicleId = VehicleIdList.get(position_no);
-                String Vehiclekm = VehiclekmList.get(position_no);
-                txtOilVehicleKilometer.setText(Vehiclekm);
             }
 
             @Override
@@ -199,11 +197,9 @@ public class AddOilChangeActivity extends AppCompatActivity {
                         String v_id =jo.getString("id");
                         String v_name =jo.getString("v_name");
                         String v_no =jo.getString("v_no");
-                        String v_kilometer =jo.getString("v_kilometer");
 
                         VehicleIdList.add(v_id);
                         VehicleNameNoList.add(v_name+" - "+v_no);
-                        VehiclekmList.add(v_kilometer);
                     }
                 }
                 else
@@ -252,6 +248,7 @@ public class AddOilChangeActivity extends AppCompatActivity {
             JSONObject joUser=new JSONObject();
             try {
                 joUser.put("o_v_id",VehicleId);
+                joUser.put("o_v_kilometer",txtOilVehicleKilometer.getText().toString());
                 joUser.put("o_cost",txtVehicleOilCost.getText().toString());
                 joUser.put("o_maintenance",txtMaintenance.getText().toString());
                 joUser.put("o_m_cost",txtMaintenanceCost.getText().toString());
@@ -311,6 +308,7 @@ public class AddOilChangeActivity extends AppCompatActivity {
             JSONObject joUser=new JSONObject();
             try {
                 joUser.put("o_id",o_id);
+                joUser.put("o_v_kilometer",txtOilVehicleKilometer.getText().toString());
                 joUser.put("o_cost",txtVehicleOilCost.getText().toString());
                 joUser.put("o_maintenance",txtMaintenance.getText().toString());
                 joUser.put("o_m_cost",txtMaintenanceCost.getText().toString());

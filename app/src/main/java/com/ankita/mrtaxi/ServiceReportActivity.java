@@ -53,6 +53,7 @@ public class ServiceReportActivity extends AppCompatActivity
     int mMonth = c.get(Calendar.MONTH);
     int mDay = c.get(Calendar.DAY_OF_MONTH);
 
+    ArrayList<String> serviceReportovkilometer = new ArrayList<>();
     ArrayList<String> serviceReportocost = new ArrayList<>();
     ArrayList<String> serviceReportomcost = new ArrayList<>();
     ArrayList<String> serviceReportodate = new ArrayList<>();
@@ -380,6 +381,7 @@ public class ServiceReportActivity extends AppCompatActivity
 
                         String v_name =jo.getString("v_name");
                         String v_no =jo.getString("v_no");
+                        String o_v_kilometer =jo.getString("o_v_kilometer");
                         String o_cost =jo.getString("o_cost");
                         String o_m_cost =jo.getString("o_m_cost");
                         String o_date =jo.getString("o_date");
@@ -387,6 +389,7 @@ public class ServiceReportActivity extends AppCompatActivity
 
                         vehiclename = v_name+" - "+v_no;
 
+                        serviceReportovkilometer.add(o_v_kilometer);
                         serviceReportocost.add(o_cost);
                         serviceReportomcost.add(o_m_cost);
                         serviceReportodate.add(o_date);
@@ -417,6 +420,7 @@ public class ServiceReportActivity extends AppCompatActivity
                 i.putExtra("Maintenance_Total",Maintenance_Total);
                 i.putExtra("Main_Total",Main_Total);
                 i.putExtra("vehiclename",vehiclename);
+                i.putExtra("serviceReportovkilometer",serviceReportovkilometer);
                 i.putExtra("serviceReportocost",serviceReportocost);
                 i.putExtra("serviceReportomcost",serviceReportomcost);
                 i.putExtra("serviceReportodate",serviceReportodate);

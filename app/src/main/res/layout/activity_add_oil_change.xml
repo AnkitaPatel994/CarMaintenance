@@ -50,7 +50,6 @@
         android:drawablePadding="25dp"
         android:hint="Enter Kilometer"
         android:layout_margin="10dp"
-        android:editable="false"
         android:background="@drawable/textbox"/>
 
     <EditText

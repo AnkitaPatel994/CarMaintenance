@@ -199,12 +199,12 @@ public class VehicleActivity extends AppCompatActivity
                         String v_id =jo.getString("id");
                         String v_name =jo.getString("v_name");
                         String v_no =jo.getString("v_no");
-                        String v_kilometer =jo.getString("v_kilometer");
+                        //String v_kilometer =jo.getString("v_kilometer");
 
                         hashMap.put("v_id",v_id);
                         hashMap.put("v_name",v_name);
                         hashMap.put("v_no",v_no);
-                        hashMap.put("v_kilometer",v_kilometer);
+                        //hashMap.put("v_kilometer",v_kilometer);
 
                         VehicleListArray.add(hashMap);
                     }
