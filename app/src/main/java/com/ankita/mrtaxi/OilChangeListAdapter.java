@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -46,6 +47,21 @@ class OilChangeListAdapter extends RecyclerView.Adapter<OilChangeListAdapter.Vie
         final String o_m_cost = oilChangeListArray.get(i).get("o_m_cost");
         String o_date = oilChangeListArray.get(i).get("o_date");
 
+        if (o_cost.equals(""))
+        {
+            holder.llOil.setVisibility(View.GONE);
+        }
+
+        if (o_maintenance.equals(""))
+        {
+            holder.txtVOMaintenance.setVisibility(View.GONE);
+        }
+
+        if (o_m_cost.equals(""))
+        {
+            holder.txtVOMaintenanceCost.setVisibility(View.GONE);
+        }
+
         holder.txtVONameNo.setText(v_name+" - "+v_no);
         holder.txtVOKilometer.setText(o_v_kilometer+"km");
         holder.txtVOCost.setText("$"+o_cost);
@@ -80,10 +96,12 @@ class OilChangeListAdapter extends RecyclerView.Adapter<OilChangeListAdapter.Vie
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView txtVONameNo,txtVOKilometer,txtVODate,txtVOCost,txtVOMaintenance,txtVOMaintenanceCost;
+        LinearLayout llOil;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
+            llOil = (LinearLayout) itemView.findViewById(R.id.llOil);
             txtVONameNo = (TextView)itemView.findViewById(R.id.txtVONameNo);
             txtVOKilometer = (TextView)itemView.findViewById(R.id.txtVOKilometer);
             txtVODate = (TextView)itemView.findViewById(R.id.txtVODate);

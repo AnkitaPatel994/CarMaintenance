@@ -191,7 +191,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18dp"
-                    android:text="Gas credit:" />
+                    android:text="Gas credit:"
+                    android:textColor="@color/colorGreen"/>
 
                 <TextView
                     android:id="@+id/txtGDGascredit"
@@ -200,7 +201,7 @@
                     android:layout_weight="2"
                     android:textSize="18dp"
                     android:gravity="right"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/colorGreen" />
 
             </LinearLayout>
 
@@ -215,7 +216,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18dp"
-                    android:text="Gas cash:" />
+                    android:text="Gas cash:"
+                    android:textColor="@color/colorBlue"/>
 
                 <TextView
                     android:id="@+id/txtGDGascash"
@@ -224,7 +226,7 @@
                     android:layout_weight="2"
                     android:textSize="18dp"
                     android:gravity="right"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/colorBlue" />
 
             </LinearLayout>
 
@@ -239,7 +241,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18dp"
-                    android:text="Other Expense:" />
+                    android:text="Other Expense:"
+                    android:textColor="@color/colorRed"/>
 
                 <TextView
                     android:id="@+id/txtGDMaintenance"
@@ -248,7 +251,7 @@
                     android:layout_weight="2"
                     android:textSize="18dp"
                     android:gravity="right"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/colorRed" />
 
             </LinearLayout>
             <LinearLayout
@@ -339,7 +342,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18dp"
-                    android:text="Total Income" />
+                    android:text="Total Income"
+                    android:textColor="@color/colorGreen"/>
 
                 <TextView
                     android:id="@+id/txtGDTotal"
@@ -348,7 +352,7 @@
                     android:layout_weight="2"
                     android:textSize="18dp"
                     android:gravity="right"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/colorGreen"/>
 
             </LinearLayout>
 
@@ -393,7 +397,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="18dp"
-                    android:text="Net Profit" />
+                    android:text="Net Profit"
+                    android:textColor="@color/colorBlue"/>
 
                 <TextView
                     android:id="@+id/txtGDProfit"
@@ -402,7 +407,7 @@
                     android:layout_weight="2"
                     android:textSize="18dp"
                     android:gravity="right"
-                    android:textColor="@color/colorPrimary" />
+                    android:textColor="@color/colorBlue" />
 
             </LinearLayout>
 

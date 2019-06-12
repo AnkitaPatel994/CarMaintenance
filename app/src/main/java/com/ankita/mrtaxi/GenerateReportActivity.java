@@ -231,8 +231,8 @@ public class GenerateReportActivity extends AppCompatActivity {
         tr.setLayoutParams(getLayoutParams());
             tr.addView(getTextView(1, "DATE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         //tr.addView(getTextView(0, "SHIFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(1, "CONTRACT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(1, "COST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            //tr.addView(getTextView(1, "CONTRACT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+            tr.addView(getTextView(1, "CONTRACT COST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         //tr.addView(getTextView(0, "CASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr.addView(getTextView(1, "GASCREDIT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr.addView(getTextView(1, "GASCASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
@@ -251,7 +251,7 @@ public class GenerateReportActivity extends AppCompatActivity {
             tr.setLayoutParams(getLayoutParams());
             tr.addView(getTextView(i + 1, reportDateArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             //tr.addView(getTextView(i + numCompanies, reportDShiftArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            tr.addView(getTextView(i + numCompanies, reportClientNameArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            //tr.addView(getTextView(i + numCompanies, reportClientNameArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportClientCostArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             //tr.addView(getTextView(i + numCompanies, reportCashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportGascreditArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
