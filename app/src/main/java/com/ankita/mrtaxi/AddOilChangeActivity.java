@@ -103,9 +103,9 @@ public class AddOilChangeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(txtVehicleOilCost.getText().toString().equals(""))
+                if(txtOilVehicleKilometer.getText().toString().equals(""))
                 {
-                    Toast.makeText(AddOilChangeActivity.this,"Enter Vehicle Oil Cost",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddOilChangeActivity.this,"Enter Vehicle Kilometer",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {

@@ -39,7 +39,7 @@ public class ReportActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     TextView txtRStartDate,txtREndDate;
-    Spinner spRDriverName;
+    Spinner spRDriverName,spRDriverShift;
     Button btnRReport;
     String driverId;
     ArrayList<String> DriverIdList = new ArrayList<>();
@@ -78,6 +78,8 @@ public class ReportActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        spRDriverShift = (Spinner)findViewById(R.id.spRDriverShift);
 
         txtRStartDate = (TextView)findViewById(R.id.txtRStartDate);
         txtRStartDate.setOnClickListener(new View.OnClickListener() {
@@ -164,6 +166,20 @@ public class ReportActivity extends AppCompatActivity
         btnRReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                reportDShiftArray.clear();
+                reportClientNameArray.clear();
+                reportClientCostArray.clear();
+                reportCashArray.clear();
+                reportGascreditArray.clear();
+                reportGascashArray.clear();
+                reportMaintenanceArray.clear();
+                reportCommissionArray.clear();
+                reportGSTArray.clear();
+                reportCashleftArray.clear();
+                reportTotalArray.clear();
+                reportDateArray.clear();
+
                 if(txtRStartDate.getText().toString().equals("") && txtREndDate.getText().toString().equals(""))
                 {
                     Toast.makeText(ReportActivity.this,"Enter Start Date",Toast.LENGTH_SHORT).show();
@@ -352,6 +368,7 @@ public class ReportActivity extends AppCompatActivity
 
             JSONObject joUser=new JSONObject();
             try {
+                joUser.put("c_dshift",spRDriverShift.getSelectedItem().toString());
                 joUser.put("c_d_id",driverId);
                 joUser.put("startdate",txtRStartDate.getText().toString());
                 joUser.put("enddate",txtREndDate.getText().toString());
@@ -383,9 +400,29 @@ public class ReportActivity extends AppCompatActivity
                         String c_total =jo.getString("c_total");
                         String c_date =jo.getString("c_date");
 
+                        String[] tokencost = c_cost.split(",");
+                        ArrayList<Integer> CCostArray = new ArrayList<>();
+                        int listCost=0;
+
+                        for(String t : tokencost) {
+                            CCostArray.add(Integer.valueOf(t));
+                        }
+                        String ccost ="";
+                        for(int sss : CCostArray) {
+
+                            if(listCost == 0){
+                                listCost += sss;
+                            }else{
+                                listCost += + sss;
+                            }
+                            ccost = String.valueOf(listCost);
+
+
+                        }
+
                         reportDShiftArray.add(c_dshift);
                         reportClientNameArray.add(client_name);
-                        reportClientCostArray.add(c_cost);
+                        reportClientCostArray.add(ccost);
                         reportCashArray.add(c_cash);
                         reportGascreditArray.add(c_gascredit);
                         reportGascashArray.add(c_gascash);
@@ -417,6 +454,7 @@ public class ReportActivity extends AppCompatActivity
             {
                 Intent i = new Intent(ReportActivity.this,GenerateReportActivity.class);
                 i.putExtra("d_name",d_name);
+                i.putExtra("DriverShift",spRDriverShift.getSelectedItem().toString());
                 i.putExtra("reportDShiftArray",reportDShiftArray);
                 i.putExtra("reportClientNameArray",reportClientNameArray);
                 i.putExtra("reportClientCostArray",reportClientCostArray);

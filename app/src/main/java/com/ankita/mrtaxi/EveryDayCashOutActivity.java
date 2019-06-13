@@ -49,7 +49,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
     ArrayList<String> DriverIdList = new ArrayList<>();
     ArrayList<String> DriverNameList = new ArrayList<>();
     ArrayList<String> ClientNameArrayList = new ArrayList<>();
-    //ArrayList<String> ClientCostArrayList = new ArrayList<>();
+    ArrayList<String> ClientCostArrayList = new ArrayList<>();
     TextView tvCommission,tvGst;
     TextView txtKidsFirst,txtSocialService,txtDetox,txtMadical,txtOSB,txtPulpMill,txtProsecution;
     EditText txtKidsFirstCost,txtSocialServiceCost,txtDetoxCost,txtMadicalCost,txtOSBCost,txtPulpMillCost,txtProsecutionCost,txtOther,txtOtherCost;
@@ -229,53 +229,53 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                 if (!txtKidsFirstCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtKidsFirst.getText().toString());
-                    //ClientCostArrayList.add(txtKidsFirstCost.getText().toString());
+                    ClientCostArrayList.add(txtKidsFirstCost.getText().toString());
                 }
 
                 if (!txtSocialServiceCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtSocialService.getText().toString());
-                    //ClientCostArrayList.add(txtSocialServiceCost.getText().toString());
+                    ClientCostArrayList.add(txtSocialServiceCost.getText().toString());
                 }
 
                 if (!txtDetoxCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtDetox.getText().toString());
-                    //ClientCostArrayList.add(txtDetoxCost.getText().toString());
+                    ClientCostArrayList.add(txtDetoxCost.getText().toString());
                 }
 
                 if (!txtMadicalCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtMadical.getText().toString());
-                    //ClientCostArrayList.add(txtMadicalCost.getText().toString());
+                    ClientCostArrayList.add(txtMadicalCost.getText().toString());
                 }
 
                 if (!txtOSBCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtOSB.getText().toString());
-                    //ClientCostArrayList.add(txtOSBCost.getText().toString());
+                    ClientCostArrayList.add(txtOSBCost.getText().toString());
                 }
 
                 if (!txtPulpMillCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtPulpMill.getText().toString());
-                    //ClientCostArrayList.add(txtPulpMillCost.getText().toString());
+                    ClientCostArrayList.add(txtPulpMillCost.getText().toString());
                 }
 
                 if (!txtProsecutionCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add(txtProsecution.getText().toString());
-                    //ClientCostArrayList.add(txtProsecutionCost.getText().toString());
+                    ClientCostArrayList.add(txtProsecutionCost.getText().toString());
                 }
 
                 if (!txtOtherCost.getText().toString().equals("0"))
                 {
                     ClientNameArrayList.add("Other_"+txtOther.getText().toString());
-                    //ClientCostArrayList.add(txtOtherCost.getText().toString());
+                    ClientCostArrayList.add(txtOtherCost.getText().toString());
                 }
 
                 ClientName = "";
-                ClientCost = String.valueOf(ride);
+                ClientCost = "";
 
                 for (String ss : ClientNameArrayList)
                 {
@@ -286,14 +286,14 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                     }
                 }
 
-                /*for (String ss : ClientCostArrayList)
+                for (String ss : ClientCostArrayList)
                 {
                     if(ClientCost == ""){
                         ClientCost += ss;
                     }else{
                         ClientCost += "," + ss;
                     }
-                }*/
+                }
 
                 DriverShift = spDriverShift.getSelectedItem().toString();
 

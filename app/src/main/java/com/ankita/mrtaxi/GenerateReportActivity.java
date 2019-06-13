@@ -38,7 +38,7 @@ public class GenerateReportActivity extends AppCompatActivity {
 
     TextView txtGSDName;
     TableLayout tlReport;
-    String d_name;
+    String d_name,DriverShift;
     ArrayList<String> reportDShiftArray = new ArrayList<>();
     ArrayList<String> reportClientNameArray = new ArrayList<>();
     ArrayList<String> reportClientCostArray = new ArrayList<>();
@@ -104,6 +104,7 @@ public class GenerateReportActivity extends AppCompatActivity {
         tlReport = (TableLayout) findViewById(R.id.tlReport);
 
         d_name = getIntent().getExtras().getString("d_name");
+        DriverShift = getIntent().getExtras().getString("DriverShift");
         txtGSDName.setText(d_name);
 
         reportDShiftArray = getIntent().getExtras().getStringArrayList("reportDShiftArray");
@@ -226,21 +227,22 @@ public class GenerateReportActivity extends AppCompatActivity {
         TableRow tr1 = new TableRow(this);
         tr1.setLayoutParams(getLayoutParams());
         tr1.addView(getTextView(0, d_name, ContextCompat.getColor(this, R.color.colorPrimary), Typeface.BOLD, Color.WHITE));
+        tr1.addView(getTextView(0, DriverShift, ContextCompat.getColor(this, R.color.colorPrimary), Typeface.BOLD, Color.WHITE));
         tlReport.addView(tr1, getTblLayoutParams());
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-            tr.addView(getTextView(1, "DATE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(1, "DATE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         //tr.addView(getTextView(0, "SHIFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            //tr.addView(getTextView(1, "CONTRACT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(1, "CONTRACT COST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        //tr.addView(getTextView(0, "CASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        //tr.addView(getTextView(1, "CONTRACT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(1, "CONTRACT COST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(0, "CASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr.addView(getTextView(1, "GASCREDIT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tr.addView(getTextView(1, "GASCASH", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(1, "MAINTENANCE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(1, "COMMISSION", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(1, "GST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-            tr.addView(getTextView(1, "CASHLEFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        //tr.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(1, "MAINTENANCE", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(1, "COMMISSION", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(1, "GST", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(1, "CASHLEFT", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
         tlReport.addView(tr, getTblLayoutParams());
     }
 
@@ -253,14 +255,14 @@ public class GenerateReportActivity extends AppCompatActivity {
             //tr.addView(getTextView(i + numCompanies, reportDShiftArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             //tr.addView(getTextView(i + numCompanies, reportClientNameArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportClientCostArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            //tr.addView(getTextView(i + numCompanies, reportCashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            tr.addView(getTextView(i + numCompanies, reportCashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportGascreditArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportGascashArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportMaintenanceArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportCommissionArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportGSTArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tr.addView(getTextView(i + numCompanies, reportCashleftArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
-            //tr.addView(getTextView(i + numCompanies, reportTotalArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
+            tr.addView(getTextView(i + numCompanies, reportTotalArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tlReport.addView(tr, getTblLayoutParams());
         }
     }

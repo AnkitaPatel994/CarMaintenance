@@ -142,15 +142,15 @@ public class GenerateDayReportActivity extends AppCompatActivity {
 
 
         String c_other = getIntent().getExtras().getString("c_other");
-        txtGDOther.setText(c_other);
+        //txtGDOther.setText(c_other);
 
         /*if(c_other.equals(""))
         {
             llOther.setVisibility(View.GONE);
         }*/
-        /*String[] tokensc = c_other.split(",");
+        String[] tokensc = c_other.split(",");
 
-        //ArrayList<String> clientNameCArray = new ArrayList<>();
+        ArrayList<String> clientNameCArray = new ArrayList<>();
         String listCostString="";
 
         for(String t : tokensc) {
@@ -166,8 +166,8 @@ public class GenerateDayReportActivity extends AppCompatActivity {
             }else{
                 listCostString += "\n" + sss;
             }
-            //txtGDOther.setText(listCostString);
-        }*/
+            txtGDOther.setText(listCostString);
+        }
 
 
         String c_cash = getIntent().getExtras().getString("c_cash");

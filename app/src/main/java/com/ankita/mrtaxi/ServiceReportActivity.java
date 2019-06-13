@@ -163,6 +163,12 @@ public class ServiceReportActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
 
+                serviceReportovkilometer.clear();
+                serviceReportocost.clear();
+                serviceReportomcost.clear();
+                serviceReportodate.clear();
+                serviceReportTotal.clear();
+
                 if(txtSPStartDate.getText().toString().equals("") && txtSPEndDate.getText().toString().equals(""))
                 {
                     Toast.makeText(ServiceReportActivity.this,"Enter Start Date",Toast.LENGTH_SHORT).show();
