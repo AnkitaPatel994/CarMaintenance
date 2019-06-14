@@ -1,7 +1,7 @@
 package com.ankita.mrtaxi;
 
 import android.Manifest;
-import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -16,12 +16,10 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -53,6 +51,7 @@ public class GenerateReportActivity extends AppCompatActivity {
     ArrayList<String> reportDateArray = new ArrayList<>();
     private Bitmap bitmap;
     LinearLayout llReport;
+    float TOTALCCOST = 0,TOTALCCAST = 0,TOTALCGASCREDIT = 0,TOTALCGASCAST = 0,TOTALCMAINTENANCE = 0,TOTALCCOMMISSION = 0,TOTALCGST = 0,TOTALCCASTLEFT = 0,TOTALCTOTAL = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +118,196 @@ public class GenerateReportActivity extends AppCompatActivity {
         reportCashleftArray = getIntent().getExtras().getStringArrayList("reportCashleftArray");
         reportTotalArray = getIntent().getExtras().getStringArrayList("reportTotalArray");
         reportDateArray = getIntent().getExtras().getStringArrayList("reportDateArray");
+
+        String listCCOST="";
+        for(String ss : reportClientCostArray) {
+            if(listCCOST == ""){
+                listCCOST += ss;
+            }else{
+                listCCOST += "," + ss;
+            }
+        }
+        String[] tokenCCOST = listCCOST.split(",");
+        ArrayList<Float> CCostArray = new ArrayList<>();
+        for(String t : tokenCCOST) {
+            CCostArray.add(Float.valueOf(t));
+        }
+        for(float sss : CCostArray) {
+            if(TOTALCCOST == 0){
+                TOTALCCOST += sss;
+            }else{
+                TOTALCCOST += + sss;
+            }
+        }
+
+        String listCCAST="";
+        for(String ss : reportCashArray) {
+            if(listCCAST == ""){
+                listCCAST += ss;
+            }else{
+                listCCAST += "," + ss;
+            }
+        }
+        String[] tokenCCAST = listCCAST.split(",");
+        ArrayList<Float> CCASTArray = new ArrayList<>();
+        for(String t : tokenCCAST) {
+            CCASTArray.add(Float.valueOf(t));
+        }
+        for(float sss : CCASTArray) {
+            if(TOTALCCAST == 0){
+                TOTALCCAST += sss;
+            }else{
+                TOTALCCAST += + sss;
+            }
+        }
+
+        String listCGASCREDIT="";
+        for(String ss : reportGascreditArray) {
+            if(listCGASCREDIT == ""){
+                listCGASCREDIT += ss;
+            }else{
+                listCGASCREDIT += "," + ss;
+            }
+        }
+        String[] tokenCGASCREDIT = listCGASCREDIT.split(",");
+        ArrayList<Float> CGASCREDITArray = new ArrayList<>();
+        for(String t : tokenCGASCREDIT) {
+            CGASCREDITArray.add(Float.valueOf(t));
+        }
+        for(float sss : CGASCREDITArray) {
+            if(TOTALCGASCREDIT == 0){
+                TOTALCGASCREDIT += sss;
+            }else{
+                TOTALCGASCREDIT += + sss;
+            }
+        }
+
+        String listCGASCAST="";
+        for(String ss : reportGascashArray) {
+            if(listCGASCAST == ""){
+                listCGASCAST += ss;
+            }else{
+                listCGASCAST += "," + ss;
+            }
+        }
+        String[] tokenCGASCAST = listCGASCAST.split(",");
+        ArrayList<Float> CGASCASTArray = new ArrayList<>();
+        for(String t : tokenCGASCAST) {
+            CGASCASTArray.add(Float.valueOf(t));
+        }
+        for(float sss : CGASCASTArray) {
+            if(TOTALCGASCAST == 0){
+                TOTALCGASCAST += sss;
+            }else{
+                TOTALCGASCAST += + sss;
+            }
+        }
+
+        String listCMAINTENANCE="";
+        for(String ss : reportMaintenanceArray) {
+            if(listCMAINTENANCE == ""){
+                listCMAINTENANCE += ss;
+            }else{
+                listCMAINTENANCE += "," + ss;
+            }
+        }
+        String[] tokenCMAINTENANCE = listCMAINTENANCE.split(",");
+        ArrayList<Float> CMAINTENANCEArray = new ArrayList<>();
+        for(String t : tokenCMAINTENANCE) {
+            CMAINTENANCEArray.add(Float.valueOf(t));
+        }
+        for(float sss : CMAINTENANCEArray) {
+            if(TOTALCMAINTENANCE == 0){
+                TOTALCMAINTENANCE += sss;
+            }else{
+                TOTALCMAINTENANCE += + sss;
+            }
+        }
+
+        String listCCOMMISSION="";
+        for(String ss : reportCommissionArray) {
+            if(listCCOMMISSION == ""){
+                listCCOMMISSION += ss;
+            }else{
+                listCCOMMISSION += "," + ss;
+            }
+        }
+        String[] tokenCCOMMISSION = listCCOMMISSION.split(",");
+        ArrayList<Float> CCOMMISSIONArray = new ArrayList<>();
+        for(String t : tokenCCOMMISSION) {
+            CCOMMISSIONArray.add(Float.valueOf(t));
+        }
+        for(float sss : CCOMMISSIONArray) {
+            if(TOTALCCOMMISSION == 0){
+                TOTALCCOMMISSION += sss;
+            }else{
+                TOTALCCOMMISSION += + sss;
+            }
+        }
+
+        String listCGST="";
+        for(String ss : reportGSTArray) {
+            if(listCGST == ""){
+                listCGST += ss;
+            }else{
+                listCGST += "," + ss;
+            }
+        }
+        String[] tokenCGST = listCGST.split(",");
+        ArrayList<Float> CGSTArray = new ArrayList<>();
+        for(String t : tokenCGST) {
+            CGSTArray.add(Float.valueOf(t));
+        }
+        for(float sss : CGSTArray) {
+            if(TOTALCGST == 0){
+                TOTALCGST += sss;
+            }else{
+                TOTALCGST += + sss;
+            }
+        }
+
+        String listCCASTLEFT="";
+        for(String ss : reportCashleftArray) {
+            if(listCCASTLEFT == ""){
+                listCCASTLEFT += ss;
+            }else{
+                listCCASTLEFT += "," + ss;
+            }
+        }
+        String[] tokenCCASTLEFT = listCCASTLEFT.split(",");
+        ArrayList<Float> CCASTLEFTArray = new ArrayList<>();
+        for(String t : tokenCCASTLEFT) {
+            CCASTLEFTArray.add(Float.valueOf(t));
+        }
+        for(float sss : CCASTLEFTArray) {
+            if(TOTALCCASTLEFT == 0){
+                TOTALCCASTLEFT += sss;
+            }else{
+                TOTALCCASTLEFT += + sss;
+            }
+        }
+
+
+        String listCTOTAL="";
+        for(String ss : reportTotalArray) {
+            if(listCTOTAL == ""){
+                listCTOTAL += ss;
+            }else{
+                listCTOTAL += "," + ss;
+            }
+        }
+        String[] tokenCTOTAL = listCTOTAL.split(",");
+        ArrayList<Float> CTOTALArray = new ArrayList<>();
+        for(String t : tokenCTOTAL) {
+            CTOTALArray.add(Float.valueOf(t));
+        }
+        for(float sss : CTOTALArray) {
+            if(TOTALCTOTAL == 0){
+                TOTALCTOTAL += sss;
+            }else{
+                TOTALCTOTAL += + sss;
+            }
+        }
 
         addHeaders();
         addData();
@@ -265,6 +454,19 @@ public class GenerateReportActivity extends AppCompatActivity {
             tr.addView(getTextView(i + numCompanies, reportTotalArray.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tlReport.addView(tr, getTblLayoutParams());
         }
+        TableRow tr2 = new TableRow(this);
+        tr2.setLayoutParams(getLayoutParams());
+        tr2.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr2.addView(getTextView(0, String.valueOf(TOTALCCOST), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr2.addView(getTextView(0, String.valueOf(TOTALCCAST), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr2.addView(getTextView(0, String.valueOf(TOTALCGASCREDIT), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr2.addView(getTextView(0, String.valueOf(TOTALCGASCAST), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr2.addView(getTextView(0, String.valueOf(TOTALCMAINTENANCE), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr2.addView(getTextView(0, String.valueOf(TOTALCCOMMISSION), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr2.addView(getTextView(0, String.valueOf(TOTALCGST), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr2.addView(getTextView(0, String.valueOf(TOTALCCASTLEFT), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr2.addView(getTextView(0, String.valueOf(TOTALCTOTAL), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tlReport.addView(tr2, getTblLayoutParams());
     }
 
 }

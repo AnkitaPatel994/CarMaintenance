@@ -63,6 +63,8 @@ public class ReportActivity extends AppCompatActivity
     ArrayList<String> reportTotalArray = new ArrayList<>();
     ArrayList<String> reportDateArray = new ArrayList<>();
 
+    String btnRMReport;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -403,21 +405,17 @@ public class ReportActivity extends AppCompatActivity
                         String[] tokencost = c_cost.split(",");
                         ArrayList<Integer> CCostArray = new ArrayList<>();
                         int listCost=0;
-
                         for(String t : tokencost) {
                             CCostArray.add(Integer.valueOf(t));
                         }
                         String ccost ="";
                         for(int sss : CCostArray) {
-
                             if(listCost == 0){
                                 listCost += sss;
                             }else{
                                 listCost += + sss;
                             }
                             ccost = String.valueOf(listCost);
-
-
                         }
 
                         reportDShiftArray.add(c_dshift);

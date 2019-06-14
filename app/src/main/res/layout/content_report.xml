@@ -14,6 +14,39 @@
     android:paddingRight="10dp"
     tools:showIn="@layout/app_bar_report">
 
+    <!--<Button
+        android:id="@+id/btnRMReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_bg"
+        android:text="Month report" />
+
+    <Button
+        android:id="@+id/btnRSReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_bg"
+        android:text="Shift report" />
+
+    <Button
+        android:id="@+id/btnRDReport"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/button_bg"
+        android:text="Driver report" />-->
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
