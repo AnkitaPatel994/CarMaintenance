@@ -8,13 +8,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ReportActivity"
     android:orientation="vertical"
-    android:paddingBottom="20dp"
-    android:paddingTop="40dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
+    android:gravity="center"
     tools:showIn="@layout/app_bar_report">
 
-    <!--<Button
+    <Button
         android:id="@+id/btnRMReport"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,90 +42,6 @@
         android:layout_marginRight="30dp"
         android:textColor="@color/colorWhite"
         android:background="@drawable/button_bg"
-        android:text="Driver report" />-->
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        android:text="Driver Shift:" />
-
-    <Spinner
-        android:id="@+id/spRDriverShift"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:spinnerMode="dialog"
-        android:entries="@array/DriverShift"
-        android:background="@android:drawable/btn_dropdown" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        android:text="Start Date" />
-    <TextView
-        android:id="@+id/txtRStartDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:drawableLeft="@drawable/ic_calendar"
-        android:drawablePadding="25dp"
-        android:text="Enter Start Date"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/textbox"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        android:text="End Date" />
-    <TextView
-        android:id="@+id/txtREndDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:drawableLeft="@drawable/ic_calendar"
-        android:drawablePadding="25dp"
-        android:text="Enter End Date"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/textbox"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        android:text="Driver Name" />
-
-    <Spinner
-        android:id="@+id/spRDriverName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@android:drawable/btn_dropdown" />
-
-    <Button
-        android:id="@+id/btnRReport"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:textColor="@color/colorWhite"
-        android:background="@drawable/button_bg"
-        android:text="Generate report" />
+        android:text="Driver report" />
 
 </LinearLayout>

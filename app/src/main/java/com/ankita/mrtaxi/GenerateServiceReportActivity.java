@@ -46,7 +46,8 @@ import java.util.Random;
 public class GenerateServiceReportActivity extends AppCompatActivity {
 
     TextView txtSRVONameNo;
-    String vehiclename,Oil_Total,Maintenance_Total,Main_Total;
+    String vehiclename;
+    int Oil_Total,Maintenance_Total,Main_Total;
 
     ArrayList<String> serviceReportovkilometer = new ArrayList<>();
     ArrayList<String> serviceReportocost = new ArrayList<>();
@@ -103,9 +104,6 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
         });
 
         vehiclename = getIntent().getExtras().getString("vehiclename");
-        Oil_Total = getIntent().getExtras().getString("Oil_Total");
-        Maintenance_Total = getIntent().getExtras().getString("Maintenance_Total");
-        Main_Total = getIntent().getExtras().getString("Main_Total");
 
         serviceReportovkilometer = getIntent().getExtras().getStringArrayList("serviceReportovkilometer");
         serviceReportocost = getIntent().getExtras().getStringArrayList("serviceReportocost");
@@ -118,6 +116,70 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
         txtSRVONameNo.setText(vehiclename);
 
         tlServiceReport = (TableLayout)findViewById(R.id.tlServiceReport);
+
+        String listOilCost="";
+        for(String ss : serviceReportocost) {
+            if(listOilCost == ""){
+                listOilCost += ss;
+            }else{
+                listOilCost += "," + ss;
+            }
+        }
+        String[] tokenOilCost = listOilCost.split(",");
+        ArrayList<Integer> OilCostArray = new ArrayList<>();
+        for(String t : tokenOilCost) {
+            OilCostArray.add(Integer.valueOf(t));
+        }
+        for(int sss : OilCostArray) {
+            if(Oil_Total == 0){
+                Oil_Total += sss;
+            }else{
+                Oil_Total += + sss;
+            }
+        }
+
+        String listMaintenanceCost="";
+        for(String ss : serviceReportomcost) {
+            if(listMaintenanceCost == ""){
+                listMaintenanceCost += ss;
+            }else{
+                listMaintenanceCost += "," + ss;
+            }
+        }
+        String[] tokenMaintenanceCost = listMaintenanceCost.split(",");
+        ArrayList<Integer> MaintenanceCostArray = new ArrayList<>();
+        for(String t : tokenMaintenanceCost) {
+            MaintenanceCostArray.add(Integer.valueOf(t));
+        }
+        for(int sss : MaintenanceCostArray) {
+            if(Maintenance_Total == 0){
+                Maintenance_Total += sss;
+            }else{
+                Maintenance_Total += + sss;
+            }
+        }
+
+
+        String listTotal="";
+        for(String ss : serviceReportTotal) {
+            if(listTotal == ""){
+                listTotal += ss;
+            }else{
+                listTotal += "," + ss;
+            }
+        }
+        String[] tokenTotal = listTotal.split(",");
+        ArrayList<Integer> TotalArray = new ArrayList<>();
+        for(String t : tokenTotal) {
+            TotalArray.add(Integer.valueOf(t));
+        }
+        for(int sss : TotalArray) {
+            if(Main_Total == 0){
+                Main_Total += sss;
+            }else{
+                Main_Total += + sss;
+            }
+        }
 
         addHeaders();
         addData();
@@ -244,13 +306,14 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
             tr.addView(getTextView(i + numCompanies, serviceReportTotal.get(i), Color.BLACK, Typeface.NORMAL, Color.WHITE));
             tlServiceReport.addView(tr, getTblLayoutParams());
         }
-        /*TableRow tr1 = new TableRow(this);
+        TableRow tr1 = new TableRow(this);
         tr1.setLayoutParams(getLayoutParams());
         tr1.addView(getTextView(0, "TOTAL", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr1.addView(getTextView(0, Oil_Total, Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr1.addView(getTextView(0, Maintenance_Total, Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tr1.addView(getTextView(0, Main_Total, Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
-        tlServiceReport.addView(tr1, getTblLayoutParams());*/
+        tr1.addView(getTextView(0, "", Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr1.addView(getTextView(0, String.valueOf(Oil_Total), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr1.addView(getTextView(0, String.valueOf(Maintenance_Total), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tr1.addView(getTextView(0, String.valueOf(Main_Total), Color.WHITE, Typeface.BOLD, ContextCompat.getColor(this, R.color.colorPrimary)));
+        tlServiceReport.addView(tr1, getTblLayoutParams());
 
     }
 

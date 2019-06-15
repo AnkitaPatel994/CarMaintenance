@@ -23,5 +23,7 @@
         <item>Day</item>
         <item>Night</item>
     </string-array>
+    <string name="title_activity_generate_shift_report">GenerateShiftReportActivity</string>
+    <string name="title_activity_generate_driver_report">GenerateDriverReportActivity</string>
 
 </resources>
