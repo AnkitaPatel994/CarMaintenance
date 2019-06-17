@@ -18,6 +18,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
+        android:visibility="gone"
         android:text="Driver Shift:" />
 
     <Spinner
@@ -27,6 +28,7 @@
         android:layout_margin="10dp"
         android:spinnerMode="dialog"
         android:entries="@array/DriverShift"
+        android:visibility="gone"
         android:background="@android:drawable/btn_dropdown" />
 
     <TextView
@@ -74,6 +76,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="10dp"
+        android:visibility="gone"
         android:text="Driver Name" />
 
     <Spinner
@@ -83,6 +86,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:visibility="gone"
         android:background="@android:drawable/btn_dropdown" />
 
     <Button

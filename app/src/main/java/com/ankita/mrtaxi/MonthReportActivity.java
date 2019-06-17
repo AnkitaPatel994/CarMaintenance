@@ -39,6 +39,7 @@ public class MonthReportActivity extends AppCompatActivity {
     int mDay = c.get(Calendar.DAY_OF_MONTH);
 
     ArrayList<String> reportDShiftArray = new ArrayList<>();
+    ArrayList<String> reportDDriverNameArray = new ArrayList<>();
     ArrayList<String> reportClientNameArray = new ArrayList<>();
     ArrayList<String> reportClientCostArray = new ArrayList<>();
     ArrayList<String> reportCashArray = new ArrayList<>();
@@ -263,8 +264,8 @@ public class MonthReportActivity extends AppCompatActivity {
 
             JSONObject joUser=new JSONObject();
             try {
-                joUser.put("c_dshift",spRDriverShift.getSelectedItem().toString());
-                joUser.put("c_d_id",driverId);
+                /*joUser.put("c_dshift",spRDriverShift.getSelectedItem().toString());
+                joUser.put("c_d_id",driverId);*/
                 joUser.put("startdate",txtRStartDate.getText().toString());
                 joUser.put("enddate",txtREndDate.getText().toString());
                 Postdata postdata = new Postdata();
@@ -312,6 +313,7 @@ public class MonthReportActivity extends AppCompatActivity {
                         }
 
                         reportDShiftArray.add(c_dshift);
+                        reportDDriverNameArray.add(d_name);
                         reportClientNameArray.add(client_name);
                         reportClientCostArray.add(ccost);
                         reportCashArray.add(c_cash);
@@ -344,9 +346,8 @@ public class MonthReportActivity extends AppCompatActivity {
             if(status.equals("1"))
             {
                 Intent i = new Intent(MonthReportActivity.this,GenerateReportActivity.class);
-                i.putExtra("d_name",d_name);
-                i.putExtra("DriverShift",spRDriverShift.getSelectedItem().toString());
                 i.putExtra("reportDShiftArray",reportDShiftArray);
+                i.putExtra("reportDDriverNameArray",reportDDriverNameArray);
                 i.putExtra("reportClientNameArray",reportClientNameArray);
                 i.putExtra("reportClientCostArray",reportClientCostArray);
                 i.putExtra("reportCashArray",reportCashArray);

@@ -224,7 +224,7 @@ public class GenerateServiceReportActivity extends AppCompatActivity {
         String randomno = String.format("%04d", random.nextInt(10000));
 
         // write the document content
-        String targetPdf = "/sdcard/MrTaxi/"+randomno+"ServiceReportPDF.pdf";
+        String targetPdf = "/sdcard/MrTaxi/"+randomno+"ServiceReport.pdf";
         File filePath;
         filePath = new File(targetPdf);
         try {
