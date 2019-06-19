@@ -98,6 +98,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:text="0"
                     android:background="@drawable/textbox"/>
 
@@ -126,6 +127,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:text="0"
                     android:background="@drawable/textbox"/>
 
@@ -154,6 +156,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:text="0"
                     android:background="@drawable/textbox"/>
 
@@ -182,6 +185,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:text="0"
                     android:background="@drawable/textbox"/>
 
@@ -210,6 +214,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:text="0"
                     android:background="@drawable/textbox"/>
 
@@ -238,6 +243,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:text="0"
                     android:background="@drawable/textbox"/>
 
@@ -266,6 +272,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:text="0"
                     android:background="@drawable/textbox"/>
 
@@ -300,6 +307,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:text="0"
                     android:background="@drawable/textbox"/>
 
@@ -319,6 +327,7 @@
                 android:padding="10dp"
                 android:layout_margin="10dp"
                 android:inputType="number"
+                android:digits="0123456789."
                 android:text="0"
                 android:background="@drawable/textbox"/>
 
@@ -335,6 +344,7 @@
                 android:padding="10dp"
                 android:layout_margin="10dp"
                 android:inputType="number"
+                android:digits="0123456789."
                 android:text="0"
                 android:background="@drawable/textbox"/>
 
@@ -360,6 +370,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -386,6 +397,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:inputType="number"
+                    android:digits="0123456789."
                     android:background="@drawable/textbox"/>
 
             </LinearLayout>
@@ -416,6 +428,7 @@
                 android:padding="10dp"
                 android:layout_margin="10dp"
                 android:inputType="number"
+                android:digits="0123456789."
                 android:background="@drawable/textbox"/>
 
         <LinearLayout
@@ -446,6 +459,7 @@
                 android:padding="10dp"
                 android:layout_margin="10dp"
                 android:inputType="number"
+                android:digits="0123456789."
                 android:background="@drawable/textbox"/>
             <TextView
                 android:layout_width="match_parent"
@@ -460,6 +474,7 @@
                 android:padding="10dp"
                 android:layout_margin="10dp"
                 android:inputType="number"
+                android:digits="0123456789."
                 android:background="@drawable/textbox"/>
             <TextView
                 android:layout_width="match_parent"
@@ -474,6 +489,7 @@
                 android:padding="10dp"
                 android:layout_margin="10dp"
                 android:inputType="number"
+                android:digits="0123456789."
                 android:background="@drawable/textbox"/>
 
             <Button

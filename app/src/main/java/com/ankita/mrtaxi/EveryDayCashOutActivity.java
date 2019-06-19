@@ -42,7 +42,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
 
     EditText txtCash,txtGasCredit,txtGasCash,txtMaintenance,txtCommission,txtGst,txtCashLeft,txtTotal;
     Spinner spDriver,spDriverShift;
-    int ride;
+    float ride;
     Button btnEDSubmit;
     String DriverShift;
     String DriverId,ClientName,ClientCost;
@@ -167,17 +167,17 @@ public class EveryDayCashOutActivity extends AppCompatActivity
                     int commission = Integer.parseInt(tvCommission.getText().toString());
                     int GST = Integer.parseInt(tvGst.getText().toString().trim());
 
-                    int KidsFirstCost = Integer.parseInt(txtKidsFirstCost.getText().toString().trim());
-                    int SocialServiceCost = Integer.parseInt(txtSocialServiceCost.getText().toString().trim());
-                    int DetoxCost = Integer.parseInt(txtDetoxCost.getText().toString().trim());
-                    int MadicalCost = Integer.parseInt(txtMadicalCost.getText().toString().trim());
-                    int OSBCost = Integer.parseInt(txtOSBCost.getText().toString().trim());
-                    int PulpMillCost = Integer.parseInt(txtPulpMillCost.getText().toString().trim());
-                    int ProsecutionCost = Integer.parseInt(txtProsecutionCost.getText().toString().trim());
-                    int OtherCost;
+                    float KidsFirstCost = Float.parseFloat(txtKidsFirstCost.getText().toString().trim());
+                    float SocialServiceCost = Float.parseFloat(txtSocialServiceCost.getText().toString().trim());
+                    float DetoxCost = Float.parseFloat(txtDetoxCost.getText().toString().trim());
+                    float MadicalCost = Float.parseFloat(txtMadicalCost.getText().toString().trim());
+                    float OSBCost = Float.parseFloat(txtOSBCost.getText().toString().trim());
+                    float PulpMillCost = Float.parseFloat(txtPulpMillCost.getText().toString().trim());
+                    float ProsecutionCost = Float.parseFloat(txtProsecutionCost.getText().toString().trim());
+                    float OtherCost;
                     if(!txtOther.getText().toString().trim().equals(""))
                     {
-                        OtherCost = Integer.parseInt(txtOtherCost.getText().toString().trim());
+                        OtherCost = Float.parseFloat(txtOtherCost.getText().toString().trim());
                     }
                     else
                     {
@@ -186,14 +186,15 @@ public class EveryDayCashOutActivity extends AppCompatActivity
 
                     ride = KidsFirstCost + SocialServiceCost + DetoxCost + MadicalCost + OSBCost + PulpMillCost + ProsecutionCost + OtherCost;
 
-                    int driverCash = Integer.parseInt(txtCash.getText().toString().trim());
+                    float driverCash = Float.parseFloat(txtCash.getText().toString().trim());
 
-                    int gasCash = Integer.parseInt(txtGasCash.getText().toString().trim());
+                    float gasCash = Float.parseFloat(txtGasCash.getText().toString().trim());
 
-                    int maintenancecost = Integer.parseInt(txtMaintenance.getText().toString().trim());
+                    float maintenancecost = Float.parseFloat(txtMaintenance.getText().toString().trim());
 
-                    float total = ride + driverCash;
-                    float gst = (total*GST)/100;
+                    float tot = ride + driverCash;
+                    float gst = (tot*GST)/100;
+                    float total = ride + driverCash+gst;
                     float co = (total*commission)/100;
                     float comm = co - ((co*GST)/100);
 
