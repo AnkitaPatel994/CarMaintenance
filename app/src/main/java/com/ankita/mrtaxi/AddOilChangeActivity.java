@@ -1,5 +1,6 @@
 package com.ankita.mrtaxi;
 
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -23,7 +25,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class AddOilChangeActivity extends AppCompatActivity {
@@ -35,6 +40,11 @@ public class AddOilChangeActivity extends AppCompatActivity {
     ArrayList<String> VehicleIdList = new ArrayList<>();
     ArrayList<String> VehicleNameNoList = new ArrayList<>();
     //ArrayList<String> VehiclekmList = new ArrayList<>();
+    TextView txtDateOil;
+    Calendar c = Calendar.getInstance();
+    int mYear = c.get(Calendar.YEAR);
+    int mMonth = c.get(Calendar.MONTH);
+    int mDay = c.get(Calendar.DAY_OF_MONTH);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +57,7 @@ public class AddOilChangeActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        txtDateOil = (TextView) findViewById(R.id.txtDateOil);
         spVehicleName = (Spinner)findViewById(R.id.spVehicleName);
         txtOilVehicleKilometer = (EditText) findViewById(R.id.txtOilVehicleKilometer);
         txtVehicleOilCost = (EditText) findViewById(R.id.txtVehicleOilCost);
@@ -96,6 +107,40 @@ public class AddOilChangeActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+        txtDateOil.setText(sdfDate.format(new Date()));
+
+        txtDateOil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog mDatePicker;
+                mDatePicker = new DatePickerDialog(AddOilChangeActivity.this,new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        selectedmonth = selectedmonth + 1;
+
+                        if(selectedmonth < 10 && selectedday < 10)
+                        {
+                            txtDateOil.setText(selectedyear + "-" + "0"+selectedmonth + "-" + "0"+selectedday);
+                        }
+                        else if(selectedmonth < 10)
+                        {
+                            txtDateOil.setText(selectedyear + "-" + "0"+selectedmonth + "-" + selectedday);
+                        }
+                        else if(selectedday < 10)
+                        {
+                            txtDateOil.setText(selectedyear + "-" + selectedmonth + "-" + "0"+selectedday);
+                        }
+                        else
+                        {
+                            txtDateOil.setText(selectedyear + "-" + selectedmonth + "-" + selectedday);
+                        }
+                    }
+                }, mYear, mMonth, mDay);
+                //mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
+                mDatePicker.show();
             }
         });
 
@@ -248,6 +293,7 @@ public class AddOilChangeActivity extends AppCompatActivity {
             JSONObject joUser=new JSONObject();
             try {
                 joUser.put("o_v_id",VehicleId);
+                joUser.put("o_date",txtDateOil.getText().toString());
                 joUser.put("o_v_kilometer",txtOilVehicleKilometer.getText().toString());
                 joUser.put("o_cost",txtVehicleOilCost.getText().toString());
                 joUser.put("o_maintenance",txtMaintenance.getText().toString());

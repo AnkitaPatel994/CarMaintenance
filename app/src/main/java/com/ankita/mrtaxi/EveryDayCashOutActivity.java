@@ -1,5 +1,6 @@
 package com.ankita.mrtaxi;
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -23,6 +24,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,7 +36,10 @@ import org.json.JSONObject;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class EveryDayCashOutActivity extends AppCompatActivity
@@ -50,9 +55,13 @@ public class EveryDayCashOutActivity extends AppCompatActivity
     ArrayList<String> DriverNameList = new ArrayList<>();
     ArrayList<String> ClientNameArrayList = new ArrayList<>();
     ArrayList<String> ClientCostArrayList = new ArrayList<>();
-    TextView tvCommission,tvGst;
+    TextView tvCommission,tvGst,txtDateED;
     TextView txtKidsFirst,txtSocialService,txtDetox,txtMadical,txtOSB,txtPulpMill,txtProsecution;
     EditText txtKidsFirstCost,txtSocialServiceCost,txtDetoxCost,txtMadicalCost,txtOSBCost,txtPulpMillCost,txtProsecutionCost,txtOther,txtOtherCost;
+    Calendar c = Calendar.getInstance();
+    int mYear = c.get(Calendar.YEAR);
+    int mMonth = c.get(Calendar.MONTH);
+    int mDay = c.get(Calendar.DAY_OF_MONTH);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +85,8 @@ public class EveryDayCashOutActivity extends AppCompatActivity
         //txtShift=(EditText) findViewById(R.id.txtShift);
         spDriver=(Spinner) findViewById(R.id.spDriver);
         spDriverShift=(Spinner) findViewById(R.id.spDriverShift);
+
+        txtDateED=(TextView) findViewById(R.id.txtDateED);
 
         txtCash=(EditText) findViewById(R.id.txtCash);
 
@@ -127,6 +138,40 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+        txtDateED.setText(sdfDate.format(new Date()));
+
+        txtDateED.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog mDatePicker;
+                mDatePicker = new DatePickerDialog(EveryDayCashOutActivity.this,new DatePickerDialog.OnDateSetListener() {
+                    public void onDateSet(DatePicker datepicker, int selectedyear, int selectedmonth, int selectedday) {
+                        selectedmonth = selectedmonth + 1;
+
+                        if(selectedmonth < 10 && selectedday < 10)
+                        {
+                            txtDateED.setText(selectedyear + "-" + "0"+selectedmonth + "-" + "0"+selectedday);
+                        }
+                        else if(selectedmonth < 10)
+                        {
+                            txtDateED.setText(selectedyear + "-" + "0"+selectedmonth + "-" + selectedday);
+                        }
+                        else if(selectedday < 10)
+                        {
+                            txtDateED.setText(selectedyear + "-" + selectedmonth + "-" + "0"+selectedday);
+                        }
+                        else
+                        {
+                            txtDateED.setText(selectedyear + "-" + selectedmonth + "-" + selectedday);
+                        }
+                    }
+                }, mYear, mMonth, mDay);
+                //mDatePicker.getDatePicker().setMinDate(c.getTimeInMillis());
+                mDatePicker.show();
             }
         });
 
@@ -566,6 +611,7 @@ public class EveryDayCashOutActivity extends AppCompatActivity
             JSONObject joUser=new JSONObject();
             try {
                 joUser.put("c_dshift",DriverShift);
+                joUser.put("c_date",txtDateED.getText().toString());
                 joUser.put("c_d_id",DriverId);
                 joUser.put("c_c_name",ClientName);
                 joUser.put("c_cost",ClientCost);

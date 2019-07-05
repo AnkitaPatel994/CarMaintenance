@@ -43,6 +43,18 @@
                 android:background="@android:drawable/btn_dropdown" />
 
             <TextView
+                android:id="@+id/txtDateED"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:text="2019-06-15"
+                android:textSize="17dp"
+                android:padding="10dp"
+                android:drawableLeft="@drawable/ic_calendar"
+                android:drawablePadding="25dp"
+                android:background="@drawable/textbox"/>
+
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
